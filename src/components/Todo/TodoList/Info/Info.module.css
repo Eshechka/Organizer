@@ -1,0 +1,22 @@
+.wap{
+    width: 215px;
+
+}
+.wap p{
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+   margin-bottom: 0;
+}
+.wap_flex{
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+}
+.wap_flex p{
+    margin-right: 5px;
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 0;
+}

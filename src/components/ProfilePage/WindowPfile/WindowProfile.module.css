@@ -1,0 +1,56 @@
+.window{
+    position: fixed;
+    z-index: 1000;
+    opacity: 1;
+    top: 26%;
+    left: 36%;
+    width: 521px;
+    min-height: 532px;
+    background-color: black;
+    padding: 40px;
+}
+.window h2{
+    font-weight: 700;
+    text-align: center;
+    color: white;
+    font-size: 48px;
+}
+.wap{
+    min-width: 28px;
+    margin-top: 61px;
+    margin-left: 50px;
+}
+.wap p{
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    padding: 4px;
+}
+.wap input{
+    display: block;
+    margin-top: 1px;
+    width: 230px;
+    height: 44px;
+    border: none;
+    border-bottom: solid 2px white;
+    padding: 5px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    background: none;
+    outline: none;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+.flex button{
+    margin-right: 0;
+    margin-left: 0;
+    width: 180px;
+}
+.top{
+    margin-top: 33px;
+}
