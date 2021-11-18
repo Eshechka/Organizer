@@ -1,31 +1,30 @@
-import React from 'react';
-import {Col, Container, Row} from "bootstrap-4-react/lib/components/layout";
-import logo from '../../img/logo.png';
-import styles from './Header.module.css'
+import React from "react";
+import logo from "../../img/logo.png";
+import styles from "./Header.module.scss";
 
-export default function Header({user, click}) {
-
-    return (
-        <div className={styles.header}>
-            <Container>
-                <Row>
-                    <Col>
-                        <img src={logo} alt="logo" className={styles.logo}/>
-                    </Col>
-                    <Col>
-                        <h1 className={styles.title}>Онлайн Органайзер</h1>
-                    </Col>
-                    <Col>
-                        {user === true ? <div className={styles.wap}>
-                            <p onClick={click}>Выйти</p>
-                        </div> : <div className={styles.wap}>
-                            <p onClick={click}>Вход</p>
-                            <p onClick={click}>Регистрация</p>
-                        </div>}
-                    </Col>
-                </Row>
-            </Container>
+export default function Header({ user, click }) {
+  return (
+    <div className={styles.header}>
+      <div className={styles.header__container}>
+        <div className={styles.header__logo}>
+          <img src={logo} alt="logo" className={styles.logo} />
         </div>
-    )
+        <h1 className={styles.header__title}>Онлайн Органайзер</h1>
+        {/* <div className={styles.header__wap}> */}
+        {user === true ? (
+          <div className={styles.header__auth}>
+            <span className={styles.header__logout} onClick={click}>
+              Выйти
+            </span>
+          </div>
+        ) : (
+          <div className={styles.wap}>
+            <p onClick={click}>Вход</p>
+            <p onClick={click}>Регистрация</p>
+          </div>
+        )}
+        {/* </div> */}
+      </div>
+    </div>
+  );
 }
-
