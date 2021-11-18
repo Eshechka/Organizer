@@ -1,7 +1,7 @@
 import {combineReducers, createStore} from "redux";
-import GoalsPageReducer from "./redusers/GoalsPageReducer";
-import titleReducer from "./redusers/titleReducer";
-import TodoPageReducer from "./redusers/TodoPageRedecer";
+import GoalsPageReducer from "./reducers/goalsPageReducer";
+import titleReducer from "./reducers/titleReducer";
+import TodoPageReducer from "./reducers/todoPageReducer";
 
 let reducers = combineReducers({
     titlePage: titleReducer,
