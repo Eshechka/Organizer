@@ -1,0 +1,52 @@
+@import "../../App.scss";
+
+.nav {
+  position: relative;
+  height: 93px;
+  background-color: #000000;
+  padding: 17px 0 17px;
+  z-index: 20;
+  &__container {
+    @include container;
+  }
+}
+.navlist {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  list-style-type: none;
+  min-height: 59px;
+  padding: 0;
+
+  &__item {
+    margin-left: 56px;
+    @include tablets {
+      margin-left: 40px;
+    }
+    @include phones {
+      margin-left: 20px;
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+    &:hover .navlist__text {
+      color: $color-hover;
+    }
+  }
+  &__text {
+    font-weight: 400;
+    font-size: 24px;
+    text-align: center;
+    color: $color-text;
+    transition: color 0.2s ease-in 0s;
+  }
+  &__img {
+    display: block;
+    margin: 0 auto;
+    width: 33px;
+    height: 33px;
+  }
+  & a {
+    text-decoration: none;
+  }
+}
