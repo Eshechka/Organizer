@@ -4,10 +4,10 @@ import styles from './Title.module.css'
 import {Container, Row} from "bootstrap-4-react/lib/components/layout";
 import Form from "./Form/Form";
 
-function Title({value, title, buttonTitle,datetime,time,day,move,positionXImg}) {
-    useEffect(()=>{
-        let TimerId=setInterval(datetime,1000)
-        return ()=>{
+function Title({value, title, buttonTitle, datetime, time, day, move, positionXImg}) {
+    useEffect(() => {
+        let TimerId = setInterval(datetime, 1000)
+        return () => {
             clearInterval(TimerId)
         }
     })
@@ -22,12 +22,12 @@ function Title({value, title, buttonTitle,datetime,time,day,move,positionXImg}) 
                             <p>{day}</p>
                         </div>
                         <p className={styles.info}>Войдите или зарегистрируйтесь
-                            чтобы начать пользаваться
+                            чтобы начать пользоваться
                             приложением</p>
                     </div>
                 </Row>
             </Container>
-            <img className={styles.el} style={{transform:`translateX(${positionXImg}px)`}} src={el} alt="png"/>
+            <img className={styles.el} style={{transform: `translateX(${positionXImg}px)`}} src={el} alt="png"/>
             {value === true ?
                 <Form title={title} buttonTitle={buttonTitle}/>
                 : null}

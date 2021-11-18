@@ -13,16 +13,16 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        datetime:()=>{
+        datetime: () => {
             let time
             let day
             let year
             let hours = new Date().getHours(),
                 minutes = new Date().getMinutes(),
                 dayNow = new Date().getDay(),
-                date= new Date().getDate(),
-                month= new Date().getMonth(),
-                yearNow= new Date().getFullYear(),
+                date = new Date().getDate(),
+                month = new Date().getMonth(),
+                yearNow = new Date().getFullYear(),
                 dayRu = ['Воскресение', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота',]
             dayRu.forEach((el, i) => {
                 if (dayNow === i) {
@@ -35,10 +35,10 @@ let mapDispatchToProps = (dispatch) => {
                     }
                 }
             })
-            if(month<10){
-                year=`${date}.0${month}.${yearNow} г.`
-            }else {
-                year=`${date}.${month}.${yearNow} г.`
+            if (month < 10) {
+                year = `${date}.0${month}.${yearNow} г.`
+            } else {
+                year = `${date}.${month}.${yearNow} г.`
             }
 
             dispatch({
@@ -48,14 +48,14 @@ let mapDispatchToProps = (dispatch) => {
                 year,
             })
         },
-        move:(e)=> {
+        move: (e) => {
 
             dispatch({
                 type: 'BACKGROUND_EFFECT',
-                positionX:e.clientX,
+                positionX: e.clientX,
             })
         },
     }
 }
-let TitleContainer = connect(mapStateToProps,mapDispatchToProps)(Title)
+let TitleContainer = connect(mapStateToProps, mapDispatchToProps)(Title)
 export default TitleContainer

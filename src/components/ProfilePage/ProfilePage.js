@@ -5,7 +5,7 @@ import PageName from "../Todo/PageName/PageName";
 import Button from "../Todo/Management/Buttons/Button/Button";
 import WindowProfile from "./WindowPfile/WindowProfile";
 import DateTimeContainer from "../Todo/DateTime/DateTimeContainer";
-function ProfilePage(props) {
+function ProfilePage() {
     return (
         <div className={styles.background}>
             <Container>
@@ -33,7 +33,7 @@ function ProfilePage(props) {
                 <Button text='Удалить профиль' color="#141F84"/>
                 </div>
             </Container>
-            <WindowProfile/>
+            {/*{<WindowProfile/>}*/}
         </div>
     );
 }

@@ -8,6 +8,8 @@
 .price{
     margin-top: 70px;
     margin-bottom: 117px;
+    list-style-type: none;
+    padding: 0;
 }
 
 .background{

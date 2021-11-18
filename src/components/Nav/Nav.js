@@ -15,27 +15,27 @@ function Nav({user}) {
                     <Col>
                         <ul className={styles.list}>
                             <li className={styles.element} style={{
-                                opacity: user===false? 0.4 :1,
+                                opacity: user === false ? 0.4 : 1,
                             }}>
                                 <NavLink to='/do'>
                                     <img src={icon1} alt="icon1"/>
-                                        <p>Список дел</p>
+                                    <p>Список дел</p>
                                 </NavLink>
                             </li>
                             <li className={styles.element} style={{
-                                opacity: user===false? 0.4 :1,
+                                opacity: user === false ? 0.4 : 1,
                             }}>
                                 <NavLink to="/purposes">
                                     <img src={icon2} alt="icon2"/>
-                                        <p>Список целей</p>
+                                    <p>Список целей</p>
                                 </NavLink>
                             </li>
                             <li className={styles.element} style={{
-                                opacity: user===false? 0.4 :1,
+                                opacity: user === false ? 0.4 : 1,
                             }}>
                                 <NavLink to='/profile'>
                                     <img src={icon3} alt="icon3"/>
-                                        <p>Профиль</p>
+                                    <p>Профиль</p>
                                 </NavLink>
                             </li>
                         </ul>
