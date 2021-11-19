@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './Inputs.module.css'
-function Inputs({title,start,end,changeTitle,changeDateStart,changeDateEnd}) {
-    
+
+function Inputs({title, start, end, changeTitle, changeDateStart, changeDateEnd}) {
+
     return (
         <div className={styles.wap}>
             <input onChange={changeTitle} type="text" value={title} placeholder='Название дела'/>
