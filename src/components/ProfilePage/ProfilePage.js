@@ -25,7 +25,7 @@ function ProfilePage() {
                     <Button text='Изменить'/>
                 </div>
                 <div className={styles.wap}>
-                    <p className={styles.p}>Ваш пороль:</p>
+                    <p className={styles.p}>Ваш пароль:</p>
                     <input className={styles.input} type="password"/>
                     <Button text='Изменить'/>
                 </div>
@@ -33,6 +33,7 @@ function ProfilePage() {
                 <Button text='Удалить профиль' color="#141F84"/>
                 </div>
             </Container>
+            {/*пока нет функционала, поэтому я убрал окно что бы оно не показывалось*/}
             {/*{<WindowProfile/>}*/}
         </div>
     );

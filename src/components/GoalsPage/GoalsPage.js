@@ -6,7 +6,7 @@ import ManagementGoals from "./ManagementGoals/ManagementGoals";
 import TodoWindow from "../Todo/TodoWindow/TodoWindow";
 import DateTimeContainer from "../Todo/DateTime/DateTimeContainer";
 import Goals from './Goals/Goals';
-function GoalsPage({dayFunction,openWindow,addGoals,goals,valueWindow,changeTitle,changeDate,changeTodo,valueTitle,valueDate,valueTodo}) {
+function GoalsPage({dayFunction,openWindow,addGoals,goals,valueWindow,changeTitle,changeDate,changeTodo,valueTitle,valueDate,valueTodo,chekTodo}) {
     let objectForInput={
         changeTodo,
         changeTitle,
@@ -31,7 +31,7 @@ function GoalsPage({dayFunction,openWindow,addGoals,goals,valueWindow,changeTitl
                 </Row>
                 <Row className='justify-content-md-center'>
                     <ul className={styles.price}>
-                    {goals.map(el=><li key={el.id}><Goals dayFunction={dayFunction} goal={el}/></li>)}
+                    {goals.map(el=><li key={el.id}><Goals chekTodo={chekTodo} dayFunction={dayFunction} goal={el}/></li>)}
                     </ul>
                 </Row>
                 </Container>
