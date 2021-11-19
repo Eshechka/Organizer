@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.scss";
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
 import {Switch, Route, Redirect} from "react-router-dom";
@@ -8,9 +8,7 @@ import ProfilePage from "./components/ProfilePage/ProfilePage";
 import TodoContainer from './components/Todo/TodoContainer';
 import GoalsPageContainer from './components/GoalsPage/GoalsPageContainer'
 
-
 function App({user}) {
-
     return (
         <>
             <HeaderContainer/>
