@@ -6,8 +6,9 @@ import TodoList from "./TodoList/TodoList";
 import TodoWindow from "./TodoWindow/TodoWindow";
 import DateTimeContainer from "./DateTime/DateTimeContainer";
 import ManagementContainer from './Management/ManegementContainer';
-function Todo({valueWindow,todoList,dayFunction,click,window,push,check}) {
-  
+
+function Todo({valueWindow, todoList, dayFunction, click, window, push, check}) {
+
     return (
         <div className={styles.background}>
             <Container>
@@ -24,11 +25,12 @@ function Todo({valueWindow,todoList,dayFunction,click,window,push,check}) {
                 </Row>
                 <Row className='justify-content-md-center'>
                     <ul>
-                        {todoList.map(el=><li key={el.id}><TodoList id={el.id} click={click} dayFunction={dayFunction} el={el} /></li>)}
+                        {todoList.map(el => <li key={el.id}><TodoList id={el.id} click={click} dayFunction={dayFunction}
+                                                                      el={el}/></li>)}
                     </ul>
                 </Row>
             </Container>
-            {valueWindow===true?<TodoWindow check={check}push={push} window={window}/>:null }
+            {valueWindow === true ? <TodoWindow check={check} push={push} window={window}/> : null}
         </div>
     );
 }

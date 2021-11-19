@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ButtonsElement.module.css'
-function ButtonsElement({click,id}) {
+function ButtonsElement() {
     return (
         <div className={styles.flex}>
             <button id='1' className={styles.yes}/>
