@@ -1,7 +1,7 @@
 import "./App.scss";
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
-import {Switch, Route, Redirect} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import TitleContainer from "./components/Title/TitleContainer";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
@@ -13,20 +13,20 @@ function App({user}) {
         <>
             <HeaderContainer/>
             <Nav user={user}/>
-            <Switch>
-                <Route exact path="/">
-                    {user === true ? <Redirect to='/do'/> : <TitleContainer/>}
-                </Route>
-                <Route exact path="/do">
-                    {user === false ? <Redirect to='/'/> : <TodoContainer/>}
-                </Route>
-                <Route exact path="/purposes">
-                    {user === false ? <Redirect to='/'/> : <GoalsPageContainer/>}
-                </Route>
-                <Route exact path="/profile">
-                    {user === false ? <Redirect to='/'/> : <ProfilePage/>}
-                </Route>
-            </Switch>
+            <Routes>
+                <Route exact path="/" element={
+                    user === true ? <Navigate   to='/do'/> : <TitleContainer/>}
+                />
+                <Route exact path="/do" element={
+                    user === false ? <Navigate   to='/'/> : <TodoContainer/>}
+                />
+                <Route exact path="/purposes" element={
+                    user === false ? <Navigate  to='/'/> : <GoalsPageContainer/>}
+                />
+                <Route exact path="/profile" element={
+                    user === false ? <Navigate  to='/'/> : <ProfilePage/>}
+                />
+            </Routes>
             <Footer/>
         </>
     );

@@ -102,7 +102,10 @@ let mapDispatchToProps=(dispatch)=>{
                 textState,
                 colorState,
             })
-    },
+        },
+        chekTodo:(id)=>{
+           dispatch({type:'CHECKED_TODO',id})
+       }
     }
 }
 let GoalsPageContainer=connect(mapStateToProps,mapDispatchToProps)(GoalsPage)

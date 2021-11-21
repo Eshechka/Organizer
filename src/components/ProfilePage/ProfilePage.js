@@ -17,8 +17,18 @@ function ProfilePage() {
             <PageName text="Профиль" />
           </Col>
         </Row>
-        <h2 className={styles.title}>Добро пожаловать, Максим</h2>
-
+        <h2 className={styles.title}>Добро пожаловать, Максим</h2>     
+                <div className={styles.wap}>
+                    <p className={styles.p}>Ваш пароль:</p>
+                    <input className={styles.input} type="password"/>
+                    <Button text='Изменить'/>
+                </div>
+                <div className={styles.wap_button}>
+                <Button text='Удалить профиль' color="#141F84"/>
+                </div>
+            </Container>
+            {/*пока нет функционала, поэтому я убрал окно что бы оно не показывалось*/}
+            {/*{<WindowProfile/>}*/}
         <div className={styles.wap}>
           <p className={styles.p}>Ваш логин:</p>
           <input className={styles.input} type="text" />
