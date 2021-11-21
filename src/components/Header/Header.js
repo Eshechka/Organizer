@@ -10,7 +10,6 @@ export default function Header({ user, click }) {
           <img src={logo} alt="logo" className={styles.logo} />
         </div>
         <h1 className={styles.header__title}>Онлайн Органайзер</h1>
-        {/* <div className={styles.header__wap}> */}
         {user === true ? (
           <div className={styles.header__auth}>
             <span className={styles.header__logout} onClick={click}>
@@ -23,7 +22,6 @@ export default function Header({ user, click }) {
             <p onClick={click}>Регистрация</p>
           </div>
         )}
-        {/* </div> */}
       </div>
     </div>
   );
