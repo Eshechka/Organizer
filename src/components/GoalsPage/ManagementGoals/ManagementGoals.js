@@ -15,6 +15,7 @@ function ManagementGoals({ inputs, click }) {
               }}
             className={`${styles.title} `}
             type="text"
+            maxLength={25}
             onChange={inputs.changeTitle}
             value={inputs.valueTitle}
             placeholder="Название цели"

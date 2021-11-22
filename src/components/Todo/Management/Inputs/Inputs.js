@@ -51,6 +51,7 @@ function Inputs({
             </div>
         </div>
     );
+
 }
 
 export default Inputs;
