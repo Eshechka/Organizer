@@ -9,6 +9,10 @@ function ManagementGoals({ inputs, click }) {
       <Container>
         <Row className="justify-content-md-center">
           <input
+              style={{
+                borderColor:inputs.errors.errorTitle?'red':'white',
+                transition: 'all 0.2s'
+              }}
             className={`${styles.title} `}
             type="text"
             onChange={inputs.changeTitle}
@@ -44,6 +48,10 @@ function ManagementGoals({ inputs, click }) {
                 если они есть
               </p>
               <textarea
+                  style={{
+                    borderColor:inputs.errors.errorTodo?'red':'white',
+                    transition: 'all 0.2s'
+                  }}
                 className={styles.textarea}
                 onChange={inputs.changeTodo}
                 value={inputs.valueTodo}

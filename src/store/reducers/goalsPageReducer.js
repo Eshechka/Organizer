@@ -5,7 +5,12 @@ let defaultState = {
     valueDate: '',
     changeTodo: '',
     valueTodo: '',
+    errors: {
+        errorTitle: false,
+        errorTodo: false,
+    },
     valueWindow: false,
+    checkWindow: false,
     goals: [],
 }
 let GoalsPageReducer = (state = defaultState, action) => {
@@ -27,12 +32,14 @@ let GoalsPageReducer = (state = defaultState, action) => {
             stateCopy.valueTodo = stateCopy.changeTodo
             return stateCopy
         case 'ADD_GOALS':
-            if (stateCopy.valueTitle === '' || stateCopy.valueTodo === '') {
+            stateCopy.errors.errorTitle = stateCopy.valueTitle === '';
+            stateCopy.errors.errorTodo = stateCopy.valueTodo === ''
+            if (stateCopy.errors.errorTodo || stateCopy.errors.errorTitle) {
                 stateCopy.valueWindow = !stateCopy.valueWindow
                 stateCopy.valueDateEnd = ''
                 stateCopy.valueTitle = ''
                 stateCopy.valueTodo = ''
-               return stateCopy
+                return stateCopy
             } else {
                 let todoNew = []
                 let arrTodo = stateCopy.valueTodo.split(',')
@@ -42,8 +49,8 @@ let GoalsPageReducer = (state = defaultState, action) => {
                         title: el,
                         chek: false,
                         color: 'white',
-                        showButton:true,
-                        borderColor:'white'
+                        showButton: true,
+                        borderColor: 'white'
                     }
                     todoNew.push(obj)
                 })
@@ -62,7 +69,8 @@ let GoalsPageReducer = (state = defaultState, action) => {
                     },
                     todo: [...todoNew],
                     percent: 0,
-                    borderColor:'grey',
+                    colorPercent: 'yellow',
+                    borderColor: 'grey',
                     dayFunction: function () {
                         if (this.DateEnd === null) {
                             this.day = null
@@ -71,14 +79,18 @@ let GoalsPageReducer = (state = defaultState, action) => {
                 }
                 goal.dayFunction()
 
-                stateCopy.goals.push(goal)
+                stateCopy.goals.unshift(goal)
                 stateCopy.valueWindow = !stateCopy.valueWindow
                 stateCopy.valueDateEnd = ''
                 stateCopy.valueTitle = ''
                 stateCopy.valueTodo = ''
+                for (let key in stateCopy.errors) {
+                    stateCopy.errors[key] = false
+                }
 
                 return stateCopy
             }
+
 
         case 'DATE_F':
 
@@ -89,6 +101,7 @@ let GoalsPageReducer = (state = defaultState, action) => {
                         el.day.color = action.color
                         el.state.text = action.textState
                         el.state.color = action.colorState
+                        el.colorPercent = action.colorPercent
                     }
                 })
 
@@ -96,23 +109,31 @@ let GoalsPageReducer = (state = defaultState, action) => {
             return stateCopy
         case 'OPEN_WINDOW':
             stateCopy.valueWindow = !stateCopy.valueWindow
+            if (stateCopy.valueDate === '') {
+                stateCopy.checkWindow = false
+            } else {
+                stateCopy.checkWindow = true
+            }
             return stateCopy
         case 'CHECKED_TODO':
-            stateCopy.goals.forEach(goal=>{
-                goal.todo.forEach(todo=>{
-                    if(todo.id===action.id){
-                        todo.chek=true
-                        todo.borderColor='green'
-                        todo.showButton=false
-                        let onePercentTodo=100/goal.todo.length
-                        if(todo.chek){
-                            goal.percent= +(goal.percent+onePercentTodo).toFixed(1)
+            stateCopy.goals.forEach(goal => {
+                goal.todo.forEach(todo => {
+                    if (todo.id === action.id) {
+                        todo.chek = true
+                        todo.borderColor = 'green'
+                        todo.showButton = false
+                        let onePercentTodo = 100 / goal.todo.length
+                        if (todo.chek) {
+                            goal.percent = +(goal.percent + onePercentTodo).toFixed(2)
+                        }
+                        if (goal.percent >= 99.5) {
+                            goal.percent = 100
                         }
                     }
-                    if(goal.percent>=100){
-                        goal.borderColor='green'
-                        goal.state.text='Завершена'
-                        goal.state.color='green'
+                    if (goal.percent >= 100) {
+                        goal.colorPercent = 'green'
+                        goal.state.text = 'Завершена'
+                        goal.state.color = 'green'
                     }
                 })
             })

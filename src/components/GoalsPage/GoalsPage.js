@@ -6,7 +6,7 @@ import ManagementGoals from "./ManagementGoals/ManagementGoals";
 import TodoWindow from "../Todo/TodoWindow/TodoWindow";
 import DateTimeContainer from "../Todo/DateTime/DateTimeContainer";
 import Goals from './Goals/Goals';
-function GoalsPage({dayFunction,openWindow,addGoals,goals,valueWindow,changeTitle,changeDate,changeTodo,valueTitle,valueDate,valueTodo,chekTodo}) {
+function GoalsPage({errors,checkWindow,dayFunction,openWindow,addGoals,goals,valueWindow,changeTitle,changeDate,changeTodo,valueTitle,valueDate,valueTodo,chekTodo}) {
     let objectForInput={
         changeTodo,
         changeTitle,
@@ -14,6 +14,7 @@ function GoalsPage({dayFunction,openWindow,addGoals,goals,valueWindow,changeTitl
         valueTodo,
         valueDate,
         valueTitle,
+        errors,
     }
     return (
         <div className={styles.GoalsPage}>
@@ -35,7 +36,7 @@ function GoalsPage({dayFunction,openWindow,addGoals,goals,valueWindow,changeTitl
                     </ul>
                 </Row>
                 </Container>
-            {valueWindow===true ? <TodoWindow push={addGoals} window={openWindow}/>: null}
+            {valueWindow===true ? <TodoWindow text='цель' check={checkWindow} push={addGoals} window={openWindow}/>: null}
         </div>
     );
 }

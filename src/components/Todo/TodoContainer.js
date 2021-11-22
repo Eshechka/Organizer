@@ -6,8 +6,10 @@ let mapStateToProps = (state) => {
         valueWindow: state.todoPage.valueWindow,
         todoList: state.todoPage.todoList,
         check: state.todoPage.checkWindow,
-
-
+        title: state.todoPage.valueTitle,
+        start: state.todoPage.valueDateStart,
+        end: state.todoPage.valueDateEnd,
+        errors: state.todoPage.errors
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -87,6 +89,22 @@ let mapDispatchToProps = (dispatch) => {
         push: () => {
             dispatch({type: 'PUSH'})
         },
+        changeTitle: (e) => {
+            dispatch({type: 'CHANGE_TITLE', value: e.target.value})
+        },
+        changeDateStart: (e) => {
+            dispatch({type: 'CHANGE_DATE_START', value: e.target.value})
+        },
+        changeDateEnd: (e) => {
+            dispatch({type: 'CHANGE_DATE_END', value: e.target.value})
+        },
+
+        click1: () => {
+            dispatch({type: 'DELETE_TODO'})
+        },
+        window1: () => {
+            dispatch({type: 'WINDOW_OPEN'})
+        }
     }
 }
 
