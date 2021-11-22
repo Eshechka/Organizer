@@ -19,9 +19,9 @@ let TodoPageReducer = (state = defaultState, action) => {
             stateCopy.valueWindow = !stateCopy.valueWindow
             return stateCopy
         case 'CHANGE_TITLE':
-            stateCopy.ChangeTitle = action.value
-            stateCopy.valueTitle = stateCopy.ChangeTitle
-            return stateCopy
+                stateCopy.ChangeTitle = action.value
+                stateCopy.valueTitle = stateCopy.ChangeTitle
+                return stateCopy
         case  'CHANGE_DATE_START':
             stateCopy.ChangeDateStart = action.value
             stateCopy.valueDateStart = stateCopy.ChangeDateStart

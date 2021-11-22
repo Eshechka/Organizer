@@ -18,9 +18,9 @@ let mapDispatchToProps = (dispatch) => {
             let t = date2 - date1
             let day = Math.floor(t / (1000 * 60 * 60 * 24))
             let color
-            if (day <= 5) {
+            if (day <= 2) {
                 color = 'red'
-            } else if (day > 5 && day <= 10) {
+            } else if (day > 2 && day <= 5) {
                 color = 'yellow'
             } else {
                 color = 'green'
@@ -36,14 +36,16 @@ let mapDispatchToProps = (dispatch) => {
                 text = `${day} дня`
             } else if (day < -4) {
                 text = `${day} дней`
+            }else if(day===0){
+                text=`${day} дней`
             }
 
             let border
             let textState
             let colorState
-            if (day < 1) {
+            if (day < 0) {
                 border = 'red'
-                textState = 'Не выполнено'
+                textState = 'Просрочена'
                 colorState = 'red'
             } else {
                 border = 'grey'

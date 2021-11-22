@@ -5,7 +5,7 @@ import Button from "../Management/Button/Button";
 function TodoWindow({ push, window, check }) {
   return (
     <div className={styles.window}>
-      {check === false ? (
+      {check ? (
         <p className={styles.p}>Хотите добавить дело?</p>
       ) : (
         <p className={styles.p}>
