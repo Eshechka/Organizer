@@ -7,6 +7,9 @@ let defaultState = {
     valueDateEnd: '',
     ChangeDataEnd: '',
     checkWindow: false,
+    errors: {
+        errorTitle: false
+    },
     todoList: [],
 }
 let TodoPageReducer = (state = defaultState, action) => {
@@ -31,7 +34,8 @@ let TodoPageReducer = (state = defaultState, action) => {
             stateCopy.valueDateEnd = stateCopy.ChangeDataEnd
             return stateCopy
         case 'PUSH':
-            if (stateCopy.valueTitle !== '') {
+            stateCopy.errors.errorTitle = stateCopy.valueTitle === ''
+            if (!stateCopy.errors.errorTitle) {
                 let el = {
                     id: Math.floor(Math.random() * 1000000),
                     title: stateCopy.valueTitle,
@@ -59,10 +63,18 @@ let TodoPageReducer = (state = defaultState, action) => {
                 stateCopy.valueDateEnd = ''
                 stateCopy.valueDateStart = ''
                 stateCopy.valueTitle = ''
+                for (let key in stateCopy.errors) {
+                    stateCopy.errors[key] = false
+                }
                 return stateCopy
             } else {
-                return state
+                stateCopy.valueWindow = !stateCopy.valueWindow
+                stateCopy.valueDateEnd = ''
+                stateCopy.valueDateStart = ''
+                stateCopy.valueTitle = ''
+                return stateCopy
             }
+
         case 'DATE_FUNCTION':
             if (stateCopy.todoList.length > 0) {
                 stateCopy.todoList.forEach(el => {
@@ -82,7 +94,7 @@ let TodoPageReducer = (state = defaultState, action) => {
                     if (el.id === action.id) {
                         el.state.text = action.textState
                         el.state.color = action.colorState
-                        el.border= action.border
+                        el.border = action.border
                         el.check = !el.check
                     }
                 })
