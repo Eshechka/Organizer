@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Goals.module.css'
 import Info from './../../Todo/TodoList/Info/Info'
 import ListElement from "./ListElement/ListElement";
-function Goals({goal,dayFunction,chekTodo}) {
+function Goals({goal,dayFunction,chekTodo,deleteGoal}) {
     return (
         <div className={styles.element}>
             <div className={styles.wap}>
@@ -16,6 +16,7 @@ function Goals({goal,dayFunction,chekTodo}) {
             <ul className={styles.list}>
                 {goal.todo.map(el=><li key={el.id}><ListElement chekTodo={chekTodo} el={el}/></li>)}
             </ul>
+            <button onClick={() => deleteGoal(goal.id)} >buttondelete</button>
         </div>
     );
 }
