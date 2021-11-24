@@ -1,6 +1,7 @@
 @import "../../App.scss";
 
 .todolist {
+  @include main-content;
   position: relative;
   background: linear-gradient(rgb(31, 1, 29), black, rgb(31, 1, 29)) center
     center/cover no-repeat;
