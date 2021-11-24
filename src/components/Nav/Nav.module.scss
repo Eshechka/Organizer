@@ -5,9 +5,31 @@
   height: 93px;
   background-color: #000000;
   padding: 17px 0 17px;
-  z-index: 20;
+  z-index: 4;
   &__container {
     @include container;
+  }
+  @include tablets {
+    min-height: 40px;
+    height: unset;
+    padding: 5px 0;
+  }
+
+  &__navlist {
+    @include tablets {
+      display: none;
+
+      &_active {
+        display: block;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: $color-text;
+        padding: 20px 15px;
+      }
+    }
   }
 }
 .navlist {
@@ -18,10 +40,15 @@
   min-height: 59px;
   padding: 0;
 
+  @include tablets {
+    flex-direction: column;
+  }
+
   &__item {
     margin-left: 56px;
     @include tablets {
-      margin-left: 40px;
+      padding: 5px 0px;
+      margin: 0;
     }
     @include phones {
       margin-left: 20px;
@@ -39,14 +66,84 @@
     text-align: center;
     color: $color-text;
     transition: color 0.2s ease-in 0s;
+
+    @include tablets {
+      color: #000;
+    }
   }
   &__img {
     display: block;
     margin: 0 auto;
     width: 33px;
     height: 33px;
+
+    @include tablets {
+      display: none;
+    }
   }
   & a {
     text-decoration: none;
+  }
+}
+
+.hamburger {
+  display: none;
+  border: none;
+  // position: relative;
+  // z-index: 6;
+
+  &:hover {
+    .hamburger__stick {
+      background-color: $color-hover;
+    }
+  }
+
+  @include tablets {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    width: 40px;
+    height: 22px;
+    cursor: pointer;
+    z-index: 5;
+    background-color: transparent;
+
+    &__stick {
+      transition: all 0.3s ease 0s;
+      top: calc(50% - 2px);
+      left: 0px;
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background-color: $color-text;
+      &:first-child {
+        top: 0px;
+      }
+      &:last-child {
+        top: auto;
+        bottom: 0px;
+      }
+    }
+
+    &_active {
+      position: fixed;
+      top: 0;
+      right: 0;
+      transform: translate(0, 50%);
+      .hamburger__stick {
+        background-color: #000;
+        transform: scale(0);
+        &:first-child {
+          transform: rotate(-45deg);
+          top: calc(50% - 2px);
+        }
+        &:last-child {
+          transform: rotate(45deg);
+          bottom: calc(50% - 2px);
+        }
+      }
+    }
   }
 }
