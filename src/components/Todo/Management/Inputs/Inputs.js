@@ -22,6 +22,7 @@ function Inputs({
                     onChange={changeTitle}
                     type="text"
                     value={title}
+                    maxLength={25}
                     placeholder="Название дела"
                 />
             </div>

@@ -9,7 +9,7 @@ let mapStateToProps = (state) => {
         valueTodo: state.goalsPage.valueTodo,
         goals: state.goalsPage.goals,
         checkWindow: state.goalsPage.checkWindow,
-        errors: state.goalsPage.errors
+        errors: state.goalsPage.errors,
     }
 }
 let mapDispatchToProps = (dispatch) => {
