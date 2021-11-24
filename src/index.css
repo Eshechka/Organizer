@@ -1,8 +1,12 @@
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
   font-family: "Caveat", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
