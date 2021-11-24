@@ -15,14 +15,14 @@ function Nav({ user }) {
           <button
             className={
               activeHamburger
-                ? styles.hamburger + " " + styles.hamburger_active
+                ? [styles.hamburger, styles.hamburger_active].join(' ')
                 : styles.hamburger
             }
             onClick={() => setActiveHamburger(!activeHamburger)}
           >
-            <span className={styles.hamburger__stick}></span>
-            <span className={styles.hamburger__stick}></span>
-            <span className={styles.hamburger__stick}></span>
+            <span className={styles.hamburger__stick}/>
+            <span className={styles.hamburger__stick}/>
+            <span className={styles.hamburger__stick}/>
           </button>
         </div>
         <div
