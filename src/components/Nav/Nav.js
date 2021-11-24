@@ -15,7 +15,7 @@ function Nav({ user }) {
           <button
             className={
               activeHamburger
-                ? [styles.hamburger, styles.hamburger_active].join('')
+                ? [styles.hamburger, styles.hamburger_active].join(' ')
                 : styles.hamburger
             }
             onClick={() => setActiveHamburger(!activeHamburger)}
