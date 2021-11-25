@@ -21,6 +21,8 @@ function GoalsPage({
   valueDate,
   valueTodo,
   chekTodo,
+  deleteGoal,
+  clearGoals
 }) {
   let objectForInput = {
     changeTodo,
@@ -49,7 +51,7 @@ function GoalsPage({
         <ul className={styles.price}>
           {goals.map((el) => (
             <li key={el.id}>
-              <Goals chekTodo={chekTodo} dayFunction={dayFunction} goal={el} />
+              <Goals chekTodo={chekTodo} dayFunction={dayFunction} goal={el} deleteGoal={deleteGoal} />
             </li>
           ))}
         </ul>

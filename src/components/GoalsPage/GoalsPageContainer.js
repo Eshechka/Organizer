@@ -113,8 +113,20 @@ let mapDispatchToProps = (dispatch) => {
         },
         chekTodo: (id) => {
             dispatch({type: 'CHECKED_TODO', id})
+        },
+        clearGoals:() => {
+            dispatch({
+                type: 'CLEAR_GOALS'
+            })
+        },
+        deleteGoal:(id) => {
+            dispatch({
+                type: 'DELETE_GOAL',
+                id,
+            })
         }
     }
 }
+
 let GoalsPageContainer = connect(mapStateToProps, mapDispatchToProps)(GoalsPage)
 export default GoalsPageContainer

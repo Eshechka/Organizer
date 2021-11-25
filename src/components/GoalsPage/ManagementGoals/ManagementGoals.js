@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ManagementGoals.module.scss";
 import Button from "../../Todo/Management/Button/Button";
 
-function ManagementGoals({ inputs, click }) {
+function ManagementGoals({ inputs, click, deleteGoal, clearGoals }) {
   return (
     <div className={styles.managementgoals}>
       <div className={styles.managementgoals__block}>
@@ -23,7 +23,6 @@ function ManagementGoals({ inputs, click }) {
             placeholder="Название цели"
           />
         </div>
-
         <div
           className={[
             styles.managementgoals__info,
@@ -43,7 +42,6 @@ function ManagementGoals({ inputs, click }) {
             type="date"
           />
         </div>
-
         <div
           className={[
             styles.managementgoals__info,
@@ -68,7 +66,7 @@ function ManagementGoals({ inputs, click }) {
         </div>
         <div className={styles.managementgoals__buttons}>
           <Button click={click} text="Добавить" />
-          <Button text="Очистить" color="#192386" />
+          <Button text="Очистить" color="#192386" click={clearGoals}/>
         </div>
       </div>
     </div>
