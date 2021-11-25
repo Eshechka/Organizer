@@ -1,7 +1,6 @@
 @import "../../App.scss";
 
 .footer {
-  min-height: 93px;
   background-color: #000000;
   font-size: 24px;
   color: $color-text;
@@ -16,7 +15,7 @@
 
   &__container {
     @include container;
-    height: 100%;
+    min-height: 93px;
     display: flex;
     justify-content: space-between;
     align-items: center;
