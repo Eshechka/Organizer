@@ -5,13 +5,13 @@
   position: relative;
   background: linear-gradient(rgb(31, 1, 29), black, rgb(31, 1, 29)) center
     center/cover no-repeat;
-  min-height: 800px;
+
   &__container {
     @include container;
     display: flex;
     flex-direction: column;
   }
-  &__title {
+  &__pagetitle {
     position: absolute;
     left: 50%;
     top: -76px;
