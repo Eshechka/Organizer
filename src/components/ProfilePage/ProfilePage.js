@@ -4,6 +4,7 @@ import PageName from "../Todo/PageName/PageName";
 import Button from "../Todo/Management/Button/Button";
 // import WindowProfile from "./WindowPfile/WindowProfile";
 import DateTimeContainer from "../Todo/DateTime/DateTimeContainer";
+import WindowDeleteProfile from "./WindowDeleteProfile/WindowDeleteProfile";
 
 function ProfilePage() {
   return (
@@ -27,8 +28,9 @@ function ProfilePage() {
         <div className={styles.changepassword__submit}>
           <Button text="Удалить профиль" color="#141F84" />
         </div>
-        {/*пока нет функционала, поэтому я убрал окно что бы оно не показывалось*/}
+        {/*пока нет функционала, поэтому я убрал окна что бы оно не показывалось*/}
         {/*{<WindowProfile/>}*/}
+        {/*<WindowDeleteProfile/>*/}
       </div>
     </div>
   );
