@@ -121,8 +121,8 @@ let mapDispatchToProps = (dispatch) => {
         },
         deleteGoal:(id) => {
             dispatch({
-                type: 'CLEAR_GOALS',
-                id: id,
+                type: 'DELETE_GOAL',
+                id,
             })
         }
     }
