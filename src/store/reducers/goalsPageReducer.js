@@ -138,8 +138,21 @@ let GoalsPageReducer = (state = defaultState, action) => {
                 })
             })
             return stateCopy
+        case 'CLEAR_GOALS':
+        stateCopy.goals = []
+            return stateCopy
+        case 'DELETE_GOAL':
+            stateCopy.goals.forEach((item, i) => {
+                if (item.id === action.id){
+                 stateCopy.goals.splice(i, 1)
+                }
+            })
+            return stateCopy
+
         default:
             return state
     }
 }
+
+
 export default GoalsPageReducer

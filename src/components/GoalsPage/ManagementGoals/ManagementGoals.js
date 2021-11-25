@@ -3,7 +3,7 @@ import styles from "./ManagementGoals.module.css";
 import { Col, Container, Row } from "bootstrap-4-react/lib/components/layout";
 import Button from "../../Todo/Management/Button/Button";
 
-function ManagementGoals({ inputs, click }) {
+function ManagementGoals({ inputs, click, deleteGoal, clearGoals }) {
   return (
     <div className={styles.container}>
       <Container>
@@ -66,7 +66,7 @@ function ManagementGoals({ inputs, click }) {
           <Col>
             <div className={styles.flex_buttons}>
               <Button click={click} text="Добавить" />
-              <Button text="Очистить" color="#192386" />
+              <Button text="Очистить" color="#192386" click={clearGoals}/>
             </div>
           </Col>
         </Row>
