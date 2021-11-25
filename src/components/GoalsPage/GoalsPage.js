@@ -45,7 +45,7 @@ function GoalsPage({
         </div>
 
         <div className={styles.goals__management}>
-          <ManagementGoals click={openWindow} inputs={objectForInput} />
+          <ManagementGoals click={openWindow} inputs={objectForInput} clearGoals={clearGoals} />
         </div>
 
         <ul className={styles.price}>

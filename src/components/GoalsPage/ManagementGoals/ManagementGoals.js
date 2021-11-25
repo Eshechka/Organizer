@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ManagementGoals.module.scss";
 import Button from "../../Todo/Management/Button/Button";
 
-function ManagementGoals({ inputs, click, deleteGoal, clearGoals }) {
+function ManagementGoals({ inputs, click, clearGoals }) {
   return (
     <div className={styles.managementgoals}>
       <div className={styles.managementgoals__block}>
