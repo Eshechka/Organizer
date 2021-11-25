@@ -16,7 +16,9 @@ function Goals({goal,dayFunction,chekTodo,deleteGoal}) {
             <ul className={styles.list}>
                 {goal.todo.map(el=><li key={el.id}><ListElement chekTodo={chekTodo} el={el}/></li>)}
             </ul>
-            <button onClick={() => deleteGoal(goal.id)} >Удалить</button>
+            <div className={styles.container}>
+            <button className={styles.button} onClick={() => deleteGoal(goal.id)} >Удалить</button>
+            </div>
         </div>
     );
 }
