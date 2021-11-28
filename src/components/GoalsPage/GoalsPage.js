@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./GoalsPage.module.scss";
-// import { Col, Container, Row } from "bootstrap-4-react/lib/components/layout";
 import PageName from "../Todo/PageName/PageName";
 import ManagementGoals from "./ManagementGoals/ManagementGoals";
 import TodoWindow from "../Todo/TodoWindow/TodoWindow";
@@ -22,7 +21,7 @@ function GoalsPage({
   valueTodo,
   chekTodo,
   deleteGoal,
-  clearGoals
+  clearGoals,
 }) {
   let objectForInput = {
     changeTodo,
@@ -45,13 +44,22 @@ function GoalsPage({
         </div>
 
         <div className={styles.goals__management}>
-          <ManagementGoals click={openWindow} inputs={objectForInput} clearGoals={clearGoals} />
+          <ManagementGoals
+            click={openWindow}
+            inputs={objectForInput}
+            clearGoals={clearGoals}
+          />
         </div>
 
         <ul className={styles.price}>
           {goals.map((el) => (
             <li key={el.id}>
-              <Goals chekTodo={chekTodo} dayFunction={dayFunction} goal={el} deleteGoal={deleteGoal} />
+              <Goals
+                chekTodo={chekTodo}
+                dayFunction={dayFunction}
+                goal={el}
+                deleteGoal={deleteGoal}
+              />
             </li>
           ))}
         </ul>

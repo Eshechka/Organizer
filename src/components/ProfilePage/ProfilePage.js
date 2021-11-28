@@ -6,7 +6,7 @@ import Button from "../Todo/Management/Button/Button";
 import DateTimeContainer from "../Todo/DateTime/DateTimeContainer";
 import WindowDeleteProfile from "./WindowDeleteProfile/WindowDeleteProfile";
 
-function ProfilePage() {
+function ProfilePage(deleteUser, currentUser) {
   return (
     <div className={styles.profile}>
       <div className={styles.profile__container}>
@@ -26,11 +26,15 @@ function ProfilePage() {
           </div>
         </div>
         <div className={styles.changepassword__submit}>
-          <Button text="Удалить профиль" color="#141F84" />
+          <Button
+            text="Удалить профиль"
+            onClick={() => deleteUser(currentUser.id)}
+            color="#141F84"
+          />
         </div>
         {/*пока нет функционала, поэтому я убрал окна что бы оно не показывалось*/}
         {/*{<WindowProfile/>}*/}
-        {/*<WindowDeleteProfile/>*/}
+        {/* <WindowDeleteProfile /> */}
       </div>
     </div>
   );
