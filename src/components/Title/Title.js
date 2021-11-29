@@ -15,8 +15,11 @@ function Title({
   positionXImg,
 }) {
   useEffect(() => {
-    console.log("!!!!!!!");
-    localStorage.setItem("user", { id: 2, name: "Максим" });
+    console.log("HERE");
+    localStorage.setItem("user", JSON.stringify({ id: 2, name: "Максим" }));
+  }, []);
+
+  useEffect(() => {
     let TimerId = setInterval(datetime, 1000);
     return () => {
       clearInterval(TimerId);

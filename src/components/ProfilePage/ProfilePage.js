@@ -1,12 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./ProfilePage.module.scss";
 import PageName from "../Todo/PageName/PageName";
 import Button from "../Todo/Management/Button/Button";
-// import WindowProfile from "./WindowPfile/WindowProfile";
 import DateTimeContainer from "../Todo/DateTime/DateTimeContainer";
-import WindowDeleteProfile from "./WindowDeleteProfile/WindowDeleteProfile";
+// import WindowProfile from "./WindowPfile/WindowProfile";
+// import WindowDeleteProfile from "./WindowDeleteProfile/WindowDeleteProfile";
 
-function ProfilePage(deleteUser, currentUser) {
+function ProfilePage({ deleteUser, currentUser }) {
+  let navigate = useNavigate();
+
+  function deleteUserProfile() {
+    deleteUser(currentUser.id);
+    localStorage.removeItem("user");
+    navigate("/");
+  }
+
   return (
     <div className={styles.profile}>
       <div className={styles.profile__container}>
@@ -28,7 +37,7 @@ function ProfilePage(deleteUser, currentUser) {
         <div className={styles.changepassword__submit}>
           <Button
             text="Удалить профиль"
-            onClick={() => deleteUser(currentUser.id)}
+            click={deleteUserProfile}
             color="#141F84"
           />
         </div>

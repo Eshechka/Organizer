@@ -9,16 +9,17 @@ import TodoContainer from "./components/Todo/TodoContainer";
 import GoalsPageContainer from "./components/GoalsPage/GoalsPageContainer";
 import NotFound from "./components/NotFound/NotFound";
 
-function App({ user }) {
+function App({ user, currentUser }) {
   return (
     <>
       <HeaderContainer />
-      <Nav user={user} />
+      <Nav user={user} currentUser={!!currentUser} />
       <Routes>
         <Route
           exact
           path="/"
-          element={user === true ? <Navigate to="/do" /> : <TitleContainer />}
+          element={currentUser ? <Navigate to="/do" /> : <TitleContainer />}
+          // element={user === true ? <Navigate to="/do" /> : <TitleContainer />}
         />
         <Route
           exact
