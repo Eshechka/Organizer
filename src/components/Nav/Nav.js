@@ -5,24 +5,29 @@ import icon2 from "../../img/icon2.png";
 import icon3 from "../../img/icon3.png";
 import { NavLink } from "react-router-dom";
 
-function Nav({ user }) {
+function Nav({ user, currentUser }) {
   const [activeHamburger, setActiveHamburger] = useState(false);
 
   return (
     <div className={styles.nav}>
-      <div className={styles.nav__container}>
+      <div
+        className={[
+          styles.nav__container,
+          currentUser ? "" : styles.nav__container_invisible,
+        ].join(" ")}
+      >
         <div className={styles.nav__hamburger}>
           <button
             className={
               activeHamburger
-                ? [styles.hamburger, styles.hamburger_active].join(' ')
+                ? [styles.hamburger, styles.hamburger_active].join(" ")
                 : styles.hamburger
             }
             onClick={() => setActiveHamburger(!activeHamburger)}
           >
-            <span className={styles.hamburger__stick}/>
-            <span className={styles.hamburger__stick}/>
-            <span className={styles.hamburger__stick}/>
+            <span className={styles.hamburger__stick} />
+            <span className={styles.hamburger__stick} />
+            <span className={styles.hamburger__stick} />
           </button>
         </div>
         <div
