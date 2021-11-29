@@ -6,5 +6,12 @@ let mapStateToProps = (state) => {
     user: state.titlePage.userProfile,
   };
 };
-let AppContainer = connect(mapStateToProps)(App);
+let mapDispatchToProps=(dispatch)=>{
+  return{
+    setCurrentUser: (currentUser)=>{
+      dispatch({type:'SET_CURRENT_USER',currentUser})
+    }
+  }
+}
+let AppContainer = connect(mapStateToProps,mapDispatchToProps)(App);
 export default AppContainer;

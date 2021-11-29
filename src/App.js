@@ -8,8 +8,14 @@ import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer"
 import TodoContainer from "./components/Todo/TodoContainer";
 import GoalsPageContainer from "./components/GoalsPage/GoalsPageContainer";
 import NotFound from "./components/NotFound/NotFound";
+import {useEffect} from "react";
 
-function App({ user }) {
+function App({ user,setCurrentUser }) {
+    useEffect(()=>{
+        let currentUser=JSON.parse(localStorage.getItem('user'))
+        setCurrentUser(currentUser)
+
+    })
   return (
     <>
       <HeaderContainer />

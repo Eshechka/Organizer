@@ -12,6 +12,7 @@ let mapDispatchToProps = (dispatch) => {
       dispatch({ type: "DELETE_USER", payload: { id } });
       dispatch({type:'TOGGLE_USER'})
     },
+
   };
 };
 
