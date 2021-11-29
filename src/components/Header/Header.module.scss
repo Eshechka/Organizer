@@ -76,6 +76,23 @@
       justify-content: flex-end;
     }
   }
+  &__wap{
+    display: flex;
+    width: 176px ;
+    justify-content: space-between;
+    align-items: center;
+    &__logout {
+      margin: 0;
+      font-weight: 400;
+      font-size: 24px;
+      color: $color-text;
+      cursor: pointer;
+      transition: color 0.2s ease-in 0s;
+      &:hover {
+        color: $color-hover;
+      }
+    }
+  }
   &__logout {
     font-weight: 400;
     font-size: 24px;

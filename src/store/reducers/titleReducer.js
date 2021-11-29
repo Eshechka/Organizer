@@ -4,7 +4,7 @@ let defaultState={
         buttonTitle:'',
     },
     value: false,
-    userProfile: true,
+    userProfile: false,
     datetime: {
         time:'',
         day:'',
@@ -50,6 +50,21 @@ let titleReducer=(state=defaultState, action)=>{
             stateCopy.backgroundEffect.preMouseX=action.positionX
             return stateCopy
         case 'EXIT':
+            localStorage.removeItem('user')
+            stateCopy.userProfile=!stateCopy.userProfile
+            return stateCopy
+        case 'SIGN_UP':
+            stateCopy.userProfile=true
+            localStorage.setItem("user", JSON.stringify({ id: 2, name: "Максим" }));
+            stateCopy.value=!stateCopy.value
+            return stateCopy
+        case 'SIGN_IN':
+            if(localStorage.getItem('user')){
+                stateCopy.userProfile=true
+                stateCopy.value=!stateCopy.value
+            }
+            return stateCopy
+        case 'TOGGLE_USER':
             stateCopy.userProfile=!stateCopy.userProfile
             return stateCopy
         default:

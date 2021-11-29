@@ -5,16 +5,13 @@ import icon2 from "../../img/icon2.png";
 import icon3 from "../../img/icon3.png";
 import { NavLink } from "react-router-dom";
 
-function Nav({ user, currentUser }) {
+function Nav({ user,}) {
   const [activeHamburger, setActiveHamburger] = useState(false);
 
   return (
     <div className={styles.nav}>
       <div
-        className={[
-          styles.nav__container,
-          currentUser ? "" : styles.nav__container_invisible,
-        ].join(" ")}
+        className={styles.nav__container}
       >
         <div className={styles.nav__hamburger}>
           <button

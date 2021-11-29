@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./ProfilePage.module.scss";
 import PageName from "../Todo/PageName/PageName";
 import Button from "../Todo/Management/Button/Button";
@@ -8,12 +7,10 @@ import DateTimeContainer from "../Todo/DateTime/DateTimeContainer";
 // import WindowDeleteProfile from "./WindowDeleteProfile/WindowDeleteProfile";
 
 function ProfilePage({ deleteUser, currentUser }) {
-  let navigate = useNavigate();
+  console.log(currentUser)
 
   function deleteUserProfile() {
     deleteUser(currentUser.id);
-    localStorage.removeItem("user");
-    navigate("/");
   }
 
   return (

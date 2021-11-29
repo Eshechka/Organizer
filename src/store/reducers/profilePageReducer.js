@@ -1,5 +1,5 @@
 let defaultState = {
-  currentUser: JSON.parse(localStorage.getItem("user")),
+  currentUser:localStorage.getItem('user'),
   users: [
     { id: 1, name: "Екатерина" },
     { id: 2, name: "Максим" },
@@ -15,9 +15,8 @@ let UsersPageReducer = (state = defaultState, action) => {
         (user) => user.id !== action.payload.id
       );
       stateCopy.currentUser = null;
-
+      localStorage.removeItem('user')
       return stateCopy;
-
     default:
       return state;
   }

@@ -17,9 +17,9 @@ export default function Header({ user, click }) {
             </span>
           </div>
         ) : (
-          <div className={styles.wap}>
-            <p onClick={click}>Вход</p>
-            <p onClick={click}>Регистрация</p>
+          <div className={styles.header__wap}>
+            <p  className={styles.header__wap__logout} onClick={click}>Вход</p>
+            <p  className={styles.header__wap__logout} onClick={click}>Регистрация</p>
           </div>
         )}
       </div>

@@ -13,11 +13,8 @@ function Title({
   day,
   move,
   positionXImg,
+ registrOrlogin
 }) {
-  useEffect(() => {
-    console.log("HERE");
-    localStorage.setItem("user", JSON.stringify({ id: 2, name: "Максим" }));
-  }, []);
 
   useEffect(() => {
     let TimerId = setInterval(datetime, 1000);
@@ -47,7 +44,7 @@ function Title({
         src={el}
         alt="png"
       />
-      {value === true ? <Form title={title} buttonTitle={buttonTitle} /> : null}
+      {value === true ? <Form click={registrOrlogin} title={title} buttonTitle={buttonTitle} /> : null}
     </div>
   );
 }

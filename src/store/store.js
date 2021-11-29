@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from "redux";
 import GoalsPageReducer from "./reducers/goalsPageReducer";
-import ProfilePageReducer from "./reducers//profilePageReducer";
+import ProfilePageReducer from "./reducers/profilePageReducer";
 import TitleReducer from "./reducers/titleReducer";
 import TodoPageReducer from "./reducers/todoPageReducer";
 

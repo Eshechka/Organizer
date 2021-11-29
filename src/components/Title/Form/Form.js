@@ -3,7 +3,7 @@ import styles from './Form.module.css'
 import {useSpring, animated} from "react-spring";
 
 
-function Form({title, buttonTitle}) {
+function Form({title, buttonTitle,click}) {
 
     let effect =useSpring({
         from: {opacity:0, top:`${0}%`},
@@ -21,7 +21,7 @@ function Form({title, buttonTitle}) {
             <form>
                 <input type="text" placeholder="Логин" name="login"/>
                 <input type="password" placeholder="Пороль" name="password"/>
-                <button>{buttonTitle}</button>
+                <button onClick={()=>click(title)}>{buttonTitle}</button>
             </form>
             <button>Отмена</button>
         </animated.div>

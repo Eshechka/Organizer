@@ -62,6 +62,18 @@ let mapDispatchToProps = (dispatch) => {
         positionX: e.clientX,
       });
     },
+    registrOrlogin:(title)=>{
+        switch (title){
+          case 'Вход':
+            dispatch({type:'SIGN_IN'})
+            break
+          case 'Регистрация':
+            dispatch({type:'SIGN_UP'})
+                break
+          default:
+            break
+        }
+    }
   };
 };
 let TitleContainer = connect(mapStateToProps, mapDispatchToProps)(Title);
