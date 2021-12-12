@@ -1,0 +1,18 @@
+
+
+.p{
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.f{
+    display: flex;
+    justify-content: space-between;
+
+}
+ .f button{
+    margin-left: 0;
+    margin-right: 0;
+}

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Nav.module.scss";
-import icon1 from "../../img/icon1.png";
-import icon2 from "../../img/icon2.png";
-import icon3 from "../../img/icon3.png";
+import icon1 from "../../img/icons/icon1.png";
+import icon2 from "../../img/icons/icon2.png";
+import icon3 from "../../img/icons/icon3.png";
 import { NavLink } from "react-router-dom";
 
 function Nav({ user,}) {

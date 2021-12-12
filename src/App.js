@@ -1,15 +1,14 @@
 import "./App.scss";
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/Footer";
-import { Navigate, Route, Routes } from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import TitleContainer from "./components/Title/TitleContainer";
-import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
-import TodoContainer from "./components/Todo/TodoContainer";
-import GoalsPageContainer from "./components/GoalsPage/GoalsPageContainer";
-import NotFound from "./components/NotFound/NotFound";
+import ProfilePageContainer from "./pages/ProfilePage/ProfilePageContainer";
+import GoalsPageContainer from "./pages/GoalsPage/GoalsPageContainer";
+import NotFound from "./pages/NotFound/NotFound";
 import {useEffect} from "react";
-
+import TasksPageContainer from "./pages/TasksPage/TasksPageContainer";
+import MainPageContainer from "./pages/MainPage/MainPageContainer";
 function App({ user,setCurrentUser }) {
     useEffect(()=>{
         let currentUser=JSON.parse(localStorage.getItem('user'))
@@ -24,13 +23,13 @@ function App({ user,setCurrentUser }) {
         <Route
           exact
           path="/"
-          element={user ? <Navigate to="/do" /> : <TitleContainer />}
-          // element={user === true ? <Navigate to="/do" /> : <TitleContainer />}
+          element={user ? <Navigate to="/do" /> : <MainPageContainer />}
+          // element={user === true ? <Navigate to="/do" /> : <MainPageContainer />}
         />
         <Route
           exact
           path="/do"
-          element={user === false ? <Navigate to="/" /> : <TodoContainer />}
+          element={user === false ? <Navigate to="/" /> : <TasksPageContainer />}
         />
         <Route
           exact
