@@ -110,11 +110,7 @@ let TodoPageReducer = (state = defaultState, action) => {
             }
             return stateCopy
         case 'DELETE_TODO':
-            let i = stateCopy.todoList.length
-            while (i > 0) {
-                stateCopy.todoList.pop()
-                i--
-            }
+           stateCopy.todoList=[]
             return stateCopy
         case 'WINDOW_OPEN':
             stateCopy.valueWindow = !stateCopy.valueWindow
