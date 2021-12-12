@@ -1,12 +1,6 @@
 @import "../../App.scss";
 
 .goals {
-  background: linear-gradient(
-      $background-color-additional,
-      $background-color-main,
-      $background-color-additional
-    )
-    center center/cover no-repeat;
   position: relative;
 
   &__container {

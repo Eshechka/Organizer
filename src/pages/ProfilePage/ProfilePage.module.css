@@ -6,7 +6,6 @@
 
 .profile {
   flex-grow: 1;
-  background: linear-gradient(#1f011d, black, #1f011d) center center/cover no-repeat;
   position: relative;
   padding-bottom: 100px;
 }
