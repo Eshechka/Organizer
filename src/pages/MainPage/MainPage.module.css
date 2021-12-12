@@ -43,3 +43,16 @@
     top: 0;
     z-index: 1;
 }
+.window {
+    position: fixed;
+    z-index: 1000;
+    opacity: 1;
+    top: 26%;
+    left: 39%;
+    width: 429px;
+    min-height: 532px;
+    background-color: black;
+    padding: 40px;
+
+}
+

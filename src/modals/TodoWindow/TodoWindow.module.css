@@ -1,14 +1,4 @@
-.window{
-    position: fixed;
-    z-index: 1000;
-    opacity: 1;
-    top: 34%;
-    left: 33%;
-    width: 590px;
-    min-height: 207px;
-    background: #000000;
-    padding: 40px;
-}
+
 
 .p{
     color: white;

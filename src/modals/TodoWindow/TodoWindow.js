@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button";
 
 function TodoWindow({ push, window, check,text }) {
   return (
-    <div className={styles.window}>
+    <>
       {check ? (
         <p className={styles.p}>{`Хотите добавить ${text}?`}</p>
       ) : (
@@ -17,7 +17,7 @@ function TodoWindow({ push, window, check,text }) {
         <Button click={push} text="Да" />
         <Button click={window} text="Нет" />
       </div>
-    </div>
+    </>
   );
 }
 

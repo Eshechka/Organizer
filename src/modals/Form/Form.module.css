@@ -1,18 +1,5 @@
-.window {
-    position: fixed;
-    z-index: 1000;
-    opacity: 1;
-    top: 26%;
-    left: 39%;
-    width: 429px;
-    min-height: 532px;
-    background-color: black;
-    padding: 40px;
 
-}
-
-
-.window h2 {
+ h2 {
     font-weight: 700;
     text-align: center;
     color: white;
@@ -29,10 +16,10 @@
     color: white;
     margin: 0 auto;
 }
-.window form {
+ form {
     margin: 7px auto;
 }
-.window input {
+ input {
     display: block;
     margin: 20px auto;
     width: 293px;
@@ -46,7 +33,7 @@
     background: none;
     outline: none;
 }
-.window button {
+ button {
     display: block;
     margin: 30px auto;
     width: 204px;
