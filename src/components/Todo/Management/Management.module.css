@@ -1,0 +1,38 @@
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.planner {
+  margin-top: 205px;
+}
+@media screen and (max-width: 768px) {
+  .planner {
+    margin-top: 50px;
+  }
+}
+.planner__buttons {
+  width: 677px;
+  margin: 0 auto;
+  margin-top: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 1200px) {
+  .planner__buttons {
+    width: 540px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .planner__buttons {
+    width: 70%;
+    min-width: 290px;
+    margin-top: 70px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/*# sourceMappingURL=Management.module.css.map */

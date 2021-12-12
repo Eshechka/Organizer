@@ -1,0 +1,36 @@
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.window {
+  position: fixed;
+  z-index: 1000;
+  opacity: 1;
+  top: 34%;
+  left: 33%;
+  width: 590px;
+  min-height: 207px;
+  background: black;
+  padding: 40px;
+}
+.window__text {
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 36px;
+}
+.window__text2 {
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+  font-size: 30px;
+}
+.window__container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=WindowDeleteProfile.module.css.map */

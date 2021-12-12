@@ -1,0 +1,59 @@
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.datesinfo {
+  width: 215px;
+}
+.datesinfo__remain {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+@media screen and (max-width: 768px) {
+  .datesinfo__remain {
+    justify-content: flex-start;
+  }
+}
+.datesinfo__dates {
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+  margin: 0;
+}
+@media screen and (max-width: 768px) {
+  .datesinfo__dates {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .datesinfo__dates {
+    font-size: 18px;
+  }
+}
+.datesinfo__reamaintext {
+  margin: 0;
+  margin-right: 5px;
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+}
+@media screen and (max-width: 480px) {
+  .datesinfo__reamaintext {
+    font-size: 20px;
+  }
+}
+.datesinfo__reamainmeaning {
+  margin: 0;
+}
+@media screen and (max-width: 768px) {
+  .datesinfo__reamainmeaning {
+    font-size: 20px;
+  }
+}
+
+/*# sourceMappingURL=Timer.module.css.map */
