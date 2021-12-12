@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './WindowDeleteProfile.module.scss'
-import Button from "../../../TasksPage/ManagementTasks/Button/Button";
+import Button from "../../components/Button/Button";
 const WindowDeleteProfile = () => {
     return (
         <div className={styles.window}>

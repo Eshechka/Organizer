@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./../../../components/TasksPage/ManagementTasks/Button/Button";
+import Button from "./../../components/Button/Button";
 import styles from "./WindowProfile.module.css";
 function WindowProfile(props) {
   return (
