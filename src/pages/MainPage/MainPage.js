@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import el from "../../img/backround_element.png";
-import styles from "./MainPage.module.css";
-import {Container, Row} from "bootstrap-4-react/lib/components/layout";
+import styles from "./MainPage.module.scss";
 import Form from "../../modals/Form/Form";
 import {useTransition, animated} from "react-spring";
 
@@ -35,21 +34,19 @@ function MainPage({
         }
     })
     return (
-        <div onMouseMove={move} className={styles.content}>
-            <Container>
-                <Row>
-                    <div className={styles.wap}>
-                        <div className={styles.datetime}>
+        <div onMouseMove={move} onTouchMove={move} className={styles.content}>
+                <div className={styles.content__container}>
+                    <div className={styles.content__container__wap}>
+                        <div className={styles.content__container__wap__datetime}>
                             <p>{time}</p>
                             <p>{day}</p>
                         </div>
-                        <p className={styles.info}>
+                        <p className={styles.content__container__wap__info}>
                             Войдите или зарегистрируйтесь чтобы начать пользоваться
                             приложением
                         </p>
                     </div>
-                </Row>
-            </Container>
+                </div>
             <img
                 className={styles.el}
                 style={{transform: `translateX(${positionXImg}px)`}}

@@ -10,9 +10,9 @@ function Form({title, buttonTitle,click}) {
             <form>
                 <input type="text" placeholder="Логин" name="login"/>
                 <input type="password" placeholder="Пороль" name="password"/>
-                <button onClick={()=>click(title)}>{buttonTitle}</button>
+                <button className={styles.button} onClick={()=>click(title)}>{buttonTitle}</button>
             </form>
-            <button>Отмена</button>
+            <button className={styles.button}>Отмена</button>
         </>
 
 

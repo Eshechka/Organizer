@@ -5,6 +5,12 @@
     display: flex;
     flex-wrap: wrap;
   }
+  &__error{
+    font-size: 25px;
+    font-weight: 500;
+    color: darkred;
+    margin: 0;
+  }
   &__goaltitle {
     width: 100%;
     text-align: center;
@@ -100,6 +106,7 @@
     }
 
     &_enddata {
+      margin: 0;
       width: 70%;
       min-width: 240px;
       &::-webkit-calendar-picker-indicator {

@@ -33,7 +33,7 @@
     background: none;
     outline: none;
 }
- button {
+ .button {
     display: block;
     margin: 30px auto;
     width: 204px;

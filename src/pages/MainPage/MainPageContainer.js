@@ -59,7 +59,7 @@ let mapDispatchToProps = (dispatch) => {
     move: (e) => {
       dispatch({
         type: "BACKGROUND_EFFECT",
-        positionX: e.clientX,
+        positionX: e.clientX||e.targetTouches[0].clientX,
       });
     },
     registrOrlogin:(title)=>{
