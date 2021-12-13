@@ -42,9 +42,7 @@ function Nav({ user,}) {
             <span className={styles.hamburger__stick} />
             <span className={styles.hamburger__stick} />
           </button>
-          { animationNav((props,activeHamburger)=>
-            activeHamburger?  <animated.div
-                style={props}
+             <div
                 className={
                   activeHamburger
                       ? styles.nav__navlist + " " + styles.nav__navlist_active
@@ -86,8 +84,8 @@ function Nav({ user,}) {
                   </NavLink>
                 </li>
               </ul>
-            </animated.div>:null
-          )}
+            </div>
+
       </div>
     </div>
       </div>
