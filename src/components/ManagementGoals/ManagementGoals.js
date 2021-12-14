@@ -7,6 +7,7 @@ function ManagementGoals({ inputs, click, clearGoals }) {
     <div className={styles.managementgoals}>
       <div className={styles.managementgoals__block}>
         <div className={styles.managementgoals__goaltitle}>
+            {inputs.errors.errorTitle?<p className={styles.managementgoals__error}>Должно быть название</p>:null}
           <input
             style={{
               borderColor: inputs.errors.errorTitle ? "red" : "white",
@@ -52,6 +53,7 @@ function ManagementGoals({ inputs, click, clearGoals }) {
             Перечислите название этапов для достижения цели через запятую если
             они есть
           </p>
+            {inputs.errors.errorTodo?<p className={styles.managementgoals__error}>Должна быть хотя бы одна задача</p>:null}
           <textarea
             style={{
               borderColor: inputs.errors.errorTodo ? "red" : "white",

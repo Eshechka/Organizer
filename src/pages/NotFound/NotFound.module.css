@@ -7,7 +7,7 @@
 .notfound {
   background-color: #000000;
   font-size: 36px;
-  color: #fff;
+  color: #ffffff;
   font-weight: 700;
   flex-grow: 1;
 }
@@ -48,7 +48,7 @@
   }
 }
 .notfound__link {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   font-size: 40px;
 }

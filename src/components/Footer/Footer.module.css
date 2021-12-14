@@ -7,7 +7,7 @@
 .footer {
   background-color: #000000;
   font-size: 24px;
-  color: #fff;
+  color: #ffffff;
   font-weight: 700;
 }
 @media screen and (max-width: 768px) {
@@ -59,7 +59,7 @@
   }
 }
 .footer__link {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
 }
 .footer__link:hover {

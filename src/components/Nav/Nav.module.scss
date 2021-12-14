@@ -30,7 +30,7 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: $color-text;
+        background-color:rgba(0,0,0,.9);
         padding: 20px 15px;
       }
     }
@@ -72,7 +72,7 @@
     transition: color 0.2s ease-in 0s;
 
     @include tablets {
-      color: #000;
+      color: white;
     }
   }
   &__img {
@@ -105,7 +105,6 @@
   @include tablets {
     display: block;
     position: absolute;
-    top: 50%;
     transform: translateY(-50%);
     right: 10px;
     width: 40px;
@@ -113,6 +112,7 @@
     cursor: pointer;
     z-index: 5;
     background-color: transparent;
+    margin: 0;
 
     &__stick {
       transition: all 0.3s ease 0s;
@@ -137,7 +137,7 @@
       right: 0;
       transform: translate(0, 50%);
       .hamburger__stick {
-        background-color: #000;
+        background-color: white;
         transform: scale(0);
         &:first-child {
           transform: rotate(-45deg);

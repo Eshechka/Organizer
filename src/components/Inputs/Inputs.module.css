@@ -26,7 +26,6 @@
 }
 @media screen and (max-width: 768px) {
   .addTodoInputs__inputblock {
-    margin-right: 0px;
     width: 70%;
     min-width: 290px;
     margin: 0 auto 20px;
@@ -39,6 +38,12 @@
   .addTodoInputs__inputblock:last-child {
     margin: 0 auto;
   }
+}
+.addTodoInputs__error {
+  font-size: 25px;
+  font-weight: 500;
+  color: darkred;
+  margin: 0;
 }
 .addTodoInputs__input {
   width: 293px;
