@@ -1,28 +1,56 @@
-@import "../../../../App";
-.window{
+@import "../../App.scss";
+
+.window {
   position: fixed;
   z-index: 1000;
   opacity: 1;
-  top: 34%;
-  left: 33%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 590px;
   min-height: 207px;
   background: $background-color-main;
   padding: 40px;
-  &__text{
+  border-radius: 3px;
+
+  @include tablets {
+    width: 86%;
+    padding: 30px;
+  }
+  @include phones {
+    width: 90%;
+    padding: 20px;
+  }
+
+  &__title {
     color: $color-text;
     text-align: center;
     font-weight: 700;
     font-size: 36px;
+
+    @include tablets {
+      font-size: 34px;
+    }
+    @include phones {
+      font-size: 24px;
+    }
   }
-  &__text2{
+  &__text {
     color: $color-text;
     text-align: center;
     font-weight: 500;
     font-size: 30px;
+
+    @include tablets {
+      font-size: 24px;
+    }
+    @include phones {
+      font-size: 20px;
+    }
   }
-  &__container{
+  &__buttons {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     justify-content: space-between;
   }
