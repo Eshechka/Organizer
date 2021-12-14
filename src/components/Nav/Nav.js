@@ -6,7 +6,7 @@ import icon3 from "../../img/icons/icon3.png";
 import { NavLink } from "react-router-dom";
 import {useTransition,animated} from "react-spring";
 
-function Nav({ user,}) {
+function Nav({ user}) {
   const [activeHamburger, setActiveHamburger] = useState(false);
   const animationNav=useTransition(activeHamburger,{
     from:{
@@ -42,13 +42,7 @@ function Nav({ user,}) {
             <span className={styles.hamburger__stick} />
             <span className={styles.hamburger__stick} />
           </button>
-             <div
-                className={
-                  activeHamburger
-                      ? styles.nav__navlist + " " + styles.nav__navlist_active
-                      : styles.nav__navlist
-                }
-            >
+             <div className={styles.nav__navlist}>
               <ul className={styles.navlist}>
                 <li
                     className={styles.navlist__item}
@@ -85,7 +79,44 @@ function Nav({ user,}) {
                 </li>
               </ul>
             </div>
-
+          {
+            animationNav((props,active)=>
+              active? <animated.div style={props} className={styles.nav__navlist_active}>
+                <ul className={styles.navlist}>
+                  <li
+                      className={styles.navlist__item}
+                      style={{
+                        opacity: user === false ? 0.4 : 1,
+                      }}
+                  >
+                    <NavLink to="/do">
+                      <p className={styles.navlist__text}>Список дел</p>
+                    </NavLink>
+                  </li>
+                  <li
+                      className={styles.navlist__item}
+                      style={{
+                        opacity: user === false ? 0.4 : 1,
+                      }}
+                  >
+                    <NavLink to="/purposes">
+                      <p className={styles.navlist__text}>Список целей</p>
+                    </NavLink>
+                  </li>
+                  <li
+                      className={styles.navlist__item}
+                      style={{
+                        opacity: user === false ? 0.4 : 1,
+                      }}
+                  >
+                    <NavLink to="/profile">
+                      <p className={styles.navlist__text}>Профиль</p>
+                    </NavLink>
+                  </li>
+                </ul>
+              </animated.div>:null
+            )
+          }
       </div>
     </div>
       </div>
