@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './TaskForGoal.module.css'
+import styles from './TaskForGoal.module.scss'
 function TaskForGoal({el,chekTodo}) {
     return (
         <div style={{borderColor:el.borderColor,}} className={styles.el}>
