@@ -39,26 +39,28 @@
     font-size: 36px;
     font-weight: 700;
     color: white;
-    margin-top: 120px;
-    margin-bottom: 140px;
+    margin-top: 80px;
+    margin-bottom: 90px;
     @include tablets {
-      margin-top: 70px;
-      margin-bottom: 60px;
+      margin-top: 40px;
+      margin-bottom: 40px;
       font-size: 32px;
     }
   }
 }
+
 .changepassword {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 79px auto;
+  margin: 50px auto;
   width: 80%;
-
+  position: relative;
 
   @include tablets {
-    margin-top: 20px;
+    margin: 30px 0 20px;
     justify-content: center;
+    width: 100%;
   }
   @include phones {
     flex-direction: column;
@@ -73,9 +75,13 @@
     @include tablets {
       margin: 0 20px 0 0;
       align-self: center;
-      width: unset;
+      width: 100%;
       min-width: 100px;
-      font-size: 22px;
+      font-size: 20px;
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      line-height: 24px;
     }
     @include phones {
       margin: 0;
@@ -85,7 +91,7 @@
   &__input {
     width: 293px;
     height: 63px;
-    background: rgba(0, 0, 0, 0.72);
+    background: transparent;
     border: none;
     outline: none;
     border-bottom: solid 2px #ffffff;
@@ -97,6 +103,7 @@
     @include tablets {
       margin-right: 20px;
       width: 40%;
+      flex-grow: 1;
     }
     @include phones {
       margin: 0;
@@ -109,18 +116,18 @@
   &__button {
     align-self: center;
     @include phones {
-      margin-top: 30px;
+      margin: 15px 0;
       width: 80%;
       text-align: center;
     }
   }
   &__submit {
     margin: auto;
-    margin-top: 189px;
-    margin-bottom: 160px;
+    margin-top: 149px;
+    margin-bottom: 130px;
 
     @include tablets {
-      margin-top: 100px;
+      margin-top: 90px;
       margin-bottom: 30px;
     }
   }

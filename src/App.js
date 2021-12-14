@@ -33,7 +33,8 @@ function App({user, setCurrentUser}) {
   return (
     <>
       <HeaderContainer />
-      {user ? <Nav user={user} /> : null}
+      <Nav user={user} />
+      {/* {user ? <Nav user={user} /> : null} */}
       <Routes>
         <Route
           exact
@@ -57,9 +58,10 @@ function App({user, setCurrentUser}) {
         <Route
           exact
           path="/profile"
-          element={
-            user === false ? <Navigate to="/" /> : <ProfilePageContainer />
-          }
+          element={<ProfilePageContainer />}
+          // element={
+          //   user === false ? <Navigate to="/" /> : <ProfilePageContainer />
+          // }
         />
         <Route path="/notfound" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/notfound" />} />
