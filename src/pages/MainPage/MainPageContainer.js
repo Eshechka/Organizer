@@ -1,7 +1,7 @@
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import MainPage from "./MainPage";
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     value: state.titlePage.value,
     title: state.titlePage.form.title,
@@ -11,7 +11,7 @@ let mapStateToProps = (state) => {
     positionXImg: state.titlePage.backgroundEffect.preElementX,
   };
 };
-let mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     datetime: () => {
       let time;
@@ -59,22 +59,27 @@ let mapDispatchToProps = (dispatch) => {
     move: (e) => {
       dispatch({
         type: "BACKGROUND_EFFECT",
-        positionX: e.clientX||e.targetTouches[0].clientX,
+        positionX: e.clientX || e.targetTouches[0].clientX,
       });
     },
-    registrOrlogin:(title)=>{
-        switch (title){
-          case 'Вход':
-            dispatch({type:'SIGN_IN'})
-            break
-          case 'Регистрация':
-            dispatch({type:'SIGN_UP'})
-                break
-          default:
-            break
-        }
-    }
+    registrOrlogin: (title) => {
+      switch (title) {
+        case "Вход":
+          dispatch({type: "SIGN_IN"});
+          break;
+        case "Регистрация":
+          dispatch({type: "SIGN_UP"});
+          break;
+        default:
+          break;
+      }
+    },
   };
 };
-let MainPageContainer = connect(mapStateToProps, mapDispatchToProps)(MainPage);
+
+const MainPageContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainPage);
+
 export default MainPageContainer;

@@ -1,23 +1,23 @@
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import ProfilePage from "./ProfilePage";
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     currentUser: state.profilePage.currentUser,
   };
 };
-let mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     deleteUser: (id) => {
-      dispatch({ type: "DELETE_USER", payload: { id } });
-      dispatch({type:'TOGGLE_USER'})
+      dispatch({type: "DELETE_USER", payload: {id}});
+      dispatch({type: "TOGGLE_USER"});
     },
-
   };
 };
 
-let ProfilePageContainer = connect(
+const ProfilePageContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProfilePage);
+
 export default ProfilePageContainer;
