@@ -8,9 +8,12 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteUser: (id) => {
-      dispatch({type: "DELETE_USER", payload: {id}});
+    deleteCurrentUser: (userId) => {
+      dispatch({type: "DELETE_USER", payload: {id: userId}});
       dispatch({type: "TOGGLE_USER"});
+    },
+    setCurrentUser: (userObj) => {
+      dispatch({type: "SET_CURRENT_USER", payload: {user: userObj}});
     },
   };
 };

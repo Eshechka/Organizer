@@ -12,7 +12,8 @@ import MainPageContainer from "./pages/MainPage/MainPageContainer";
 import {useTransition} from "react-spring";
 function App({user, setCurrentUser}) {
   useEffect(() => {
-    let currentUser = JSON.parse(localStorage.getItem("user"));
+    const localStUser = JSON.parse(localStorage.getItem("user"));
+    const currentUser = localStUser?.id ? localStUser : {id: 1, name: "Максим"};
     setCurrentUser(currentUser);
   });
   const location = useLocation();
@@ -33,8 +34,7 @@ function App({user, setCurrentUser}) {
   return (
     <>
       <HeaderContainer />
-      <Nav user={user} />
-      {/* {user ? <Nav user={user} /> : null} */}
+      {user ? <Nav user={user} /> : null}
       <Routes>
         <Route
           exact
