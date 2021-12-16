@@ -1,18 +1,21 @@
-import React from 'react';
-import styles from './WindowDeleteProfile.module.scss'
+import React from "react";
+import styles from "./WindowDeleteProfile.module.scss";
 import Button from "../../components/Button/Button";
-const WindowDeleteProfile = () => {
-    return (
-        <div className={styles.window}>
-            <p className={styles.window__text}>Вы действительной хотите удалить профиль?</p>
-            <p className={styles.window__text2}>
-                В этом случаи все цели и задачи созданные вами будут удалены</p>
-            <div className={styles.window__container}>
-                <Button text='да'/>
-                <Button text='нет' color='#192386'/>
-            </div>
-        </div>
-    );
+const WindowDeleteProfile = ({clickYes, clickNo}) => {
+  return (
+    <div className={styles.window}>
+      <p className={styles.window__title}>
+        Вы действительной хотите удалить профиль?
+      </p>
+      <p className={styles.window__text}>
+        В этом случае все созданные цели и задачи будут удалены
+      </p>
+      <div className={styles.window__buttons}>
+        <Button text="да" click={clickYes} />
+        <Button text="нет" click={clickNo} color="#192386" />
+      </div>
+    </div>
+  );
 };
 
 export default WindowDeleteProfile;

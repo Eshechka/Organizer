@@ -16,14 +16,21 @@
     min-height: 70px;
     padding: 6px 0;
   }
+  @include phones {
+    min-height: unset;
+  }
 
   &__container {
     @include container;
     display: flex;
     justify-content: space-between;
     width: 100%;
+    @include tablets {
+      align-items: flex-start;
+    }
     @include phones {
       flex-wrap: wrap;
+      align-items: center;
     }
   }
   &__logo {
@@ -60,9 +67,10 @@
     text-align: center;
     @include tablets {
       font-size: 32px;
+      padding: 30px 0 0;
     }
     @include phones {
-      font-size: 32px;
+      font-size: 30px;
       order: 3;
       width: 100%;
       padding: 10px;
@@ -76,31 +84,24 @@
       justify-content: flex-end;
     }
   }
-  &__wap{
+  &__auth-login {
     display: flex;
-    width: 176px ;
+    width: 176px;
     justify-content: space-between;
     align-items: center;
-    &__logout {
-      margin: 0;
-      font-weight: 400;
-      font-size: 24px;
-      color: $color-text;
-      cursor: pointer;
-      transition: color 0.2s ease-in 0s;
-      &:hover {
-        color: $color-hover;
-      }
+
+    @include tablets {
+      width: 120px;
     }
   }
-  &__logout {
+  &__auth-text {
+    margin: 0;
     font-weight: 400;
     font-size: 24px;
     color: $color-text;
-    text-align: center;
-    margin-left: 47px;
     cursor: pointer;
     transition: color 0.2s ease-in 0s;
+    text-align: center;
     &:hover {
       color: $color-hover;
     }

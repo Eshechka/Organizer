@@ -11,7 +11,7 @@
   color: white;
   text-align: center;
   font-weight: 700;
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   font-size: 24px;
   transition: box-shadow 0.2s ease-in 0s;
 
@@ -20,7 +20,7 @@
     min-height: 50px;
   }
   @include phones {
-    min-width: 160px;
+    min-width: 140px;
     min-height: 50px;
     font-size: 22px;
   }

@@ -6,17 +6,19 @@
   background-color: #000000;
   padding: 17px 0 17px;
   z-index: 4;
+
+  @include tablets {
+    min-height: 25px;
+    height: unset;
+    padding: 5px 0;
+  }
+
   &__container {
     @include container;
 
     &_invisible {
       display: none;
     }
-  }
-  @include tablets {
-    min-height: 40px;
-    height: unset;
-    padding: 5px 0;
   }
 
   &__navlist {
@@ -30,7 +32,7 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color:rgba(0,0,0,.9);
+        background-color: rgba(0, 0, 0, 0.9);
         padding: 20px 15px;
       }
     }
