@@ -1,9 +1,3 @@
-#root {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 .planner {
   margin-top: 205px;
 }

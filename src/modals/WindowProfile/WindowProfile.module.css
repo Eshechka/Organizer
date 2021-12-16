@@ -1,74 +1,53 @@
-.window {
-  position: fixed;
-  z-index: 1000;
-  opacity: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 521px;
-  min-width: 300px;
-  min-height: 532px;
-  background-color: black;
-  padding: 40px;
-}
-@media screen and (max-width: 768px) {
-  .window {
-    width: 86%;
-    padding: 30px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .window {
-    width: 90%;
-    padding: 20px;
-  }
-}
-.window__title {
+.title {
   font-weight: 700;
   text-align: center;
   color: white;
   font-size: 48px;
 }
 @media screen and (max-width: 768px) {
-  .window__title {
+  .title {
     font-size: 40px;
   }
 }
 @media screen and (max-width: 480px) {
-  .window__title {
+  .title {
     font-size: 36px;
   }
 }
-.window__buttons {
+
+.buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
 }
 @media screen and (max-width: 480px) {
-  .window__buttons {
+  .buttons {
     flex-direction: column;
     min-height: 120px;
   }
 }
-.window__block {
+
+.block {
   margin: 50px 50px 20px;
 }
-.window__block:not(:first-child) {
+.block:not(:first-child) {
   margin-bottom: 33px;
 }
 @media screen and (max-width: 768px) {
-  .window__block {
+  .block {
     margin: 40px 0 20px;
   }
 }
-.window__label {
+
+.label {
   color: white;
   font-size: 24px;
   font-weight: 700;
   margin: 0;
   padding: 4px;
 }
-.window__input {
+
+.input {
   display: block;
   margin: 0;
   margin-top: 1px;
@@ -84,7 +63,7 @@
   outline: none;
 }
 @media screen and (max-width: 768px) {
-  .window__input {
+  .input {
     width: 100%;
   }
 }

@@ -18,7 +18,6 @@ let defaultState={
 }
 let titleReducer=(state=defaultState, action)=>{
     let stateCopy={...state}
-
     switch (action.type){
         case 'DATETIME':
             stateCopy.datetime.time=action.time

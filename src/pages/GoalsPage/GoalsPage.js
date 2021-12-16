@@ -35,13 +35,16 @@ function GoalsPage({
   };
   const animationModal = useTransition(valueWindow, {
     from: {
-      opacity: 0, left: `${0}%`
+      opacity: 0,
+      top: `${0}%`,
     },
     enter: {
-      opacity: 1, left: `${33}%`
+      opacity: 1,
+      top: `${40}%`,
     },
     leave: {
-      opacity: 0, left: `${60}%`
+      opacity: 0,
+      top: `${0}%`,
     },
     expires:true
   })

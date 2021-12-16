@@ -1,9 +1,3 @@
-#root {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 .el {
   width: 310px;
   min-height: 55px;

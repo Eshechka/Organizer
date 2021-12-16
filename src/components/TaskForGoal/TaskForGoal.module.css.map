@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../App.scss","TaskForGoal.module.scss"],"names":[],"mappings":"AAkDA;EACE;EACA;EACA;;;ACpDF;EACI;EACA;EACA;EACA;EACA;EACA;;ADMF;ECZF;IAQQ;;;AAEJ;EACI;EACA;EACA;EACA;EACA;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA","file":"TaskForGoal.module.css"}
+{"version":3,"sourceRoot":"","sources":["TaskForGoal.module.scss","../../App.scss"],"names":[],"mappings":"AACA;EACI;EACA;EACA;EACA;EACA;EACA;;ACMF;EDZF;IAQQ;;;AAEJ;EACI;EACA;EACA;EACA;EACA;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA","file":"TaskForGoal.module.css"}

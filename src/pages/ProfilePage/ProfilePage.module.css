@@ -192,4 +192,56 @@
   }
 }
 
+.window {
+  position: fixed;
+  z-index: 1000;
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 521px;
+  min-width: 300px;
+  min-height: 532px;
+  background-color: black;
+  padding: 40px;
+}
+@media screen and (max-width: 768px) {
+  .window {
+    width: 86%;
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .window {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+.windowDelete {
+  position: fixed;
+  z-index: 1000;
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 590px;
+  min-height: 207px;
+  background: black;
+  padding: 40px;
+  border-radius: 3px;
+}
+@media screen and (max-width: 768px) {
+  .windowDelete {
+    width: 86%;
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .windowDelete {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
 /*# sourceMappingURL=ProfilePage.module.css.map */

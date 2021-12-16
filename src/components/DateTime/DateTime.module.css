@@ -1,9 +1,3 @@
-#root {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 .wap p {
   color: #ffffff;
   font-weight: 700;

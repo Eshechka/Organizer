@@ -1,9 +1,3 @@
-#root {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
 .header {
   display: flex;
   justify-items: center;
@@ -22,6 +16,11 @@
   .header {
     min-height: 70px;
     padding: 6px 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .header {
+    min-height: unset;
   }
 }
 .header__container {
@@ -48,9 +47,15 @@
     padding: 0 10px;
   }
 }
+@media screen and (max-width: 768px) {
+  .header__container {
+    align-items: flex-start;
+  }
+}
 @media screen and (max-width: 480px) {
   .header__container {
     flex-wrap: wrap;
+    align-items: center;
   }
 }
 .header__logo {
@@ -94,11 +99,12 @@
 @media screen and (max-width: 768px) {
   .header__title {
     font-size: 32px;
+    padding: 30px 0 0;
   }
 }
 @media screen and (max-width: 480px) {
   .header__title {
-    font-size: 32px;
+    font-size: 30px;
     order: 3;
     width: 100%;
     padding: 10px;
@@ -114,33 +120,27 @@
     justify-content: flex-end;
   }
 }
-.header__wap {
+.header__auth-login {
   display: flex;
   width: 176px;
   justify-content: space-between;
   align-items: center;
 }
-.header__wap__logout {
+@media screen and (max-width: 768px) {
+  .header__auth-login {
+    width: 120px;
+  }
+}
+.header__auth-text {
   margin: 0;
   font-weight: 400;
   font-size: 24px;
   color: #ffffff;
   cursor: pointer;
   transition: color 0.2s ease-in 0s;
-}
-.header__wap__logout:hover {
-  color: #bbb;
-}
-.header__logout {
-  font-weight: 400;
-  font-size: 24px;
-  color: #ffffff;
   text-align: center;
-  margin-left: 47px;
-  cursor: pointer;
-  transition: color 0.2s ease-in 0s;
 }
-.header__logout:hover {
+.header__auth-text:hover {
   color: #bbb;
 }
 

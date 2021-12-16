@@ -3,18 +3,18 @@ import styles from "./WindowDeleteProfile.module.scss";
 import Button from "../../components/Button/Button";
 const WindowDeleteProfile = ({clickYes, clickNo}) => {
   return (
-    <div className={styles.window}>
-      <p className={styles.window__title}>
+    <>
+      <p className={styles.title}>
         Вы действительной хотите удалить профиль?
       </p>
-      <p className={styles.window__text}>
+      <p className={styles.text}>
         В этом случае все созданные цели и задачи будут удалены
       </p>
-      <div className={styles.window__buttons}>
+      <div className={styles.buttons}>
         <Button text="да" click={clickYes} />
         <Button text="нет" click={clickNo} color="#192386" />
       </div>
-    </div>
+    </>
   );
 };
 
