@@ -38,7 +38,8 @@
   }
 }
 
-@mixin main-content() {
+.maincontent {
+  position: relative;
   flex-grow: 1;
   /*background: linear-gradient(rgb(79, 78, 78), black, rgb(77, 76, 76)) center*/
   /*center/cover no-repeat;*/
@@ -70,6 +71,14 @@
       rgb(120, 107, 175)
     ),
     linear-gradient(rgba(0, 8, 255, 0.1), rgba(0, 8, 255, 0));
+
+  &__wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 $color-text: #ffffff;
