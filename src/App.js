@@ -12,7 +12,6 @@ import MainPageContainer from "./pages/MainPage/MainPageContainer";
 import {useTransition} from "react-spring";
 
 function App({user, setCurrentUser}) {
-  console.log("USER ", user);
   useEffect(() => {
     const localStUser = JSON.parse(localStorage.getItem("user"));
     const currentUser = localStUser?.id ? localStUser : {id: 1, name: "Максим"};
@@ -37,40 +36,45 @@ function App({user, setCurrentUser}) {
     <>
       <HeaderContainer />
       {user ? <Nav user={user} /> : null}
-      <div className="maincontent">
-        <div className="maincontent__wrapper">
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={user ? <Navigate to="/do" /> : <MainPageContainer />}
-            />
-            <Route
-              exact
-              path="/do"
-              element={
-                user === false ? <Navigate to="/" /> : <TasksPageContainer />
-              }
-            />
-            <Route
-              exact
-              path="/purposes"
-              element={
-                user === false ? <Navigate to="/" /> : <GoalsPageContainer />
-              }
-            />
-            <Route
-              exact
-              path="/profile"
-              element={<ProfilePageContainer />}
-              // element={
-              //   user === false ? <Navigate to="/" /> : <ProfilePageContainer />
-              // }
-            />
-            <Route path="/notfound" element={<NotFound />} />
-            <Route path="*" element={<Navigate to="/notfound" />} />
-          </Routes>
-        </div>
+      <div
+        className="maincontent"
+        // style={{
+        //   height: "1033px",
+        // }}
+      >
+        {/* <div className="maincontent__wrapper"> */}
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={user ? <Navigate to="/do" /> : <MainPageContainer />}
+          />
+          <Route
+            exact
+            path="/do"
+            element={
+              user === false ? <Navigate to="/" /> : <TasksPageContainer />
+            }
+          />
+          <Route
+            exact
+            path="/purposes"
+            element={
+              user === false ? <Navigate to="/" /> : <GoalsPageContainer />
+            }
+          />
+          <Route
+            exact
+            path="/profile"
+            element={<ProfilePageContainer />}
+            // element={
+            //   user === false ? <Navigate to="/" /> : <ProfilePageContainer />
+            // }
+          />
+          <Route path="/notfound" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/notfound" />} />
+        </Routes>
+        {/* </div> */}
       </div>
       <Footer />
     </>
