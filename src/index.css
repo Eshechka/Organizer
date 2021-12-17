@@ -2,8 +2,12 @@ html,
 body,
 #root {
   height: 100%;
+}
+#root {
+  position: absolute;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 body {
   position: relative;
