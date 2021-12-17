@@ -33,4 +33,12 @@
   &:focus {
     box-shadow: inset 0 0 12px -3px #fff8f8;
   }
+
+  &_highlight {
+    background-color: $color-button-highlight;
+  }
+
+  &_dark {
+    background-color: #000000;
+  }
 }

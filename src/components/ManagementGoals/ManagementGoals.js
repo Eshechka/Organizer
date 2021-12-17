@@ -2,12 +2,16 @@ import React from "react";
 import styles from "./ManagementGoals.module.scss";
 import Button from "../Button/Button";
 
-function ManagementGoals({ inputs, click, clearGoals }) {
+function ManagementGoals({inputs, click, clearGoals}) {
   return (
     <div className={styles.managementgoals}>
       <div className={styles.managementgoals__block}>
         <div className={styles.managementgoals__goaltitle}>
-            {inputs.errors.errorTitle?<p className={styles.managementgoals__error}>Должно быть название</p>:null}
+          {inputs.errors.errorTitle ? (
+            <p className={styles.managementgoals__error}>
+              Должно быть название
+            </p>
+          ) : null}
           <input
             style={{
               borderColor: inputs.errors.errorTitle ? "red" : "white",
@@ -53,7 +57,11 @@ function ManagementGoals({ inputs, click, clearGoals }) {
             Перечислите название этапов для достижения цели через запятую если
             они есть
           </p>
-            {inputs.errors.errorTodo?<p className={styles.managementgoals__error}>Должна быть хотя бы одна задача</p>:null}
+          {inputs.errors.errorTodo ? (
+            <p className={styles.managementgoals__error}>
+              Должна быть хотя бы одна задача
+            </p>
+          ) : null}
           <textarea
             style={{
               borderColor: inputs.errors.errorTodo ? "red" : "white",
@@ -68,7 +76,7 @@ function ManagementGoals({ inputs, click, clearGoals }) {
         </div>
         <div className={styles.managementgoals__buttons}>
           <Button click={click} text="Добавить" />
-          <Button text="Очистить" color="#192386" click={clearGoals}/>
+          <Button text="Очистить" color={"highlight"} click={clearGoals} />
         </div>
       </div>
     </div>

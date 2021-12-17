@@ -1,21 +1,25 @@
 import React from "react";
 import styles from "./WindowDeleteProfile.module.scss";
 import Button from "../../components/Button/Button";
-const WindowDeleteProfile = ({clickYes, clickNo}) => {
+
+function WindowDeleteProfile({
+  clickYes = Function.prototype,
+  clickNo = Function.prototype,
+}) {
   return (
-    <>
-      <p className={styles.title}>
+    <div className={styles.modalDelete}>
+      <h2 className={styles.modalDelete__title}>
         Вы действительной хотите удалить профиль?
-      </p>
-      <p className={styles.text}>
+      </h2>
+      <p className={styles.modalDelete__text}>
         В этом случае все созданные цели и задачи будут удалены
       </p>
-      <div className={styles.buttons}>
-        <Button text="да" click={clickYes} />
-        <Button text="нет" click={clickNo} color="#192386" />
+      <div className={styles.modalDelete__buttons}>
+        <Button text="Да" click={clickYes} />
+        <Button text="Нет" click={clickNo} color={"highlight"} />
       </div>
-    </>
+    </div>
   );
-};
+}
 
 export default WindowDeleteProfile;

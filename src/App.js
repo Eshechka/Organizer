@@ -11,6 +11,7 @@ import TasksPageContainer from "./pages/TasksPage/TasksPageContainer";
 import MainPageContainer from "./pages/MainPage/MainPageContainer";
 import {useTransition} from "react-spring";
 function App({user, setCurrentUser}) {
+  console.log("USER ", user);
   useEffect(() => {
     const localStUser = JSON.parse(localStorage.getItem("user"));
     const currentUser = localStUser?.id ? localStUser : {id: 1, name: "Максим"};

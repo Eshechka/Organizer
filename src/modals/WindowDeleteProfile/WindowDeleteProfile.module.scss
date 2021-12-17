@@ -1,37 +1,19 @@
 @import "../../App.scss";
-.title {
-  color: $color-text;
-  text-align: center;
-  font-weight: 700;
-  font-size: 36px;
 
-  @include tablets {
-    font-size: 34px;
-  }
-  @include phones {
-    font-size: 24px;
-  }
-}
-.text {
-  color: $color-text;
-  text-align: center;
-  font-weight: 500;
-  font-size: 30px;
+.modalDelete {
+  @include modal;
 
-  @include tablets {
-    font-size: 24px;
-  }
-  @include phones {
-    font-size: 20px;
+  &__text {
+    color: $color-text;
+    text-align: center;
+    font-weight: 500;
+    font-size: 30px;
+
+    @include tablets {
+      font-size: 24px;
+    }
+    @include phones {
+      font-size: 20px;
+    }
   }
 }
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-between;
-}
-
-
-
-

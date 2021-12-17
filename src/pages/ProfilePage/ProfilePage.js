@@ -5,11 +5,11 @@ import Button from "../../components/Button/Button";
 import DateTimeContainer from "../../components/DateTime/DateTimeContainer";
 import WindowProfile from "../../modals/WindowProfile/WindowProfile";
 import WindowDeleteProfile from "../../modals/WindowDeleteProfile/WindowDeleteProfile";
-import {useTransition,animated} from "react-spring";
+import {useTransition, animated} from "react-spring";
 import {useNavigate} from "react-router-dom";
 
 function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [isOpenDelete, setIsOpenDelete] = useState(false);
   const [isOpenChangePassword, setIsOpenChangePassword] = useState(false);
   const [isOpenChangeLogin, setIsOpenChangeLogin] = useState(false);
@@ -26,7 +26,7 @@ function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
       opacity: 0,
       top: `${0}%`,
     },
-    expires: true
+    expires: true,
   });
   const animationChangePassword = useTransition(isOpenChangePassword, {
     from: {
@@ -41,7 +41,7 @@ function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
       opacity: 0,
       top: `${0}%`,
     },
-    expires: true
+    expires: true,
   });
   const animationChangeLogin = useTransition(isOpenChangeLogin, {
     from: {
@@ -56,7 +56,7 @@ function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
       opacity: 0,
       top: `${0}%`,
     },
-    expires: true
+    expires: true,
   });
 
   function openDeleteUserProfile() {
@@ -65,7 +65,7 @@ function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
   function handleDeleteUserProfile() {
     deleteCurrentUser();
     setIsOpenDelete(false);
-    navigate('/')
+    navigate("/");
   }
   function openChangeUserLogin() {
     setIsOpenChangeLogin(true);
@@ -125,38 +125,42 @@ function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
           <Button
             text="Удалить профиль"
             click={openDeleteUserProfile}
-            color="#141F84"
+            color={"highlight"}
           />
         </div>
-        {animationChangeLogin((props,isOpenChangeLogin)=>
-            isOpenChangeLogin ?
-                <animated.div style={props} className={styles.window}>
-                  <WindowProfile
-                      type={"login"}
-                      clickYes={handleChangeUserLogin}
-                      clickNo={() => {
-                        setIsOpenChangeLogin(false);
-                      }}
-                  />
-                </animated.div>:null
+        {animationChangeLogin((props, isOpenChangeLogin) =>
+          isOpenChangeLogin ? (
+            <animated.div style={props} className={styles.windowChange}>
+              <WindowProfile
+                type={"login"}
+                clickYes={handleChangeUserLogin}
+                clickNo={() => {
+                  setIsOpenChangeLogin(false);
+                }}
+              />
+            </animated.div>
+          ) : null
         )}
-        {animationChangePassword((props,isOpenChangePassword)=>
-            isOpenChangePassword ?
-                <animated.div style={props} className={styles.window}>
-                  <WindowProfile
-                      type={"password"}
-                      clickYes={handleChangeUserPassword}
-                      clickNo={() => setIsOpenChangePassword(false)} />
-                </animated.div>:null
+        {animationChangePassword((props, isOpenChangePassword) =>
+          isOpenChangePassword ? (
+            <animated.div style={props} className={styles.windowChange}>
+              <WindowProfile
+                type={"password"}
+                clickYes={handleChangeUserPassword}
+                clickNo={() => setIsOpenChangePassword(false)}
+              />
+            </animated.div>
+          ) : null
         )}
-        {animationDelete((props,isDelete)=>
-            isDelete ?
-                <animated.div style={props} className={styles.windowDelete}>
-                  <WindowDeleteProfile
-                      clickYes={handleDeleteUserProfile}
-                      clickNo={() => setIsOpenDelete(false)}
-                  />
-                </animated.div>:null
+        {animationDelete((props, isDelete) =>
+          isDelete ? (
+            <animated.div style={props} className={styles.windowDelete}>
+              <WindowDeleteProfile
+                clickYes={handleDeleteUserProfile}
+                clickNo={() => setIsOpenDelete(false)}
+              />
+            </animated.div>
+          ) : null
         )}
       </div>
     </div>
