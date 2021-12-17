@@ -1,8 +1,10 @@
 @import "./../../App";
 
 .main {
-  @include main-content;
-  padding-top: 194px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   overflow: hidden;
 
