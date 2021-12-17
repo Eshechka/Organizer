@@ -1,64 +1,45 @@
 @import "../../App.scss";
 
-.title {
-  font-weight: 700;
-  text-align: center;
-  color: white;
-  font-size: 48px;
+.modalChange {
+  @include modal;
 
-  @include tablets {
-    font-size: 40px;
-  }
-  @include phones {
-    font-size: 36px;
-  }
-}
+  &__block {
+    margin: 50px 50px 20px;
 
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
+    &:not(:first-child) {
+      margin-bottom: 33px;
+    }
 
-  @include phones {
-    flex-direction: column;
-    min-height: 120px;
-  }
-}
-.block {
-  margin: 50px 50px 20px;
-
-  &:not(:first-child) {
-    margin-bottom: 33px;
+    @include tablets {
+      margin: 40px 0 20px;
+    }
   }
 
-  @include tablets {
-    margin: 40px 0 20px;
+  &__label {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    padding: 4px;
   }
-}
-.label {
-  color: white;
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0;
-  padding: 4px;
-}
-.input {
-  display: block;
-  margin: 0;
-  margin-top: 1px;
-  width: 230px;
-  height: 44px;
-  border: none;
-  border-bottom: solid 2px white;
-  padding: 5px;
-  color: white;
-  font-size: 24px;
-  font-weight: 700;
-  background: none;
-  outline: none;
 
-  @include tablets {
-    width: 100%;
+  &__input {
+    display: block;
+    margin: 0;
+    margin-top: 1px;
+    width: 230px;
+    height: 44px;
+    border: none;
+    border-bottom: solid 2px white;
+    padding: 5px;
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    background: none;
+    outline: none;
+
+    @include tablets {
+      width: 100%;
+    }
   }
 }
-

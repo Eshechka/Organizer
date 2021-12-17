@@ -81,8 +81,50 @@
   }
 }
 
+@mixin modal {
+  background: $background-color-main;
+  padding: 40px;
+  border-radius: 3px;
+
+  @include tablets {
+    padding: 30px;
+  }
+  @include phones {
+    padding: 20px;
+  }
+
+  &__title {
+    color: $color-text;
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+
+    @include tablets {
+      font-size: 36px;
+    }
+    @include phones {
+      font-size: 28px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 50px;
+
+    @include phones {
+      flex-direction: column;
+      min-height: 120px;
+    }
+  }
+}
+
 $color-text: #ffffff;
 $color-hover: #bbb;
+
+$color-button-highlight: #141f84;
 
 $background-color-main: black;
 $background-color-additional: rgb(31, 1, 29);

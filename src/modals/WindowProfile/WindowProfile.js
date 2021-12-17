@@ -7,29 +7,28 @@ function WindowProfile({
   clickYes = Function.prototype,
   clickNo = Function.prototype,
 }) {
-  console.log("type = ", type);
   return (
-    <>
-      <h2 className={styles.title}>
+    <div className={styles.modalChange}>
+      <h2 className={styles.modalChange__title}>
         Изменение {type === "login" ? "логина:" : "пароля"}
       </h2>
-      <div className={styles.block}>
-        <label className={styles.label}>
+      <div className={styles.modalChange__block}>
+        <label className={styles.modalChange__label}>
           {type === "login" ? "Ваш логин:" : "Ваш пароль"}
         </label>
-        <input className={styles.input} type="text" />
+        <input className={styles.modalChange__input} type="text" />
       </div>
-      <div className={styles.block}>
-        <label className={styles.label}>
+      <div className={styles.modalChange__block}>
+        <label className={styles.modalChange__label}>
           {type === "login" ? "Ваш новый логин:" : "Ваш новый пароль"}
         </label>
-        <input className={styles.input} type="text" />
+        <input className={styles.modalChange__input} type="text" />
       </div>
-      <div className={styles.buttons}>
+      <div className={styles.modalChange__buttons}>
         <Button text="Изменить" click={clickYes} />
         <Button text="Отмена" click={clickNo} />
       </div>
-    </>
+    </div>
   );
 }
 

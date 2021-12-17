@@ -131,7 +131,7 @@
     }
   }
 }
-.window {
+.windowChange {
   position: fixed;
   z-index: 1000;
   opacity: 1;
@@ -141,16 +141,12 @@
   width: 521px;
   min-width: 300px;
   min-height: 532px;
-  background-color: black;
-  padding: 40px;
 
   @include tablets {
     width: 86%;
-    padding: 30px;
   }
   @include phones {
     width: 90%;
-    padding: 20px;
   }
 }
 .windowDelete {
@@ -162,16 +158,11 @@
   transform: translate(-50%, -50%);
   width: 590px;
   min-height: 207px;
-  background: $background-color-main;
-  padding: 40px;
-  border-radius: 3px;
 
   @include tablets {
     width: 86%;
-    padding: 30px;
   }
   @include phones {
     width: 90%;
-    padding: 20px;
   }
 }

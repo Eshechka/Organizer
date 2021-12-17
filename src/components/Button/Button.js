@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-function Button({ text, color, click }) {
+function Button({text, color = "", click}) {
   return (
     <button
       onClick={click}
-      className={styles.button}
-      style={{ backgroundColor: color }}
+      className={[styles.button, color ? styles[`button_${color}`] : ""].join(
+        " "
+      )}
     >
       {text}
     </button>
