@@ -1,4 +1,5 @@
-.profile {
+.maincontent {
+  position: relative;
   flex-grow: 1;
   /*background: linear-gradient(rgb(79, 78, 78), black, rgb(77, 76, 76)) center*/
   /*center/cover no-repeat;*/
@@ -21,6 +22,16 @@
     ),
     linear-gradient(rgba(0, 8, 255, 0.1), rgba(0, 8, 255, 0)); */
   background: linear-gradient(to right top, #030021, #040023 2%, #0b0539 24%, #112b4d 38%, #2c1575 71%, #786baf), linear-gradient(rgba(0, 8, 255, 0.1), rgba(0, 8, 255, 0));
+}
+.maincontent__wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.profile {
   position: relative;
   padding-bottom: 100px;
 }
@@ -192,7 +203,7 @@
   }
 }
 
-.window {
+.windowChange {
   position: fixed;
   z-index: 1000;
   opacity: 1;
@@ -202,19 +213,15 @@
   width: 521px;
   min-width: 300px;
   min-height: 532px;
-  background-color: black;
-  padding: 40px;
 }
 @media screen and (max-width: 768px) {
-  .window {
+  .windowChange {
     width: 86%;
-    padding: 30px;
   }
 }
 @media screen and (max-width: 480px) {
-  .window {
+  .windowChange {
     width: 90%;
-    padding: 20px;
   }
 }
 
@@ -227,20 +234,15 @@
   transform: translate(-50%, -50%);
   width: 590px;
   min-height: 207px;
-  background: black;
-  padding: 40px;
-  border-radius: 3px;
 }
 @media screen and (max-width: 768px) {
   .windowDelete {
     width: 86%;
-    padding: 30px;
   }
 }
 @media screen and (max-width: 480px) {
   .windowDelete {
     width: 90%;
-    padding: 20px;
   }
 }
 
