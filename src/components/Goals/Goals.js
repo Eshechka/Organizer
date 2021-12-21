@@ -3,6 +3,7 @@ import styles from './Goals.module.scss'
 import Timer from '../Timer/Timer'
 import TaskForGoal from "../TaskForGoal/TaskForGoal";
 function Goals({goal,dayFunction,chekTodo,deleteGoal}) {
+    console.log(goal)
     return (
         <div className={styles.element}>
             <div className={styles.wap}>

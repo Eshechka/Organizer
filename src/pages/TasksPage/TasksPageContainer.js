@@ -7,7 +7,7 @@ import {
     deleteTask,
     toggleWindow,window,
     updateTimer
-} from "../../store/reducers/TasksActions";
+} from "../../store/actions/tasksActions";
 
 let mapStateToProps = (state) => {
     return {

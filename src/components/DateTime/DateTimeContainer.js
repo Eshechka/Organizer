@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import DateTime from "./DateTime";
-import {updateDateTime} from "../../store/reducers/globalTimeActions";
+import {updateDateTime} from "../../store/actions/globalTimeActions";
 
 let mapStateToProps = (state) => {
   return {

@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import ProfilePage from "./ProfilePage";
-import {deleteUser, setCurrentUser, toggleUser} from "../../store/reducers/usersActions";
+import {deleteUser, setCurrentUser, toggleUser} from "../../store/actions/usersActions";
 
 const mapStateToProps = (state) => {
   return {

@@ -40,18 +40,6 @@ function TasksPage({
         },
         expires:true
     })
-    const animationTasks = useTransition(todoList, {
-      from: {
-        opacity: 0, transform: `translateX(${300}px)`
-      },
-      enter: {
-        opacity: 1, transform: `translateX(${0}px)`
-      },
-      leave: {
-        opacity: 0, transform: `translateX(${300}px)`
-      },
-        expires:true
-    })
     return (
         <div className={styles.todolist}>
             <div className={styles.todolist__container}>
@@ -74,15 +62,15 @@ function TasksPage({
                 />
                 <ul className={styles.todolist__list}>
                   {
-                    animationTasks((props,el)=>
-                        <animated.li style={props} key={el.id} className={styles.todolist__item}>
+                    todoList.map(el=>
+                        <li  key={el.id} className={styles.todolist__item}>
                           <Task
                               id={el.id}
                               click={click}
                               dayFunction={dayFunction}
                               el={el}
                           />
-                        </animated.li>)
+                        </li>)
                   }
                 </ul>
                 {

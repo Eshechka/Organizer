@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
 import MainPage from "./MainPage";
-import {openLogin, openRegistration, signIn, signUp} from "../../store/reducers/usersActions";
-import {updateDateTime} from "../../store/reducers/globalTimeActions";
-import {moveAnimation} from "../../store/reducers/backgroundAnimationActions";
+import {openLogin, openRegistration, signIn, signUp} from "../../store/actions/usersActions";
+import {updateDateTime} from "../../store/actions/globalTimeActions";
+import {moveAnimation} from "../../store/actions/backgroundAnimationActions";
 
 const mapStateToProps = (state) => {
   return {
@@ -55,7 +55,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(updateDateTime({time, day, year}));
     },
     move: (e) => {
-      dispatch(moveAnimation({positionX: e.clientX || e.targetTouches[0].clientX,}));
+      if(e.clientX===undefined&&e.targetTouches[0].clientX===undefined){
+        dispatch(moveAnimation({positionX: 0 }));
+      }else {
+        dispatch(moveAnimation({positionX: e.clientX || e.targetTouches[0].clientX,}));
+      }
+
     },
     registrOrlogin: (title) => {
       switch (title) {

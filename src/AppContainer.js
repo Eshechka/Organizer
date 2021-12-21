@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import App from "./App";
-import {setCurrentUser} from "./store/reducers/usersActions";
+import {setCurrentUser} from "./store/actions/usersActions";
 
 let mapStateToProps = (state) => {
   return {

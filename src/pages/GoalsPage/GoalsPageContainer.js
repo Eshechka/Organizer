@@ -7,7 +7,7 @@ import {
     changedTodo, clearGoals, clickTask, deleteGoal,
     toggleWindow,
     updateTimer
-} from "../../store/reducers/GoalsActions";
+} from "../../store/actions/goalsActions";
 
 let mapStateToProps = (state) => {
     return {

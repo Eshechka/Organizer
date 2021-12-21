@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import Header from "./Header";
-import {exit, openLogin, openRegistration} from "../../store/reducers/usersActions";
+import {exit, openLogin, openRegistration} from "../../store/actions/usersActions";
 
 let mapStateToProps = (state) => {
     return {
