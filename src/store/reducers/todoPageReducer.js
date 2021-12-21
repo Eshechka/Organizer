@@ -1,11 +1,8 @@
 let defaultState = {
     valueWindow: false,
     valueTitle: '',
-    ChangeTitle: '',
     valueDateStart: '',
-    ChangeDateStart: '',
     valueDateEnd: '',
-    ChangeDataEnd: '',
     checkWindow: false,
     errors: {
         errorTitle: false
@@ -22,16 +19,13 @@ let TodoPageReducer = (state = defaultState, action) => {
             stateCopy.valueWindow = !stateCopy.valueWindow
             return stateCopy
         case 'CHANGE_TITLE':
-                stateCopy.ChangeTitle = action.value
-                stateCopy.valueTitle = stateCopy.ChangeTitle
+                stateCopy.valueTitle = action.value
                 return stateCopy
         case  'CHANGE_DATE_START':
-            stateCopy.ChangeDateStart = action.value
-            stateCopy.valueDateStart = stateCopy.ChangeDateStart
+            stateCopy.valueDateStart = action.value
             return stateCopy
         case 'CHANGE_DATE_END':
-            stateCopy.ChangeDataEnd = action.value
-            stateCopy.valueDateEnd = stateCopy.ChangeDataEnd
+            stateCopy.valueDateEnd = action.value
             return stateCopy
         case 'PUSH':
             stateCopy.errors.errorTitle = stateCopy.valueTitle === ''

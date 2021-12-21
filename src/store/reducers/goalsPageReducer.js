@@ -1,9 +1,6 @@
 let defaultState = {
-    changeTitle: '',
     valueTitle: '',
-    changeDate: '',
     valueDate: '',
-    changeTodo: '',
     valueTodo: '',
     errors: {
         errorTitle: false,
@@ -20,16 +17,13 @@ let GoalsPageReducer = (state = defaultState, action) => {
     }
     switch (action.type) {
         case 'VALUE_TITLE':
-            stateCopy.changeTitle = action.text
-            stateCopy.valueTitle = stateCopy.changeTitle
+            stateCopy.valueTitle = action.text
             return stateCopy
         case 'VALUE_DATE':
-            stateCopy.changeDate = action.text
-            stateCopy.valueDate = stateCopy.changeDate
+            stateCopy.valueDate = action.text
             return stateCopy
         case 'VALUE_TODO':
-            stateCopy.changeTodo = action.text
-            stateCopy.valueTodo = stateCopy.changeTodo
+            stateCopy.valueTodo = action.text
             return stateCopy
         case 'ADD_GOALS':
             stateCopy.errors.errorTitle = stateCopy.valueTitle === '';

@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
 import DateTime from "./DateTime";
+import {updateDateTime} from "../../store/reducers/globalTimeActions";
 
 let mapStateToProps = (state) => {
   return {
-    date: state.titlePage.datetime.year,
-    day: state.titlePage.datetime.day,
-    time: state.titlePage.datetime.time,
+    date: state.globalDateTime.datetime.year,
+    day: state.globalDateTime.datetime.day,
+    time: state.globalDateTime.datetime.time,
   };
 };
 let mapDispatchToProps = (dispatch) => {
@@ -46,12 +47,11 @@ let mapDispatchToProps = (dispatch) => {
         year = `${date}.${month}.${yearNow} г.`;
       }
 
-      dispatch({
-        type: "DATETIME",
+      dispatch(updateDateTime({
         time,
         day,
         year,
-      });
+      }));
     },
   };
 };

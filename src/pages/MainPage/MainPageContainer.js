@@ -1,14 +1,17 @@
 import {connect} from "react-redux";
 import MainPage from "./MainPage";
+import {openLogin, openRegistration, signIn, signUp} from "../../store/reducers/usersActions";
+import {updateDateTime} from "../../store/reducers/globalTimeActions";
+import {moveAnimation} from "../../store/reducers/backgroundAnimationActions";
 
 const mapStateToProps = (state) => {
   return {
-    value: state.titlePage.value,
-    title: state.titlePage.form.title,
-    buttonTitle: state.titlePage.form.buttonTitle,
-    time: state.titlePage.datetime.time,
-    day: state.titlePage.datetime.day,
-    positionXImg: state.titlePage.backgroundEffect.preElementX,
+    value: state.users.value,
+    title: state.users.form.title,
+    buttonTitle: state.users.form.buttonTitle,
+    time: state.globalDateTime.datetime.time,
+    day: state.globalDateTime.datetime.day,
+    positionXImg: state.background.backgroundEffect.preElementX,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -49,26 +52,18 @@ const mapDispatchToProps = (dispatch) => {
         year = `${date}.${month}.${yearNow} г.`;
       }
 
-      dispatch({
-        type: "DATETIME",
-        time,
-        day,
-        year,
-      });
+      dispatch(updateDateTime({time, day, year}));
     },
     move: (e) => {
-      dispatch({
-        type: "BACKGROUND_EFFECT",
-        positionX: e.clientX || e.targetTouches[0].clientX,
-      });
+      dispatch(moveAnimation({positionX: e.clientX || e.targetTouches[0].clientX,}));
     },
     registrOrlogin: (title) => {
       switch (title) {
         case "Вход":
-          dispatch({type: "SIGN_IN"});
+          dispatch(signIn());
           break;
         case "Регистрация":
-          dispatch({type: "SIGN_UP"});
+          dispatch(signUp());
           break;
         default:
           break;

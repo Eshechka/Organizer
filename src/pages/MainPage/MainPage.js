@@ -15,6 +15,7 @@ function MainPage({
   positionXImg,
   registrOrlogin,
 }) {
+  console.log(value)
   useEffect(() => {
     let TimerId = setInterval(datetime, 1000);
     return () => {

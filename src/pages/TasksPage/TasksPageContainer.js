@@ -1,15 +1,23 @@
 import {connect} from "react-redux"
 import TasksPage from "./TasksPage"
+import {
+    addTask, changedDateEnd, changedDateStart,
+    changedTitle,
+    checkTask, clearTasks,
+    deleteTask,
+    toggleWindow,window,
+    updateTimer
+} from "../../store/reducers/TasksActions";
 
 let mapStateToProps = (state) => {
     return {
-        valueWindow: state.todoPage.valueWindow,
-        todoList: state.todoPage.todoList,
-        check: state.todoPage.checkWindow,
-        title: state.todoPage.valueTitle,
-        start: state.todoPage.valueDateStart,
-        end: state.todoPage.valueDateEnd,
-        errors: state.todoPage.errors
+        valueWindow: state.tasks.valueWindow,
+        todoList: state.tasks.todoList,
+        check: state.tasks.checkWindow,
+        title: state.tasks.valueTitle,
+        start: state.tasks.valueDateStart,
+        end: state.tasks.valueDateEnd,
+        errors: state.tasks.errors
     }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -56,56 +64,48 @@ let mapDispatchToProps = (dispatch) => {
             }
 
 
-            dispatch({
-                type: 'DATE_FUNCTION',
+            dispatch(updateTimer({
                 id,
                 text,
                 color,
                 border,
                 textState,
                 colorState,
-            })
+            }))
         },
         click: (e, id) => {
-            console.log(e)
             if (e.target.id === '1') {
-
-                dispatch({
-                    type: 'CHECK',
+                dispatch(checkTask({
                     border: 'green',
                     textState: 'Выполнено',
                     colorState: 'green',
                     id,
-
-                })
+                }))
             } else if (e.target.id === '2') {
-                dispatch({
-                    type: 'DELETE_EL',
-                    id,
-                })
+                dispatch(deleteTask({id}))
             }
         },
         window: () => {
-            dispatch({type: 'WINDOW_OPEN'})
+            dispatch(window())
         },
         push: () => {
-            dispatch({type: 'PUSH'})
+            dispatch(addTask())
         },
         changeTitle: (e) => {
-            dispatch({type: 'CHANGE_TITLE', value: e.target.value})
+            dispatch(changedTitle({value: e.target.value}))
         },
         changeDateStart: (e) => {
-            dispatch({type: 'CHANGE_DATE_START', value: e.target.value})
+            dispatch(changedDateStart({value: e.target.value}))
         },
         changeDateEnd: (e) => {
-            dispatch({type: 'CHANGE_DATE_END', value: e.target.value})
+            dispatch(changedDateEnd({value: e.target.value}))
         },
 
         click1: () => {
-            dispatch({type: 'DELETE_TODO'})
+            dispatch(clearTasks())
         },
         window1: () => {
-            dispatch({type: 'WINDOW_OPEN'})
+            dispatch(toggleWindow())
         }
     }
 }

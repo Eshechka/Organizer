@@ -1,36 +1,35 @@
 import {connect} from "react-redux"
 import GoalsPage from "./GoalsPage"
+import {
+    addGoal,
+    changedDate,
+    changedTitle,
+    changedTodo, clearGoals, clickTask, deleteGoal,
+    toggleWindow,
+    updateTimer
+} from "../../store/reducers/GoalsActions";
 
 let mapStateToProps = (state) => {
     return {
-        valueWindow: state.goalsPage.valueWindow,
-        valueTitle: state.goalsPage.valueTitle,
-        valueDate: state.goalsPage.valueDate,
-        valueTodo: state.goalsPage.valueTodo,
-        goals: state.goalsPage.goals,
-        checkWindow: state.goalsPage.checkWindow,
-        errors: state.goalsPage.errors,
+        valueWindow: state.goals.valueWindow,
+        valueTitle: state.goals.valueTitle,
+        valueDate: state.goals.valueDate,
+        valueTodo: state.goals.valueTodo,
+        goals: state.goals.goals,
+        checkWindow: state.goals.checkWindow,
+        errors: state.goals.errors,
     }
 }
 let mapDispatchToProps = (dispatch) => {
     return {
         changeTitle: (e) => {
-            dispatch({
-                type: 'VALUE_TITLE',
-                text: e.target.value,
-            })
+            dispatch(changedTitle({text: e.target.value}))
         },
         changeDate: (e) => {
-            dispatch({
-                type: 'VALUE_DATE',
-                text: e.target.value,
-            })
+            dispatch(changedDate({text: e.target.value,}))
         },
         changeTodo: (e) => {
-            dispatch({
-                type: 'VALUE_TODO',
-                text: e.target.value,
-            })
+            dispatch(changedTodo({text: e.target.value}))
         },
         addGoals: () => {
             let year = new Date().getFullYear()
@@ -49,10 +48,10 @@ let mapDispatchToProps = (dispatch) => {
                     date = `${year}-${month}-${day}`
                 }
             }
-            dispatch({type: 'ADD_GOALS', date})
+            dispatch(addGoal({date}))
         },
         openWindow: () => {
-            dispatch({type: 'OPEN_WINDOW'})
+            dispatch(toggleWindow())
         },
         dayFunction: (start, end, id) => {
 
@@ -100,30 +99,24 @@ let mapDispatchToProps = (dispatch) => {
             }
 
 
-            dispatch({
-                type: 'DATE_F',
-                id: id,
+            dispatch(updateTimer({
+                id,
                 text,
                 color,
                 show,
                 textState,
                 colorState,
                 colorPercent
-            })
+            }))
         },
         chekTodo: (id) => {
-            dispatch({type: 'CHECKED_TODO', id})
+            dispatch(clickTask({id}))
         },
         clearGoals:() => {
-            dispatch({
-                type: 'CLEAR_GOALS'
-            })
+            dispatch(clearGoals())
         },
         deleteGoal:(id) => {
-            dispatch({
-                type: 'DELETE_GOAL',
-                id,
-            })
+            dispatch(deleteGoal({id}))
         }
     }
 }
