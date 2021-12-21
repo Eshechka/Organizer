@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import MainPage from "./MainPage";
-import {openLogin, openRegistration, signIn, signUp} from "../../store/actions/usersActions";
+import {cancel, openLogin, openRegistration, signIn, signUp} from "../../store/actions/usersActions";
 import {updateDateTime} from "../../store/actions/globalTimeActions";
 import {moveAnimation} from "../../store/actions/backgroundAnimationActions";
 
@@ -74,6 +74,9 @@ const mapDispatchToProps = (dispatch) => {
           break;
       }
     },
+    onCancel(){
+      dispatch(cancel())
+    }
   };
 };
 

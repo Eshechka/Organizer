@@ -54,6 +54,9 @@ const usersSlice=createSlice({
         exit(state){
             localStorage.removeItem('user')
             state.userProfile=!state.userProfile
+        },
+        cancel(state){
+            state.value=!state.value
         }
 
     }
@@ -65,5 +68,6 @@ export const {deleteUser,
     signUp,
     signIn,
     exit,
+    cancel,
     toggleUser}=usersSlice.actions
 export default usersSlice.reducer

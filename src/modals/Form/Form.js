@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Form.module.css'
-function Form({title, buttonTitle,click}) {
+function Form({title, buttonTitle,clickOnSign,clickOnExit}) {
 
     return (
 
@@ -10,9 +10,9 @@ function Form({title, buttonTitle,click}) {
             <form>
                 <input type="text" placeholder="Логин" name="login"/>
                 <input type="password" placeholder="Пороль" name="password"/>
-                <button className={styles.button} onClick={()=>click(title)}>{buttonTitle}</button>
+                <button className={styles.button} onClick={()=>clickOnSign(title)}>{buttonTitle}</button>
             </form>
-            <button className={styles.button}>Отмена</button>
+            <button onClick={clickOnExit} className={styles.button}>Отмена</button>
         </>
 
 

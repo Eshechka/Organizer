@@ -5,6 +5,7 @@ import Form from "../../modals/Form/Form";
 import {useTransition, animated} from "react-spring";
 
 function MainPage({
+  onCancel,
   value,
   title,
   buttonTitle,
@@ -58,9 +59,10 @@ function MainPage({
         value ? (
           <animated.div className={styles.window} style={props}>
             <Form
-              click={registrOrlogin}
+              clickOnSign={registrOrlogin}
               title={title}
               buttonTitle={buttonTitle}
+              clickOnExit={onCancel}
             />
           </animated.div>
         ) : null

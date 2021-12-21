@@ -7,7 +7,7 @@ export default function Header({user, click}) {
     <div className={styles.header}>
       <div className={styles.header__container}>
         <div className={styles.header__logo}>
-          <img src={logo} alt="logo" className={styles.logo} />
+          <img src={logo} alt="logo" />
         </div>
         <h1 className={styles.header__title}>Онлайн Органайзер</h1>
         {user === true ? (

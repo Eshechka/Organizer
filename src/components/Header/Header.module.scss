@@ -23,7 +23,7 @@
   &__container {
     @include container;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     position: relative;
 
@@ -67,10 +67,6 @@
     color: $color-text;
     font-weight: 700;
     text-align: center;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
 
     @include tablets {
       font-size: 32px;
@@ -94,9 +90,12 @@
     width: 176px;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
 
     @include tablets {
-      width: 120px;
+      width: 30%;
+      margin-left: 10px;
     }
   }
   &__auth-text {
@@ -107,8 +106,12 @@
     cursor: pointer;
     transition: color 0.2s ease-in 0s;
     text-align: center;
+    @include phones {
+      font-size: 20px;
+    }
     &:hover {
       color: $color-hover;
     }
+
   }
 }
