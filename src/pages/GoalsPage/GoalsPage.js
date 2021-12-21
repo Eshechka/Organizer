@@ -48,18 +48,6 @@ function GoalsPage({
     },
     expires:true
   })
-  const animationGoals = useTransition(goals, {
-    from: {
-      opacity: 0, transform: `translateX(${300}px)`
-    },
-    enter: {
-      opacity: 1, transform: `translateX(${0}px)`
-    },
-    leave: {
-      opacity: 0, transform: `translateX(${300}px)`
-    },
-    expires:true
-  })
   return (
     <div className={styles.goals}>
       <div className={styles.goals__container}>
@@ -81,16 +69,15 @@ function GoalsPage({
 
         <ul className={styles.price}>
           {
-            animationGoals((props,el)=>
-                <animated.li style={props} key={el.id} >
+            goals.map(el=>
+                <li  key={el.id} >
                   <Goals
                       chekTodo={chekTodo}
                       dayFunction={dayFunction}
                       goal={el}
                       deleteGoal={deleteGoal}
                   />
-                </animated.li>
-            )
+                </li>)
           }
         </ul>
         {

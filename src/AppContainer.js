@@ -1,15 +1,16 @@
 import {connect} from "react-redux";
 import App from "./App";
+import {setCurrentUser} from "./store/actions/usersActions";
 
 let mapStateToProps = (state) => {
   return {
-    user: state.titlePage.userProfile,
+    user: state.users.userProfile,
   };
 };
 let mapDispatchToProps = (dispatch) => {
   return {
     setCurrentUser: (currentUser) => {
-      dispatch({type: "SET_CURRENT_USER", payload: {user: currentUser}});
+      dispatch(setCurrentUser({user: currentUser}));
     },
   };
 };
