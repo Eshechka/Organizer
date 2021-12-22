@@ -1,14 +1,13 @@
 import {connect} from "react-redux";
 import MainPage from "./MainPage";
-import {cancel, openLogin, openRegistration, signIn, signUp} from "../../store/actions/usersActions";
+import {cancel, signIn, signUp} from "../../store/actions/usersActions";
 import {updateDateTime} from "../../store/actions/globalTimeActions";
 import {moveAnimation} from "../../store/actions/backgroundAnimationActions";
 
 const mapStateToProps = (state) => {
   return {
-    value: state.users.value,
-    title: state.users.form.title,
-    buttonTitle: state.users.form.buttonTitle,
+    isOpenAuthForm: state.users.isOpenAuthForm,
+    isSignIn: state.users.isSignIn,
     time: state.globalDateTime.datetime.time,
     day: state.globalDateTime.datetime.day,
     positionXImg: state.background.backgroundEffect.preElementX,
@@ -55,28 +54,30 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(updateDateTime({time, day, year}));
     },
     move: (e) => {
-      if(e.clientX===undefined&&e.targetTouches[0].clientX===undefined){
-        dispatch(moveAnimation({positionX: 0 }));
-      }else {
-        dispatch(moveAnimation({positionX: e.clientX || e.targetTouches[0].clientX,}));
+      if (e.clientX === undefined && e.targetTouches[0].clientX === undefined) {
+        dispatch(moveAnimation({positionX: 0}));
+      } else {
+        dispatch(
+          moveAnimation({positionX: e.clientX || e.targetTouches[0].clientX})
+        );
       }
-
     },
-    registrOrlogin: (title) => {
-      switch (title) {
-        case "Вход":
+    registrOrlogin: (e, isSignIn) => {
+      e.preventDefault();
+      switch (isSignIn) {
+        case true:
           dispatch(signIn());
           break;
-        case "Регистрация":
+        case false:
           dispatch(signUp());
           break;
         default:
           break;
       }
     },
-    onCancel(){
-      dispatch(cancel())
-    }
+    onCancel() {
+      dispatch(cancel());
+    },
   };
 };
 

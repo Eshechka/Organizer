@@ -11,7 +11,7 @@ import TasksPageContainer from "./pages/TasksPage/TasksPageContainer";
 import MainPageContainer from "./pages/MainPage/MainPageContainer";
 import {useTransition} from "react-spring";
 
-function App({user, setCurrentUser}) {
+function App({userToken, setCurrentUser}) {
   useEffect(() => {
     const localStUser = JSON.parse(localStorage.getItem("user"));
     const currentUser = localStUser?.id ? localStUser : {id: 1, name: "Максим"};
@@ -35,32 +35,26 @@ function App({user, setCurrentUser}) {
   return (
     <>
       <HeaderContainer />
-      {user ? <Nav user={user} /> : null}
-      <div
-        className="maincontent"
-        // style={{
-        //   height: "1033px",
-        // }}
-      >
-        {/* <div className="maincontent__wrapper"> */}
+      {userToken ? <Nav user={userToken} /> : null}
+      <div className="maincontent">
         <Routes>
           <Route
             exact
             path="/"
-            element={user ? <Navigate to="/do" /> : <MainPageContainer />}
+            element={userToken ? <Navigate to="/do" /> : <MainPageContainer />}
           />
           <Route
             exact
             path="/do"
             element={
-              user === false ? <Navigate to="/" /> : <TasksPageContainer />
+              userToken === false ? <Navigate to="/" /> : <TasksPageContainer />
             }
           />
           <Route
             exact
             path="/purposes"
             element={
-              user === false ? <Navigate to="/" /> : <GoalsPageContainer />
+              userToken === false ? <Navigate to="/" /> : <GoalsPageContainer />
             }
           />
           <Route
@@ -68,13 +62,12 @@ function App({user, setCurrentUser}) {
             path="/profile"
             element={<ProfilePageContainer />}
             // element={
-            //   user === false ? <Navigate to="/" /> : <ProfilePageContainer />
+            //   userToken === false ? <Navigate to="/" /> : <ProfilePageContainer />
             // }
           />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/notfound" />} />
         </Routes>
-        {/* </div> */}
       </div>
       <Footer />
     </>

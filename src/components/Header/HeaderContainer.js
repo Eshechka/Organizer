@@ -1,27 +1,32 @@
 import {connect} from "react-redux";
 import Header from "./Header";
-import {exit, openLogin, openRegistration} from "../../store/actions/usersActions";
+import {
+  exit,
+  openAuthForm,
+  setSignIn,
+  setSignUp,
+} from "../../store/actions/usersActions";
 
-let mapStateToProps = (state) => {
-    return {
-        user: state.users.userProfile,
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    userToken: state.users.userToken,
+  };
+};
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        click: (e) => {
-            if (e.target.innerText === 'Вход') {
-                dispatch(openLogin())
-
-            } else if (e.target.innerText === 'Выйти') {
-                dispatch(exit())
-
-            } else {
-                dispatch(openRegistration())
-            }
-        }
-    }
-}
-let HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(Header)
-export default HeaderContainer
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clickSighIn: () => {
+      dispatch(openAuthForm());
+      dispatch(setSignIn());
+    },
+    clickSighUp: () => {
+      dispatch(setSignUp());
+      dispatch(openAuthForm());
+    },
+    clickExit: () => {
+      dispatch(exit());
+    },
+  };
+};
+const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(Header);
+export default HeaderContainer;

@@ -4,7 +4,7 @@ import {setCurrentUser} from "./store/actions/usersActions";
 
 let mapStateToProps = (state) => {
   return {
-    user: state.users.userProfile,
+    userToken: state.users.userToken,
   };
 };
 let mapDispatchToProps = (dispatch) => {

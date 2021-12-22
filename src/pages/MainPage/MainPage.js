@@ -5,10 +5,9 @@ import Form from "../../modals/Form/Form";
 import {useTransition, animated} from "react-spring";
 
 function MainPage({
+  isOpenAuthForm,
+  isSignIn,
   onCancel,
-  value,
-  title,
-  buttonTitle,
   datetime,
   time,
   day,
@@ -22,7 +21,7 @@ function MainPage({
       clearInterval(TimerId);
     };
   });
-  const animation = useTransition(value, {
+  const animation = useTransition(isSignIn, {
     from: {
       opacity: 0,
       top: `${0}%`,
@@ -45,7 +44,7 @@ function MainPage({
             <p>{day}</p>
           </div>
           <p className={styles.main__info}>
-            Войдите или зарегистрируйтесь чтобы начать пользоваться приложением
+            Войдите или зарегистрируйтесь, чтобы начать пользоваться приложением
           </p>
         </div>
       </div>
@@ -55,13 +54,12 @@ function MainPage({
         src={el}
         alt="png"
       />
-      {animation((props, value) =>
-        value ? (
+      {animation((props) =>
+        isOpenAuthForm ? (
           <animated.div className={styles.window} style={props}>
             <Form
+              isSignIn={isSignIn}
               clickOnSign={registrOrlogin}
-              title={title}
-              buttonTitle={buttonTitle}
               clickOnExit={onCancel}
             />
           </animated.div>
