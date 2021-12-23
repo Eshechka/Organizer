@@ -1,6 +1,10 @@
 import {connect} from "react-redux";
 import ProfilePage from "./ProfilePage";
-import {deleteUser, setCurrentUser, toggleUser} from "../../store/actions/usersActions";
+import {
+  deleteUser,
+  setCurrentUser,
+  removeUserToken,
+} from "../../store/actions/usersActions";
 
 const mapStateToProps = (state) => {
   return {
@@ -11,10 +15,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteCurrentUser: (userId) => {
       dispatch(deleteUser({id: userId}));
-      dispatch(toggleUser());
+      dispatch(removeUserToken());
     },
     setCurrentUser: (userObj) => {
-      dispatch(setCurrentUser( {user: userObj}));
+      dispatch(setCurrentUser({user: userObj}));
     },
   };
 };

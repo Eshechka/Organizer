@@ -5,7 +5,7 @@ function Form({isSignIn, clickOnSign, clickOnExit}) {
     <>
       <h2>{isSignIn ? "Вход" : "Регистрация"}</h2>
       <div className={styles.information}>Такой пользователь уже есть</div>
-      <form onSubmit={(e) => clickOnSign(e, isSignIn)}>
+      <form onSubmit={(e) => clickOnSign(e, !isSignIn)}>
         <input type="text" placeholder="Логин" name="login" />
         <input type="password" placeholder="Пароль" name="password" />
         <button type="submit" className={styles.button}>

@@ -4,8 +4,9 @@ const usersSlice = createSlice({
   name: "users",
 
   initialState: {
-    isSignIn: true,
-    isOpenAuthForm: false,
+    isSignIn: null, //показывает, какая форма открыта - логин или регистрация
+    isOpenAuthLogin: false, //показывает, открыта сейчас форма логина или нет
+    isOpenAuthRegister: false, //показывает, открыта сейчас форма регистрации или нет
     userToken: false,
     currentUser: null,
     users: [
@@ -24,25 +25,18 @@ const usersSlice = createSlice({
       state.currentUser = payload.user;
       localStorage.setItem("user", JSON.stringify(payload.user));
     },
-    openAuthForm(state) {
-      console.log("openAuthForm");
-      state.isOpenAuthForm = !state.isOpenAuthForm;
-    },
     signUp(state) {
-      state.userToken = true;
-      console.log("state", state);
       state.currentUser = {id: 4, name: "Анна"};
       localStorage.setItem("user", JSON.stringify({id: 4, name: "Анна"}));
-      state.isOpenAuthForm = false;
+      state.userToken = true;
     },
     signIn(state) {
       if (localStorage.getItem("user")) {
         const localStUser = JSON.parse(localStorage.getItem("user"));
-          state.currentUser = localStUser?.id
-            ? localStUser
-            : {id: 1, name: "Максим"};
+        state.currentUser = localStUser?.id
+          ? localStUser
+          : {id: 1, name: "Максим"};
         state.userToken = true;
-        state.isOpenAuthForm = false;
       }
     },
     setSignIn(state) {
@@ -51,15 +45,12 @@ const usersSlice = createSlice({
     setSignUp(state) {
       state.isSignIn = false;
     },
-    toggleUser(state) {
-      state.userToken = false;
+    removeSignIn(state) {
+      state.isSignIn = null;
     },
-    exit(state) {
+    removeUserToken(state) {
       localStorage.removeItem("user");
       state.userToken = false;
-    },
-    cancel(state) {
-      state.isOpenAuthForm = false;
     },
   },
 });
@@ -67,14 +58,13 @@ const usersSlice = createSlice({
 export const {
   deleteUser,
   setCurrentUser,
-  openAuthForm,
   isSignIn,
   setSignIn,
   setSignUp,
+  removeSignIn,
   signUp,
   signIn,
-  exit,
-  cancel,
-  toggleUser,
+  removeUserToken,
 } = usersSlice.actions;
+
 export default usersSlice.reducer;
