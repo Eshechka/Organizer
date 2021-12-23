@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./ProfilePage.module.scss";
 import PageName from "./../../components/PageName/PageName";
 import Button from "../../components/Button/Button";
@@ -7,6 +7,7 @@ import WindowProfile from "../../modals/WindowProfile/WindowProfile";
 import WindowDeleteProfile from "../../modals/WindowDeleteProfile/WindowDeleteProfile";
 import {useTransition, animated} from "react-spring";
 import {useNavigate} from "react-router-dom";
+import api from "../../api";
 
 function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
   const navigate = useNavigate();
@@ -83,6 +84,12 @@ function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
     //посылаем запрос на сервер, получаем подтверждение о смене пароля. Скорее всего, закидываем новй токен в localStorage
     setIsOpenChangePassword(false);
   }
+  //Пример запроса
+  // useEffect(()=>{
+  //   api.getUser()
+  //       .then(({data})=>console.log(data))
+  //       .catch((err)=>console.log(err.response?.data.message))
+  // },[])
 
   return (
     <div className={styles.profile}>
