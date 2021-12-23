@@ -26,7 +26,7 @@ const usersSlice = createSlice({
     },
     openAuthForm(state) {
       console.log("openAuthForm");
-      state.isOpenAuthForm = true;
+      state.isOpenAuthForm = !state.isOpenAuthForm;
     },
     signUp(state) {
       state.userToken = true;
@@ -38,10 +38,9 @@ const usersSlice = createSlice({
     signIn(state) {
       if (localStorage.getItem("user")) {
         const localStUser = JSON.parse(localStorage.getItem("user"));
-        const currentUser = localStUser?.id
-          ? localStUser
-          : {id: 1, name: "Максим"};
-        state.currentUser = currentUser;
+          state.currentUser = localStUser?.id
+            ? localStUser
+            : {id: 1, name: "Максим"};
         state.userToken = true;
         state.isOpenAuthForm = false;
       }

@@ -3,7 +3,6 @@ import el from "../../img/backround_element.png";
 import styles from "./MainPage.module.scss";
 import Form from "../../modals/Form/Form";
 import {useTransition, animated} from "react-spring";
-
 function MainPage({
   isOpenAuthForm,
   isSignIn,
@@ -21,7 +20,7 @@ function MainPage({
       clearInterval(TimerId);
     };
   });
-  const animation = useTransition(isSignIn, {
+  const animation = useTransition( isOpenAuthForm, {
     from: {
       opacity: 0,
       top: `${0}%`,

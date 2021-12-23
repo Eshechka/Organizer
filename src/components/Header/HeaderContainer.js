@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(setSignIn());
     },
     clickSighUp: () => {
-      dispatch(setSignUp());
       dispatch(openAuthForm());
+      dispatch(setSignUp());
     },
     clickExit: () => {
       dispatch(exit());
