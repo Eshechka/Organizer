@@ -1,4 +1,3 @@
-import axios from "axios";
 import {configAxios} from "./index";
 
 export const getGoalsId=(userId)=>{
@@ -11,5 +10,5 @@ export const updateGoalId=(goalId,taskId)=>{
     return configAxios.put(`/goals/update?goalId=${goalId}&taskId=${taskId}`)
 }
 export const deleteGoalIdAll=(userId,goalId=null)=>{
-    return configAxios().delete(`/goals/delete?userId=${userId}&goalId=${goalId}`)
+    return configAxios.delete(`/goals/delete?userId=${userId}&goalId=${goalId}`)
 }
