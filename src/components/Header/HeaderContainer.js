@@ -1,8 +1,7 @@
 import {connect} from "react-redux";
 import Header from "./Header";
 import {
-  exit,
-  openAuthForm,
+  removeUserToken,
   setSignIn,
   setSignUp,
 } from "../../store/actions/usersActions";
@@ -16,15 +15,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     clickSighIn: () => {
-      dispatch(openAuthForm());
       dispatch(setSignIn());
     },
     clickSighUp: () => {
-      dispatch(openAuthForm());
       dispatch(setSignUp());
     },
     clickExit: () => {
-      dispatch(exit());
+      dispatch(removeUserToken());
     },
   };
 };

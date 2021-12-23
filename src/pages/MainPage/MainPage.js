@@ -3,8 +3,8 @@ import el from "../../img/backround_element.png";
 import styles from "./MainPage.module.scss";
 import Form from "../../modals/Form/Form";
 import {useTransition, animated} from "react-spring";
+
 function MainPage({
-  isOpenAuthForm,
   isSignIn,
   onCancel,
   datetime,
@@ -15,12 +15,13 @@ function MainPage({
   registrOrlogin,
 }) {
   useEffect(() => {
-    let TimerId = setInterval(datetime, 1000);
+    const TimerId = setInterval(datetime, 1000);
     return () => {
       clearInterval(TimerId);
     };
   });
-  const animation = useTransition( isOpenAuthForm, {
+
+  const animation = useTransition(isSignIn, {
     from: {
       opacity: 0,
       top: `${0}%`,
@@ -54,7 +55,7 @@ function MainPage({
         alt="png"
       />
       {animation((props) =>
-        isOpenAuthForm ? (
+        isSignIn !== null ? (
           <animated.div className={styles.window} style={props}>
             <Form
               isSignIn={isSignIn}

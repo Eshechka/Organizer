@@ -1,12 +1,16 @@
 import {connect} from "react-redux";
 import MainPage from "./MainPage";
-import {cancel, signIn, signUp} from "../../store/actions/usersActions";
+import {
+  isSignIn,
+  removeSignIn,
+  signIn,
+  signUp,
+} from "../../store/actions/usersActions";
 import {updateDateTime} from "../../store/actions/globalTimeActions";
 import {moveAnimation} from "../../store/actions/backgroundAnimationActions";
 
 const mapStateToProps = (state) => {
   return {
-    isOpenAuthForm: state.users.isOpenAuthForm,
     isSignIn: state.users.isSignIn,
     time: state.globalDateTime.datetime.time,
     day: state.globalDateTime.datetime.day,
@@ -62,21 +66,23 @@ const mapDispatchToProps = (dispatch) => {
         );
       }
     },
-    registrOrlogin: (e, isSignIn) => {
+    registrOrlogin: (e, isSignUP) => {
       e.preventDefault();
-      switch (isSignIn) {
-        case true:
-          dispatch(signIn());
-          break;
+      switch (isSignUP) {
         case false:
+          dispatch(signIn());
+          dispatch(removeSignIn());
+          break;
+        case true:
           dispatch(signUp());
+          dispatch(removeSignIn());
           break;
         default:
           break;
       }
     },
     onCancel() {
-      dispatch(cancel());
+      dispatch(removeSignIn());
     },
   };
 };
