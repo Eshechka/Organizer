@@ -85,11 +85,11 @@ function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
     setIsOpenChangePassword(false);
   }
   //Пример запроса
-  // useEffect(()=>{
-  //   api.getUser()
-  //       .then(({data})=>console.log(data))
-  //       .catch((err)=>console.log(err.response?.data.message))
-  // },[])
+  useEffect(()=>{
+    api.getUser()
+        .then(({data})=>console.log(data))
+        .catch((err)=>console.log(err.response?.data.message))
+  },[])
 
   return (
     <div className={styles.profile}>

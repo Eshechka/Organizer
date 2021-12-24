@@ -13,6 +13,11 @@ function MainPage({
   move,
   positionXImg,
   registrOrlogin,
+    password,
+    login,
+    valuePassword,
+    valueLogin,
+    errorsData,
 }) {
   useEffect(() => {
     const TimerId = setInterval(datetime, 1000);
@@ -58,6 +63,11 @@ function MainPage({
         isSignIn !== null ? (
           <animated.div className={styles.window} style={props}>
             <Form
+                errors={errorsData}
+                changedPassword={valuePassword}
+                changedLogin={valueLogin}
+                password={password}
+                login={login}
               isSignIn={isSignIn}
               clickOnSign={registrOrlogin}
               clickOnExit={onCancel}

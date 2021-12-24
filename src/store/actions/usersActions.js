@@ -1,9 +1,42 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import api from "../../api";
 
+export const requestAuthorization=createAsyncThunk(
+    'users/requestAuthorization',
+    async (_,{getState,fulfillWithValue,rejectWithValue})=>{
+      try {
+        const body={
+          username:getState().users.inputLogin,
+          password:getState().users.inputPassword
+        }
+        const {data}=await api.authorization(body)
+
+        localStorage.setItem('token',JSON.stringify(data.token))
+        localStorage.setItem('id',JSON.stringify(data.id))
+        return fulfillWithValue()
+      }catch (e){
+       return rejectWithValue(e.response?.data.message)
+      }
+    }
+)
 const usersSlice = createSlice({
   name: "users",
-
   initialState: {
+    inputLogin:'',
+    inputPassword:'',
+    errorsData:{
+      globalText:'',
+      login:{
+        error:false,
+        text:'',
+        borderColor:null
+      },
+      password:{
+        error:false,
+        text:'',
+        borderColor:null
+      },
+    },
     isSignIn: null, //показывает, какая форма открыта - логин или регистрация
     isOpenAuthLogin: false, //показывает, открыта сейчас форма логина или нет
     isOpenAuthRegister: false, //показывает, открыта сейчас форма регистрации или нет
@@ -16,6 +49,28 @@ const usersSlice = createSlice({
   },
 
   reducers: {
+    changedLogin(state,{payload}){
+      if(!payload.text){
+        state.errorsData.login.borderColor='red'
+        state.errorsData.login.text='Логин не должен быть пустым'
+      }else {
+        state.errorsData.login.borderColor='green'
+        state.errorsData.login.text=''
+      }
+      state.inputLogin=payload.text
+    },
+    changedPassword(state,{payload}){
+      if(payload.text.length<4){
+        state.errorsData.password.borderColor='red'
+        state.errorsData.password.text='Пароль должен быть минимум 4 символа'
+        state.errorsData.password.error=true
+      }else {
+        state.errorsData.password.borderColor='green'
+        state.errorsData.password.text=''
+        state.errorsData.password.error=true
+      }
+      state.inputPassword=payload.text
+    },
     deleteUser(state, {payload}) {
       state.users = state.users.filter((user) => user.id !== payload.id);
       state.currentUser = null;
@@ -49,10 +104,26 @@ const usersSlice = createSlice({
       state.isSignIn = null;
     },
     removeUserToken(state) {
-      localStorage.removeItem("user");
       state.userToken = false;
     },
+    addUserToken(state) {
+      state.userToken = true;
+    }
   },
+  extraReducers:{
+    [requestAuthorization.fulfilled]:state=>{
+      state.isSignIn=null
+      state.isOpenAuthLogin=false
+      state.inputLogin=''
+      state.inputPassword=''
+      state.errorsData.globalText=''
+    },
+    [requestAuthorization.rejected]:(state,action)=>{
+      console.log(action.payload)
+      state.errorsData.globalText=action.payload
+    }
+  }
+
 });
 
 export const {
@@ -65,6 +136,9 @@ export const {
   signUp,
   signIn,
   removeUserToken,
+  changedPassword,
+  changedLogin,
+    addUserToken
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

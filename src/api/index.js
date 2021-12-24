@@ -6,12 +6,11 @@ import {deleteProfile, getUser, updateLogin, updatePassword} from "./requestsUse
 export const configAxios=axios.create({
   baseURL:'https://online-organizer.herokuapp.com',
     headers: {
+      "Content-type":'application/json',
         "Authorization": localStorage.getItem('token')?
             `Bearer ${JSON.parse(localStorage.getItem('token'))}`:null,
     }
 })
-configAxios.defaults.headers['Content-Type']='application/json'
-
  const api ={
      registration,
      authorization,
