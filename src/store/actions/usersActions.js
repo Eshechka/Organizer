@@ -63,9 +63,11 @@ const usersSlice = createSlice({
       if(payload.text.length<4){
         state.errorsData.password.borderColor='red'
         state.errorsData.password.text='Пароль должен быть минимум 4 символа'
+        state.errorsData.password.error=true
       }else {
         state.errorsData.password.borderColor='green'
         state.errorsData.password.text=''
+        state.errorsData.password.error=true
       }
       state.inputPassword=payload.text
     },
