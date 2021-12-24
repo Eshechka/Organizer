@@ -10,14 +10,22 @@ import {useEffect} from "react";
 import TasksPageContainer from "./pages/TasksPage/TasksPageContainer";
 import MainPageContainer from "./pages/MainPage/MainPageContainer";
 import {useTransition} from "react-spring";
+import {useDispatch} from "react-redux";
+import {addUserToken, removeUserToken} from "./store/actions/usersActions";
 
 function App({userToken, setCurrentUser}) {
   useEffect(() => {
-    const localStUser = JSON.parse(localStorage.getItem("user"));
-    const currentUser = localStUser?.id ? localStUser : {id: 1, name: "Максим"};
-    setCurrentUser(currentUser);
+    setInterval(()=>{
+      if(localStorage.getItem('token')){
+        dispatch(addUserToken())
+      }else {
+        dispatch(removeUserToken())
+      }
+    },500)
+
   });
   const location = useLocation();
+  const dispatch=useDispatch()
   const animationPages = useTransition(location, {
     from: {
       opacity: 0,
@@ -47,23 +55,22 @@ function App({userToken, setCurrentUser}) {
             exact
             path="/do"
             element={
-              userToken === false ? <Navigate to="/" /> : <TasksPageContainer />
+              !userToken  ? <Navigate to="/" /> : <TasksPageContainer />
             }
           />
           <Route
             exact
             path="/purposes"
             element={
-              userToken === false ? <Navigate to="/" /> : <GoalsPageContainer />
+              !userToken  ? <Navigate to="/" /> : <GoalsPageContainer />
             }
           />
           <Route
             exact
             path="/profile"
-            element={<ProfilePageContainer />}
-            // element={
-            //   userToken === false ? <Navigate to="/" /> : <ProfilePageContainer />
-            // }
+            element={
+              !userToken  ? <Navigate to="/" /> : <ProfilePageContainer />
+            }
           />
           <Route path="/notfound" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/notfound" />} />

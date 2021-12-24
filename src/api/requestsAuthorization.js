@@ -1,8 +1,8 @@
 import {configAxios} from "./index";
 
-export const registration=()=>{
-    return configAxios.post('/auth/registration')
+export const registration=(body)=>{
+    return configAxios.post('/auth/registration',body)
 }
-export const authorization=()=>{
-    return configAxios.post('/auth/login')
+export const authorization=(body)=>{
+    return configAxios.post('/auth/login',body)
 }

@@ -1,8 +1,10 @@
 import {connect} from "react-redux";
 import MainPage from "./MainPage";
 import {
+  changedLogin,
+  changedPassword,
   isSignIn,
-  removeSignIn,
+  removeSignIn, requestAuthorization,
   signIn,
   signUp,
 } from "../../store/actions/usersActions";
@@ -11,6 +13,9 @@ import {moveAnimation} from "../../store/actions/backgroundAnimationActions";
 
 const mapStateToProps = (state) => {
   return {
+    errorsData: state.users.errorsData,
+    password: state.users.inputPassword,
+    login: state.users.inputlogin,
     isSignIn: state.users.isSignIn,
     time: state.globalDateTime.datetime.time,
     day: state.globalDateTime.datetime.day,
@@ -70,8 +75,9 @@ const mapDispatchToProps = (dispatch) => {
       e.preventDefault();
       switch (isSignUP) {
         case false:
-          dispatch(signIn());
-          dispatch(removeSignIn());
+          dispatch(requestAuthorization())
+         // dispatch(signIn());
+         //  dispatch(removeSignIn());
           break;
         case true:
           dispatch(signUp());
@@ -84,6 +90,12 @@ const mapDispatchToProps = (dispatch) => {
     onCancel() {
       dispatch(removeSignIn());
     },
+    valueLogin(e){
+      dispatch(changedLogin({text:e.target.value}))
+    },
+    valuePassword(e){
+      dispatch(changedPassword({text:e.target.value}))
+    }
   };
 };
 
