@@ -19,7 +19,7 @@ function Task({ el, dayFunction, click, id }) {
         </p>
         <h3 className={styles.elementtodo__name}>{el.title}</h3>
         <div className={styles.elementtodo__datesinfo}>
-          {el.day === null ? null : (
+          {!el.day ? null :
             <Timer
               dayFunction={dayFunction}
               id={el._id}
@@ -27,7 +27,7 @@ function Task({ el, dayFunction, click, id }) {
               start={el.dateStart}
               end={el.dateEnd}
             />
-          )}
+          }
         </div>
       </div>
       <ButtonsElement />
