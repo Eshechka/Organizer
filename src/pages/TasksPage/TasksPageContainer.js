@@ -5,8 +5,8 @@ import {
     changedTitle,
     checkTask, clearTasks,
     deleteTask,
-    toggleWindow,window,
-    updateTimer
+    toggleWindow, window,
+    updateTimer, requestAddTask, requestDeleteTasksAll, requestChangedTask
 } from "../../store/actions/tasksActions";
 
 let mapStateToProps = (state) => {
@@ -22,74 +22,72 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        dayFunction: (start, end, id) => {
-            let date1 = new Date(start).getTime()
-            let date2 = new Date(end).getTime()
-            let t = date2 - date1
-            let day = Math.floor(t / (1000 * 60 * 60 * 24))
-            let color
-            if (day <= 2) {
-                color = 'red'
-            } else if (day > 2 && day <= 5) {
-                color = 'yellow'
-            } else {
-                color = 'green'
-            }
-            let text
-            if (day === 1) {
-                text = `${day} день`
-            } else if (day > 1 && day <= 4) {
-                text = `${day} дня`
-            } else if (day > 4) {
-                text = `${day} дней`
-            } else if (day < 1 && day >= -4) {
-                text = `${day} дня`
-            } else if (day < -4) {
-                text = `${day} дней`
-            }else if(day===0){
-                text=`${day} дней`
-            }
-
-            let border
-            let textState
-            let colorState
-            if (day < 0) {
-                border = 'red'
-                textState = 'Просрочена'
-                colorState = 'red'
-            } else {
-                border = 'grey'
-                textState = 'В процессе'
-                colorState = 'yellow'
-            }
-
-
-            dispatch(updateTimer({
-                id,
-                text,
-                color,
-                border,
-                textState,
-                colorState,
-            }))
-        },
+        // dayFunction: (start, end, id) => {
+        //     let date1 = new Date(start).getTime()
+        //     let date2 = new Date(end).getTime()
+        //     let t = date2 - date1
+        //     let day = Math.floor(t / (1000 * 60 * 60 * 24))
+        //     let color
+        //     if (day <= 2) {
+        //         color = 'red'
+        //     } else if (day > 2 && day <= 5) {
+        //         color = 'yellow'
+        //     } else {
+        //         color = 'green'
+        //     }
+        //     let text
+        //     if (day === 1) {
+        //         text = `${day} день`
+        //     } else if (day > 1 && day <= 4) {
+        //         text = `${day} дня`
+        //     } else if (day > 4) {
+        //         text = `${day} дней`
+        //     } else if (day < 1 && day >= -4) {
+        //         text = `${day} дня`
+        //     } else if (day < -4) {
+        //         text = `${day} дней`
+        //     }else if(day===0){
+        //         text=`${day} дней`
+        //     }
+        //
+        //     let border
+        //     let textState
+        //     let colorState
+        //     if (day < 0) {
+        //         border = 'red'
+        //         textState = 'Просрочена'
+        //         colorState = 'red'
+        //     } else {
+        //         border = 'grey'
+        //         textState = 'В процессе'
+        //         colorState = 'yellow'
+        //     }
+        //
+        //
+        //     dispatch(updateTimer({
+        //         id,
+        //         text,
+        //         color,
+        //         border,
+        //         textState,
+        //         colorState,
+        //     }))
+        // },
         click: (e, id) => {
             if (e.target.id === '1') {
-                dispatch(checkTask({
-                    border: 'green',
-                    textState: 'Выполнено',
-                    colorState: 'green',
-                    id,
-                }))
+
+                console.log(738)
+                dispatch(requestChangedTask(id))
             } else if (e.target.id === '2') {
-                dispatch(deleteTask({id}))
+                dispatch(requestDeleteTasksAll(id))
             }
         },
         window: () => {
             dispatch(window())
         },
         push: () => {
-            dispatch(addTask())
+            // dispatch(addTask())
+            dispatch(requestAddTask())
         },
         changeTitle: (e) => {
             dispatch(changedTitle({value: e.target.value}))
@@ -102,7 +100,7 @@ let mapDispatchToProps = (dispatch) => {
         },
 
         click1: () => {
-            dispatch(clearTasks())
+            dispatch(requestDeleteTasksAll())
         },
         window1: () => {
             dispatch(toggleWindow())
