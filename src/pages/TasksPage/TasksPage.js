@@ -33,7 +33,7 @@ function TasksPage({
         return ()=>{
            clearInterval(intervalId)
         }
-    },)
+    },[])
     const animationModal = useTransition(valueWindow, {
         from: {
             opacity: 0,
