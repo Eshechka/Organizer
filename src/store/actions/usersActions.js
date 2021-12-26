@@ -128,6 +128,8 @@ const usersSlice = createSlice({
     },
     removeUserToken(state) {
       state.userToken = false;
+      localStorage.removeItem ('token')
+      localStorage.removeItem ('id')
     },
     addUserToken(state) {
       state.userToken = true;
