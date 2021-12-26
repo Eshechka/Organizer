@@ -4,7 +4,6 @@ import Timer from "../Timer/Timer";
 import ButtonsElement from "../ButtonsElement/ButtonsElement";
 
 function Task({ el, dayFunction, click, id }) {
-  console.log(el)
   return (
     <div
       onClick={(e) => click(e, id)}
