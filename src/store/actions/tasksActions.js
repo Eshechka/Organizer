@@ -42,6 +42,7 @@ export const requestAddTask = createAsyncThunk(
                 if (!body.dateStart || !body.dateEnd) {
                     body.day = null
                 }
+
                 const {data} = await api.addTask(body)
                 return data
             }
