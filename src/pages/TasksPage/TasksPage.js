@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./TasksPage.module.scss";
 import PageName from "../../components/PageName/PageName";
 import Task from "../../components/Task/Task";
@@ -6,6 +6,8 @@ import TodoWindow from "../../modals/TodoWindow/TodoWindow";
 import DateTimeContainer from "../../components/DateTime/DateTimeContainer";
 import ManagementTasks from "../../components/ManagementTasks/ManagementTasks";
 import {useTransition, animated} from "react-spring";
+import {useDispatch} from "react-redux";
+import {requestGetTasksId} from "../../store/actions/tasksActions";
 
 function TasksPage({
                        valueWindow,
@@ -25,6 +27,13 @@ function TasksPage({
                        window1,
                        errors,
                    }) {
+    const dispatch=useDispatch()
+    useEffect(()=>{
+       const intervalId= setInterval(()=>dispatch(requestGetTasksId()),500)
+        return ()=>{
+           clearInterval(intervalId)
+        }
+    },)
     const animationModal = useTransition(valueWindow, {
         from: {
             opacity: 0,
@@ -63,9 +72,9 @@ function TasksPage({
                 <ul className={styles.todolist__list}>
                   {
                     todoList.map(el=>
-                        <li  key={el.id} className={styles.todolist__item}>
+                        <li  key={el._id} className={styles.todolist__item}>
                           <Task
-                              id={el.id}
+                              id={el._id}
                               click={click}
                               dayFunction={dayFunction}
                               el={el}

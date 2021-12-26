@@ -4,7 +4,7 @@ import {
   changedLogin,
   changedPassword,
   isSignIn,
-  removeSignIn, requestAuthorization,
+  removeSignIn, requestAuthorization, requestRegistration,
   signIn,
   signUp,
 } from "../../store/actions/usersActions";
@@ -80,8 +80,9 @@ const mapDispatchToProps = (dispatch) => {
          //  dispatch(removeSignIn());
           break;
         case true:
-          dispatch(signUp());
-          dispatch(removeSignIn());
+          dispatch(requestRegistration())
+          // dispatch(signUp());
+          // dispatch(removeSignIn());
           break;
         default:
           break;

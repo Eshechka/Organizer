@@ -1,5 +1,23 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import api from "../../api";
+export const requestRegistration=createAsyncThunk(
+    'users/requestRegistration',
+    async (_,{getState,fulfillWithValue,rejectWithValue})=>{
+      try {
+        const body={
+          username:getState().users.inputLogin,
+          password:getState().users.inputPassword
+        }
+        const {data}=await api.registration(body)
+
+        localStorage.setItem('token',JSON.stringify(data.token))
+        localStorage.setItem('id',JSON.stringify(data.id))
+        return fulfillWithValue()
+      }catch (e){
+        return rejectWithValue(e.response?.data.message)
+      }
+    }
+)
 
 export const requestAuthorization=createAsyncThunk(
     'users/requestAuthorization',
@@ -101,7 +119,12 @@ const usersSlice = createSlice({
       state.isSignIn = false;
     },
     removeSignIn(state) {
-      state.isSignIn = null;
+      state.isSignIn=null
+      state.isOpenAuthRegister=false
+      state.isOpenAuthLogin=false
+      state.inputLogin=''
+      state.inputPassword=''
+      state.errorsData.globalText=''
     },
     removeUserToken(state) {
       state.userToken = false;
@@ -119,7 +142,16 @@ const usersSlice = createSlice({
       state.errorsData.globalText=''
     },
     [requestAuthorization.rejected]:(state,action)=>{
-      console.log(action.payload)
+      state.errorsData.globalText=action.payload
+    },
+    [requestRegistration.fulfilled]:state=>{
+      state.isSignIn=null
+      state.isOpenAuthRegister=false
+      state.inputLogin=''
+      state.inputPassword=''
+      state.errorsData.globalText=''
+    },
+    [requestRegistration.rejected]:(state,action)=>{
       state.errorsData.globalText=action.payload
     }
   }

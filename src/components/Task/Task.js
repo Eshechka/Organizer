@@ -22,10 +22,10 @@ function Task({ el, dayFunction, click, id }) {
           {el.day === null ? null : (
             <Timer
               dayFunction={dayFunction}
-              id={el.id}
+              id={el._id}
               day={el.day}
-              start={el.DateStart}
-              end={el.DateEnd}
+              start={el.dateStart}
+              end={el.dateEnd}
             />
           )}
         </div>

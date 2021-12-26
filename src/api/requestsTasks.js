@@ -10,5 +10,5 @@ export const updateTaskId=(taskId,body)=>{
     return configAxios.put(`/tasks/update?taskId=${taskId}`,body)
 }
 export const deleteTaskIdAll=(userId,taskId=null)=>{
-    return configAxios.delete(`/tasks/delete?userId=${userId}&taskId=${taskId}`)
+    return configAxios.delete(`/tasks/delete?userId=${userId}${taskId?`&taskId=${taskId}`:''}`)
 }
