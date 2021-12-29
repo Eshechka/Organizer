@@ -68,6 +68,31 @@
   background: #000000;
   padding: 40px;
 }
+@media screen and (max-width: 1200px) {
+  .todolist__container__window {
+    left: 15%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .todolist__container__window {
+    width: 100%;
+    left: 0;
+  }
+}
+.todolist__container__window .input {
+  display: block;
+  margin: 20px auto;
+  width: 293px;
+  height: 63px;
+  border: none;
+  border-bottom: solid 2px white;
+  padding: 5px;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  background: none;
+  outline: none;
+}
 .todolist__pagetitle {
   position: absolute;
   left: 50%;

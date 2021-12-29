@@ -114,5 +114,21 @@
   background-color: black;
   padding: 40px;
 }
+@media screen and (max-width: 1200px) {
+  .window {
+    left: 32%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .window {
+    left: 5%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .window {
+    width: 100%;
+    left: 0;
+  }
+}
 
 /*# sourceMappingURL=MainPage.module.css.map */

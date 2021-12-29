@@ -1,4 +1,4 @@
-
+@import "./../../App.scss";
  h2 {
     font-weight: 700;
     text-align: center;
@@ -15,23 +15,31 @@
     line-height: 30px;
     color: white;
     margin: 0 auto;
-}
- form {
+  form {
     margin: 7px auto;
+    @include phones{
+      width: 100%;
+    }
+
+  }
+
 }
- input {
-    display: block;
-    margin: 20px auto;
-    width: 293px;
-    height: 63px;
-    border: none;
-    border-bottom: solid 2px white;
-    padding: 5px;
-    color: white;
-    font-size: 24px;
-    font-weight: 700;
-    background: none;
-    outline: none;
+.input {
+  display: block;
+  margin: 20px auto;
+  width: 293px;
+  height: 63px;
+  border: none;
+  border-bottom: solid 2px white;
+  padding: 5px;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  background: none;
+  outline: none;
+  @include phones{
+    width: 100%;
+  }
 }
  .button {
     display: block;

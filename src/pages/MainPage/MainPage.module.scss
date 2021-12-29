@@ -66,4 +66,14 @@
   min-height: 532px;
   background-color: black;
   padding: 40px;
+  @include desktop{
+    left: 32%;
+  }
+  @include tablets{
+    left: 5%;
+  }
+  @include phones{
+    width: 100%;
+    left: 0;
+  }
 }

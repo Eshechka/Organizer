@@ -1,4 +1,4 @@
-
+@import "./../../App";
 
 .p{
     color: white;
@@ -9,10 +9,15 @@
 
 .f{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
 
-}
- .f button{
+  button{
     margin-left: 0;
     margin-right: 0;
+    @include phones{
+      margin-top: 20px;
+    }
+  }
+
 }

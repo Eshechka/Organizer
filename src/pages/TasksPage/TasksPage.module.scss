@@ -17,6 +17,27 @@
       min-height: 207px;
       background: #000000;
       padding: 40px;
+      @include desktop{
+        left: 15%;
+      }
+      @include tablets{
+        width: 100%;
+        left: 0;
+      }
+      .input {
+        display: block;
+        margin: 20px auto;
+        width: 293px;
+        height: 63px;
+        border: none;
+        border-bottom: solid 2px white;
+        padding: 5px;
+        color: white;
+        font-size: 24px;
+        font-weight: 700;
+        background: none;
+        outline: none;
+      }
     }
   }
   &__pagetitle {

@@ -17,6 +17,13 @@
       min-height: 207px;
       background: #000000;
       padding: 40px;
+      @include desktop{
+        left: 15%;
+      }
+      @include tablets{
+        width: 100%;
+        left: 0;
+      }
     }
   }
   &__pagetitle {

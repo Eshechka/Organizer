@@ -29,7 +29,7 @@ function TasksPage({
                    }) {
     const dispatch=useDispatch()
     useEffect(()=>{
-       const intervalId= setInterval(()=>dispatch(requestGetTasksId()),1000)
+       const intervalId= setInterval(()=>dispatch(requestGetTasksId()),500)
         return ()=>{
            clearInterval(intervalId)
         }

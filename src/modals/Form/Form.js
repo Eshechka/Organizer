@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Form.module.css";
+import styles from "./Form.module.scss";
 function Form({isSignIn, clickOnSign, clickOnExit,password,changedPassword,login,changedLogin,errors}) {
   return (
     <>
@@ -7,9 +7,9 @@ function Form({isSignIn, clickOnSign, clickOnExit,password,changedPassword,login
       <div className={styles.information}>{errors.globalText}</div>
       <form onSubmit={(e) => clickOnSign(e, !isSignIn)}>
           <p style={{color:'red'}}>{errors.login.text}</p>
-        <input style={{borderColor:errors.login.borderColor}} autoComplete='new-login' onChange={changedLogin} value={login} type="text" placeholder="Логин" name="login" />
+        <input className={styles.input} style={{borderColor:errors.login.borderColor}} autoComplete='new-login' onChange={changedLogin} value={login} type="text" placeholder="Логин" name="login" />
           <p style={{color:'red'}}>{errors.password.text}</p>
-        <input style={{borderColor:errors.password.borderColor}} autoComplete='new-password' onChange={changedPassword} value={password} type="password" placeholder="Пароль" name="password" />
+        <input className={styles.input} style={{borderColor:errors.password.borderColor}} autoComplete='new-password' onChange={changedPassword} value={password} type="password" placeholder="Пароль" name="password" />
         <button type="submit" className={styles.button}>
           {isSignIn ? "Войти" : "Зарегистрироваться"}
         </button>

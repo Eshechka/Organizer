@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./TodoWindow.module.css";
+import styles from "./TodoWindow.module.scss";
 import Button from "../../components/Button/Button";
 
 function TodoWindow({ push, window, check,text }) {
