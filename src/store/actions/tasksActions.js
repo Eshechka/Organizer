@@ -1,7 +1,5 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import api from "../../api";
-
-const {createSlice} = require("@reduxjs/toolkit");
 
 export const requestGetTasksId = createAsyncThunk(
     'tasks/requestGetTasksId',
@@ -107,47 +105,7 @@ const tasksSlice = createSlice({
         changedDateEnd(state, {payload}) {
             state.valueDateEnd = payload.value
         },
-        // addTask(state){
-        //     state.errors.errorTitle = state.valueTitle === ''
-        //     if(!state.errors.errorTitle){
-        //         const body = {
-        //             userId: JSON.parse(localStorage.getItem('id')),
-        //             title: state.valueTitle,
-        //             dateStart: !state.valueDateStart ? null : state.valueDateStart,
-        //             dateEnd: !state.valueDateEnd ? null : state.valueDateEnd,
-        //             day: {
-        //                 text: '4 дня',
-        //                 color: 'red',
-        //             },
-        //             state: {
-        //                 text: 'в процессе',
-        //                 color: 'yellow',
-        //             },
-        //             border: 'grey',
-        //             check: false,
-        //
-        //         }
-        //         if (!body.dateStart || !body.dateEnd) {
-        //             body.day = null
-        //         }
-        //         state.todoList.unshift(body)
-        //     }
-        // },
-        // updateTimer(state, {payload}) {
-        //     if (state.todoList.length > 0) {
-        //         state.todoList.forEach(task => {
-        //             if (task._id === payload.id) {
-        //                 if (task.day) {
-        //                     task.day.text = payload.text
-        //                     task.day.color = payload.color
-        //                     task.state.text = payload.textState
-        //                     task.state.color = payload.colorState
-        //                     task.border = payload.border
-        //                 }
-        //             }
-        //         })
-        //     }
-        // },
+
         toggleWindow(state) {
             state.valueWindow = !state.valueWindow
             if (state.valueDateStart === '' || state.valueDateEnd === '') {
@@ -159,30 +117,7 @@ const tasksSlice = createSlice({
         window(state) {
             state.valueWindow = !state.valueWindow
         },
-        // checkTask(state, {payload}) {
-        //     if (state.todoList.length > 0) {
-        //         state.todoList.forEach(el => {
-        //             if (el.id === payload.id) {
-        //                 el.state.text = payload.textState
-        //                 el.state.color = payload.colorState
-        //                 el.border = payload.border
-        //                 el.check = !el.check
-        //             }
-        //         })
-        //     }
-        // },
-        // clearTasks(state) {
-        //     state.todoList = []
-        // },
-        // deleteTask(state, {payload}) {
-        //     if (state.todoList.length > 0) {
-        //         state.todoList.forEach((task, i) => {
-        //             if (task._id === payload.id) {
-        //                 state.todoList.splice(i, 1)
-        //             }
-        //         })
-        //     }
-        // },
+
     },
     extraReducers: {
         [requestGetTasksId.fulfilled]: (state, {payload}) => {
@@ -242,11 +177,8 @@ export const {
     changedTitle,
     changedDateStart,
     changedDateEnd,
-    addTask,
-    updateTimer,
     toggleWindow,
     window,
-    checkTask,
     clearTasks,
     deleteTask
 } = tasksSlice.actions

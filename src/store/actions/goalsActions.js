@@ -1,7 +1,125 @@
-const {createSlice} = require("@reduxjs/toolkit");
-const goalsSlice=createSlice({
-    name:'goals',
-    initialState:{
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import api from "../../api";
+import {requestDeleteTasksAll} from "./tasksActions";
+
+export const getGoalsId = createAsyncThunk(
+    'goals/getGoalsId',
+    async (_, {rejectWithValue}) => {
+        try {
+            const userId = JSON.parse(localStorage.getItem('id'))
+            const {data} = await api.getGoalsId(userId)
+            return data
+        } catch (e) {
+            rejectWithValue(e.response?.data.message)
+        }
+    }
+)
+export const requestAddGoal = createAsyncThunk(
+    'goals/requestAddGoa',
+    async (nowDate, {getState, fulfillWithValue, rejectWithValue}) => {
+        try {
+            const errorTitle = getState().goals.valueTitle === ''
+            const errorTodo = getState().goals.valueTodo === ''
+            if (!errorTitle && !errorTodo) {
+                console.log(errorTodo, errorTitle)
+                let tasks = []
+                let newTasks = getState().goals.valueTodo.split(',')
+                newTasks.forEach(el => {
+                    let task = {
+                        title: el,
+                        check: false,
+                        color: 'white',
+                        showButton: true,
+                        borderColor: 'white'
+                    }
+                    tasks.push(task)
+                })
+                let goal = {
+                    userId: JSON.parse(localStorage.getItem('id')),
+                    title: getState().goals.valueTitle,
+                    dateStart: nowDate,
+                    dateEnd: !getState().goals.valueDate ? null : getState().goals.valueDate,
+                    day: {
+                        text: 'Выполнено',
+                        color: 'green',
+                    },
+                    state: {
+                        text: 'в процессе',
+                        color: 'yellow',
+                    },
+                    tasks: [...tasks],
+                    percent: 0,
+                    colorPercent: 'yellow',
+                    borderColor: 'grey',
+
+                }
+                if (!goal.DateEnd) {
+                    goal.day = null
+                }
+                const {data} = api.addGoal(goal)
+                return data
+            }
+            return fulfillWithValue({errorTodo, errorTitle})
+        } catch (e) {
+            rejectWithValue(e.response?.data.message)
+        }
+    }
+)
+export const requestUpdateGoalsId = createAsyncThunk(
+    'goals/requestUpdateGoalsId',
+    async (goalAndTaskId, {getState, rejectWithValue}) => {
+        try {
+            const body = {
+                percent: 0,
+                colorPercent: 'yellow',
+                state: {
+                    text: 'В процессе',
+                    color: 'yellow',
+
+                },
+                task: {
+                    check: true,
+                    borderColor: 'green',
+                    showButton: false
+                }
+            }
+            getState().goals.goals.forEach(goal => {
+                if (goal._id === goalAndTaskId.goalId) {
+                    let onePercent = 100 / goal.tasks.length
+                    body.percent = +(goal.percent + onePercent).toFixed(2)
+                    if (body.percent >= 99.5) {
+                        body.percent = 100
+                    }
+                }
+                if (body.percent >= 100) {
+                    body.colorPercent = 'green'
+                    body.state.text = 'Завершена'
+                    body.state.color = 'green'
+                }
+            })
+            const {data} = await api.updateGoalId(goalAndTaskId.goalId, goalAndTaskId.taskId, body)
+            return data
+        } catch (e) {
+            rejectWithValue(e.response?.data.message)
+        }
+    }
+)
+export const requestDeleteGoalsIdAll = createAsyncThunk(
+    'goals/requestDeleteGoalsIdAll',
+    async (goalId, {rejectWithValue}) => {
+        try {
+            const userId = JSON.parse(localStorage.getItem('id'))
+            const {data} = await api.deleteGoalIdAll(userId, goalId)
+            return data
+        } catch (e) {
+            return rejectWithValue(e.response?.data.message)
+        }
+    }
+)
+
+const goalsSlice = createSlice({
+    name: 'goals',
+    initialState: {
         valueTitle: '',
         valueDate: '',
         valueTodo: '',
@@ -13,88 +131,17 @@ const goalsSlice=createSlice({
         checkWindow: false,
         goals: [],
     },
-    reducers:{
-        changedTitle(state,{payload}){
+    reducers: {
+        changedTitle(state, {payload}) {
             state.valueTitle = payload.text
         },
-        changedTodo(state,{payload}){
+        changedTodo(state, {payload}) {
             state.valueTodo = payload.text
         },
-        changedDate(state,{payload}){
+        changedDate(state, {payload}) {
             state.valueDate = payload.text
         },
-        addGoal(state,{payload}){
-            state.errors.errorTitle = state.valueTitle === '';
-            state.errors.errorTodo = state.valueTodo === ''
-            if (state.errors.errorTodo || state.errors.errorTitle) {
-                state.valueWindow = !state.valueWindow
-                state.valueDateEnd = ''
-                state.valueTitle = ''
-                state.valueTodo = ''
-            } else {
-                let tasks = []
-                let newTasks = state.valueTodo.split(',')
-                newTasks.forEach(el => {
-                    let task = {
-                        id: Math.floor(Math.random() * 100000),
-                        title: el,
-                        chek: false,
-                        color: 'white',
-                        showButton: true,
-                        borderColor: 'white'
-                    }
-                    tasks.push(task)
-                })
-                let goal = {
-                    id: Math.floor(Math.random() * 100000),
-                    title: state.valueTitle,
-                    DateStart: payload.date,
-                    DateEnd: !state.valueDate ? null : state.valueDate,
-                    day: {
-                        text: '4 дня',
-                        color: 'red',
-                    },
-                    state: {
-                        text: 'в процессе',
-                        color: 'yellow',
-                    },
-                    todo: [...tasks],
-                    percent: 0,
-                    colorPercent: 'yellow',
-                    borderColor: 'grey',
-
-                }
-                if (!goal.DateEnd) {
-                    goal.day = null
-                }
-                state.goals.unshift(goal)
-                state.valueWindow = !state.valueWindow
-                state.valueDate = ''
-                state.valueTitle = ''
-                state.valueTodo = ''
-                for (let key in state.errors) {
-                    state.errors[key] = false
-                }
-
-            }
-
-
-        },
-        updateTimer(state,{payload}){
-            if (state.goals.length > 0) {
-                state.goals.forEach(goal => {
-                    if (goal.id === payload.id) {
-                        goal.day.text = payload.text
-                        goal.day.color = payload.color
-                        goal.state.text = payload.textState
-                        goal.state.color = payload.colorState
-                        goal.colorPercent = payload.colorPercent
-                    }
-                })
-
-            }
-        },
-        toggleWindow(state){
+        toggleWindow(state) {
             state.valueWindow = !state.valueWindow
             if (!state.valueDate) {
                 state.checkWindow = false
@@ -102,49 +149,65 @@ const goalsSlice=createSlice({
                 state.checkWindow = true
             }
         },
-        clickTask(state,{payload}){
-            state.goals.forEach(goal => {
-                goal.todo.forEach(todo => {
-                    if (todo.id === payload.id) {
-                        todo.chek = true
-                        todo.borderColor = 'green'
-                        todo.showButton = false
-                        let onePercent = 100 / goal.todo.length
-                        if (todo.chek) {
-                            goal.percent = +(goal.percent + onePercent).toFixed(2)
-                        }
-                        if (goal.percent >= 99.5) {
-                            goal.percent = 100
-                        }
-                    }
-                    if (goal.percent >= 100) {
-                        goal.colorPercent = 'green'
-                        goal.state.text = 'Завершена'
-                        goal.state.color = 'green'
-                    }
-                })
-            })
+    },
+    extraReducers: {
+        [getGoalsId.fulfilled]: (state, {payload}) => {
+            if (Array.isArray(payload.goals)) {
+                state.goals = [...payload.goals]
+                state.goals.reverse()
+            }
         },
-        clearGoals(state){
-            state.goals=[]
+        [getGoalsId.rejected]: (state, {payload}) => {
+            console.log(payload)
         },
-        deleteGoal(state,{payload}){
-            state.goals.forEach((goal,i)=>{
-                if(goal.id===payload.id){
-                    state.goals.splice(i,1)
+        [requestAddGoal.fulfilled]: (state, {payload}) => {
+            if (payload?.errorTodo || payload?.errorTitle) {
+                state.errors.errorTitle = payload.errorTitle
+                state.errors.errorTodo = payload.errorTodo
+                state.valueWindow = !state.valueWindow
+                state.valueDateEnd = ''
+                state.valueTitle = ''
+                state.valueTodo = ''
+            } else {
+                state.valueWindow = !state.valueWindow
+                state.valueDate = ''
+                state.valueTitle = ''
+                state.valueTodo = ''
+                for (let key in state.errors) {
+                    state.errors[key] = false
                 }
-            })
+                console.log(payload)
+            }
+
+        },
+        [requestAddGoal.rejected]: (state, {payload}) => {
+            state.valueWindow = !state.valueWindow
+            state.valueDate = ''
+            state.valueTitle = ''
+            state.valueTodo = ''
+            for (let key in state.errors) {
+                state.errors[key] = false
+            }
+            console.log(payload)
+        },
+        [requestUpdateGoalsId.fulfilled]: (state, {payload}) => {
+            console.log(payload)
+        },
+        [requestUpdateGoalsId.rejected]: (state, {payload}) => {
+            console.log(payload)
+        },
+        [requestDeleteTasksAll.fulfilled]: (state, {payload}) => {
+            console.log(payload)
+        },
+        [requestDeleteTasksAll.rejected]: (state, {payload}) => {
+            console.log(payload)
         }
     }
-
 })
-export const {changedTitle,
+export const {
+    changedTitle,
     changedTodo,
     changedDate,
-    addGoal,
-    updateTimer,
     toggleWindow,
-    clickTask,
-    clearGoals,
-    deleteGoal}= goalsSlice.actions
+} = goalsSlice.actions
 export default goalsSlice.reducer

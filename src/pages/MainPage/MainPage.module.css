@@ -97,10 +97,22 @@
 }
 .main__background {
   position: absolute;
-  width: 120vw;
+  width: 110%;
   height: 100%;
   top: 0;
+  right: 0;
+  left: 0;
   z-index: 1;
+}
+@media screen and (max-width: 1200px) {
+  .main__background {
+    width: 120vw;
+  }
+}
+@media screen and (max-width: 480px) {
+  .main__background {
+    width: 150%;
+  }
 }
 
 .window {
