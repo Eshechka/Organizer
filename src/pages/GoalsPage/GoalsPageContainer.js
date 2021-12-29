@@ -1,12 +1,10 @@
 import {connect} from "react-redux"
 import GoalsPage from "./GoalsPage"
 import {
-    addGoal,
     changedDate,
     changedTitle,
-    changedTodo, clearGoals, clickTask, deleteGoal,
+    changedTodo, requestAddGoal, requestDeleteGoalsIdAll, requestUpdateGoalsId,
     toggleWindow,
-    updateTimer
 } from "../../store/actions/goalsActions";
 
 let mapStateToProps = (state) => {
@@ -48,75 +46,20 @@ let mapDispatchToProps = (dispatch) => {
                     date = `${year}-${month}-${day}`
                 }
             }
-            dispatch(addGoal({date}))
+            dispatch(requestAddGoal(date))
         },
         openWindow: () => {
             dispatch(toggleWindow())
         },
-        dayFunction: (start, end, id) => {
-
-            let date1 = new Date(start).getTime()
-            let date2 = new Date(end).getTime()
-            let t = date2 - date1
-            let day = Math.floor(t / (1000 * 60 * 60 * 24))
-            let color
-            if (day <= 2) {
-                color = 'red'
-            } else if (day > 2 && day <= 5) {
-                color = 'yellow'
-            } else {
-                color = 'green'
-            }
-            let text;
-            if (day === 1) {
-                text = `${day} день`
-            } else if (day > 1 && day <= 4) {
-                text = `${day} дня`
-            } else if (day > 4) {
-                text = `${day} дней`
-            } else if (day < 1 && day >= -4) {
-                text = `${day} дня`
-            } else if (day < -4) {
-                text = `${day} дней`
-            } else if (day === 0) {
-                text = `${day} дней`
-            }
-
-            let show
-            let textState
-            let colorState
-            let colorPercent
-            if (day < 0) {
-                show = 'red'
-                textState = 'Просрочена'
-                colorState = 'red'
-                colorPercent = 'red'
-            } else {
-                show = 'grey'
-                textState = 'В процессе'
-                colorState = 'yellow'
-                colorPercent = 'yellow'
-            }
-
-
-            dispatch(updateTimer({
-                id,
-                text,
-                color,
-                show,
-                textState,
-                colorState,
-                colorPercent
-            }))
+        checkTodo: (taskId, goalId) => {
+            console.log(taskId, goalId)
+            dispatch(requestUpdateGoalsId({taskId, goalId}))
         },
-        chekTodo: (id) => {
-            dispatch(clickTask({id}))
+        clearGoals: () => {
+            dispatch(requestDeleteGoalsIdAll())
         },
-        clearGoals:() => {
-            dispatch(clearGoals())
-        },
-        deleteGoal:(id) => {
-            dispatch(deleteGoal({id}))
+        deleteGoal: (goalId) => {
+            dispatch(requestDeleteGoalsIdAll(goalId))
         }
     }
 }

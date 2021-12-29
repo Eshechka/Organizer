@@ -49,10 +49,18 @@
 
   &__background {
     position: absolute;
-    width: 120vw;
+    width: 110%;
     height: 100%;
     top: 0;
+    right: 0;
+    left: 0;
     z-index: 1;
+    @include desktop{
+      width: 120vw;
+    }
+    @include phones{
+      width: 150%;
+    }
   }
 }
 
