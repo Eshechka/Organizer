@@ -34,6 +34,9 @@
       margin: 0;
       font-weight: 700;
       color: white;
+      @include phones{
+font-size: 30px;
+      }
     }
   }
 
@@ -45,6 +48,9 @@
     line-height: 60px;
     text-align: center;
     color: white;
+    @include phones{
+      font-size: 30px;
+    }
   }
 
   &__background {

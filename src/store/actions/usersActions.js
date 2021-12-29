@@ -1,5 +1,17 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import api from "../../api";
+export const requestDeleteProfileId=createAsyncThunk(
+    'users/requestDeleteProfileId',
+    async (_, {rejectWithValue })=>{
+      try{
+        const userId=JSON.parse(localStorage.getItem('id'))
+        const{data}=await api.deleteProfile(userId)
+        return data
+      } catch (error){
+        return rejectWithValue(error.response?.data)
+      }
+    }
+)
 export const requestRegistration=createAsyncThunk(
     'users/requestRegistration',
     async (_,{getState,fulfillWithValue,rejectWithValue})=>{
@@ -155,6 +167,14 @@ const usersSlice = createSlice({
     },
     [requestRegistration.rejected]:(state,action)=>{
       state.errorsData.globalText=action.payload
+    },
+    [requestDeleteProfileId.fulfilled]:(state,{payload})=>{
+      console.log(payload)
+      localStorage.removeItem('token')
+      localStorage.removeItem('id')
+    },
+    [requestDeleteProfileId.rejected]:(state,{payload})=> {
+      console.log(payload)
     }
   }
 

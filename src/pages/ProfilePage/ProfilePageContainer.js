@@ -3,7 +3,7 @@ import ProfilePage from "./ProfilePage";
 import {
   deleteUser,
   setCurrentUser,
-  removeUserToken,
+  removeUserToken, requestDeleteProfileId,
 } from "../../store/actions/usersActions";
 
 const mapStateToProps = (state) => {
@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
     deleteCurrentUser: (userId) => {
       dispatch(deleteUser({id: userId}));
       dispatch(removeUserToken());
+    },
+    handleDeleteUserProfile:()=>{
+      dispatch(requestDeleteProfileId())
     },
     setCurrentUser: (userObj) => {
       dispatch(setCurrentUser({user: userObj}));

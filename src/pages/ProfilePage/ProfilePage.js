@@ -9,8 +9,7 @@ import {useTransition, animated} from "react-spring";
 import {useNavigate} from "react-router-dom";
 import api from "../../api";
 
-function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
-  const navigate = useNavigate();
+function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
   const [isOpenDelete, setIsOpenDelete] = useState(false);
   const [isOpenChangePassword, setIsOpenChangePassword] = useState(false);
   const [isOpenChangeLogin, setIsOpenChangeLogin] = useState(false);
@@ -63,11 +62,7 @@ function ProfilePage({deleteCurrentUser, currentUser, setCurrentUser}) {
   function openDeleteUserProfile() {
     setIsOpenDelete(true);
   }
-  function handleDeleteUserProfile() {
-    deleteCurrentUser();
-    setIsOpenDelete(false);
-    navigate("/");
-  }
+
   function openChangeUserLogin() {
     setIsOpenChangeLogin(true);
   }
