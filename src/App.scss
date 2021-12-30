@@ -63,15 +63,15 @@
     ),
     linear-gradient(rgba(0, 8, 255, 0.1), rgba(0, 8, 255, 0)); */
   background: linear-gradient(
-      to right top,
-      rgb(3, 0, 33),
-      rgb(4, 0, 35) 2%,
-      rgb(11, 5, 57) 24%,
-      rgb(17, 43, 77) 38%,
-      rgb(44, 21, 117) 71%,
-      rgb(120, 107, 175)
-    ),
-    linear-gradient(rgba(0, 8, 255, 0.1), rgba(0, 8, 255, 0));
+                  to right top,
+                  rgb(3, 0, 33),
+                  rgb(4, 0, 35) 2%,
+                  rgb(11, 5, 57) 24%,
+                  rgb(17, 43, 77) 38%,
+                  rgb(44, 21, 117) 71%,
+                  rgb(120, 107, 175)
+  ),
+  linear-gradient(rgba(0, 8, 255, 0.1), rgba(0, 8, 255, 0));
 
   &__wrapper {
     position: absolute;

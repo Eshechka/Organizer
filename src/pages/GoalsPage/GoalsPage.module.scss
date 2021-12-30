@@ -7,7 +7,8 @@
     @include container;
     display: flex;
     flex-direction: column;
-    &__window{
+
+    &__window {
       position: fixed;
       z-index: 1000;
       opacity: 1;
@@ -17,15 +18,16 @@
       min-height: 207px;
       background: #000000;
       padding: 40px;
-      @include desktop{
+      @include desktop {
         left: 15%;
       }
-      @include tablets{
+      @include tablets {
         width: 100%;
         left: 0;
       }
     }
   }
+
   &__pagetitle {
     position: absolute;
     left: 50%;
@@ -39,6 +41,7 @@
       top: -85px;
     }
   }
+
   &__datetime {
     margin-top: 17px;
     margin-right: auto;
@@ -50,6 +53,7 @@
       margin-top: 64px;
     }
   }
+
   &__management {
     margin-top: 93px;
     @include tablets {
@@ -57,11 +61,22 @@
     }
   }
 }
+
 .price {
   margin-top: 70px;
   margin-bottom: 117px;
   list-style-type: none;
   padding: 0;
+  &__text{
+    font-size: 70px;
+    font-weight: 900;
+    color: rgba(137, 136, 136,.5);
+    margin: 0;
+    text-align: center;
+    @include tablets{
+      font-size: 50px;
+    }
+  }
 }
 
 .background {

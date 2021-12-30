@@ -11,6 +11,7 @@
       justify-content: flex-start;
     }
   }
+
   &__dates {
     font-size: 24px;
     color: white;
@@ -26,6 +27,7 @@
       font-size: 18px;
     }
   }
+
   &__reamaintext {
     margin: 0;
     margin-right: 5px;
@@ -36,6 +38,7 @@
       font-size: 20px;
     }
   }
+
   &__reamainmeaning {
     margin: 0;
     @include tablets {

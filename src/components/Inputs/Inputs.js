@@ -13,10 +13,10 @@ function Inputs({
     return (
         <div className={styles.addTodoInputs}>
             <div className={styles.addTodoInputs__inputblock}>
-                {errors.errorTitle?<p className={styles.addTodoInputs__error}>Должно быть название</p>:null}
+                {errors.errorTitle ? <p className={styles.addTodoInputs__error}>Должно быть название</p> : null}
                 <input
                     style={{
-                        borderColor:errors.errorTitle?'red':'white',
+                        borderColor: errors.errorTitle ? 'red' : 'white',
                         transition: 'all 0.2s'
                     }}
                     className={styles.addTodoInputs__input}

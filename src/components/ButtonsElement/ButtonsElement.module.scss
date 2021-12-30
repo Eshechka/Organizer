@@ -1,22 +1,25 @@
 @import "../../App";
+
 .controlsbtn {
   display: flex;
   justify-content: space-between;
   width: 93px;
+
   &__yes {
-    background: url("../../img/icons/checket.png") center center/cover
-      no-repeat;
+    background: url("../../img/icons/checket.png") center center/cover no-repeat;
     outline: none;
     border: none;
     filter: drop-shadow(0px 2px 6px #04ff00);
     width: 30px;
     height: 36px;
     margin-top: 10px;
-    transition: all 0.1s ease-in ;
+    transition: all 0.1s ease-in;
+
     &:hover {
       transform: scale(1.1);
     }
   }
+
   &__delete {
     background: url("../../img/icons/exit.png") center center/cover no-repeat;
     outline: none;
@@ -25,7 +28,7 @@
     width: 30px;
     height: 36px;
     margin-top: 10px;
-    transition: all 0.1s ease-in ;
+    transition: all 0.1s ease-in;
 
     &:hover {
       transform: scale(1.1);

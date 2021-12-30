@@ -34,6 +34,7 @@
       padding: 0 5px;
     }
   }
+
   &__status {
     color: #ffe600;
     font-weight: 700;
@@ -47,6 +48,7 @@
       margin-top: 10px;
     }
   }
+
   &__name {
     font-weight: 700;
     font-size: 24px;
@@ -60,26 +62,31 @@
       padding: 0;
     }
   }
+
   &__datesinfo {
     @include tablets {
       order: 3;
     }
   }
 }
+
 .wap {
   width: 215px;
 }
+
 .wap p {
   font-size: 24px;
   color: white;
   font-weight: 700;
   margin-bottom: 0;
 }
+
 .wap_flex {
   display: flex;
   justify-content: center;
   margin-top: -10px;
 }
+
 .wap_flex p {
   margin-right: 5px;
   font-size: 24px;

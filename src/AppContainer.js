@@ -1,18 +1,10 @@
 import {connect} from "react-redux";
 import App from "./App";
-import {setCurrentUser} from "./store/actions/usersActions";
 
 let mapStateToProps = (state) => {
-  return {
-    userToken: state.users.userToken,
-  };
+    return {
+        userToken: state.users.userToken,
+    };
 };
-let mapDispatchToProps = (dispatch) => {
-  return {
-    setCurrentUser: (currentUser) => {
-      dispatch(setCurrentUser({user: currentUser}));
-    },
-  };
-};
-let AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+let AppContainer = connect(mapStateToProps, null)(App);
 export default AppContainer;

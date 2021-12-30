@@ -2,6 +2,11 @@
 
 .modalChange {
   @include modal;
+  &__errorText{
+    font-size: 20px;
+    text-align: center;
+    color: white;
+  }
 
   &__block {
     margin: 50px 50px 20px;

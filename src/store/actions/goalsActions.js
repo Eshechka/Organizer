@@ -152,7 +152,7 @@ const goalsSlice = createSlice({
     },
     extraReducers: {
         [getGoalsId.fulfilled]: (state, {payload}) => {
-            if (Array.isArray(payload.goals)) {
+            if (Array.isArray(payload?.goals)) {
                 state.goals = [...payload.goals]
                 state.goals.reverse()
             }
@@ -191,13 +191,13 @@ const goalsSlice = createSlice({
             console.log(payload)
         },
         [requestUpdateGoalsId.fulfilled]: (state, {payload}) => {
-            console.log(payload)
+            // console.log(payload)
         },
         [requestUpdateGoalsId.rejected]: (state, {payload}) => {
             console.log(payload)
         },
         [requestDeleteTasksAll.fulfilled]: (state, {payload}) => {
-            console.log(payload)
+            // console.log(payload)
         },
         [requestDeleteTasksAll.rejected]: (state, {payload}) => {
             console.log(payload)

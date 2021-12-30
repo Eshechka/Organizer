@@ -79,6 +79,7 @@ function GoalsPage({
 
                 <ul className={styles.price}>
                     {
+                       goals.length===0?<p className={styles.price__text}>У вас пока нет целей</p>:
                         goals.map(el =>
                             <li key={el._id}>
                                 <Goals

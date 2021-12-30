@@ -1,9 +1,9 @@
 import {configAxios} from "./index";
 
-export const getGoalsId = (userId) => {
+export const getGoalsId = userId => {
     return configAxios.get(`/goals?userId=${userId}`)
 }
-export const addGoal = (body) => {
+export const addGoal = body => {
     return configAxios.post('/goals', body)
 }
 export const updateGoalId = (goalId, taskId, body) => {

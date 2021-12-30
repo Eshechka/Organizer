@@ -27,13 +27,14 @@ function TasksPage({
                        window1,
                        errors,
                    }) {
-    const dispatch=useDispatch()
-    useEffect(()=>{
-       const intervalId= setInterval(()=>dispatch(requestGetTasksId()),500)
-        return ()=>{
-           clearInterval(intervalId)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        const intervalId = setInterval(() => dispatch(requestGetTasksId()), 500)
+        return () => {
+            clearInterval(intervalId)
         }
-    },[])
+        // eslint-disable-next-line
+    }, [])
     const animationModal = useTransition(valueWindow, {
         from: {
             opacity: 0,
@@ -47,7 +48,7 @@ function TasksPage({
             opacity: 0,
             top: `${0}%`,
         },
-        expires:true
+        expires: true
     })
     return (
         <div className={styles.todolist}>
@@ -70,23 +71,24 @@ function TasksPage({
                     errors={errors}
                 />
                 <ul className={styles.todolist__list}>
-                  {
-                    todoList.map(el=>
-                        <li  key={el._id} className={styles.todolist__item}>
-                          <Task
-                              id={el._id}
-                              click={click}
-                              dayFunction={dayFunction}
-                              el={el}
-                          />
-                        </li>)
-                  }
+                    {
+                        todoList.length===0?<p className={styles.todolist__list__text}>У вас пока нет задач</p>:
+                            todoList.map(el =>
+                                <li key={el._id} className={styles.todolist__item}>
+                                    <Task
+                                        id={el._id}
+                                        click={click}
+                                        dayFunction={dayFunction}
+                                        el={el}
+                                    />
+                                </li>)
+                    }
                 </ul>
                 {
-                    animationModal((props,value) =>
-                        value ? <animated.div className={styles.todolist__container__window} style={props} >
-                                        <TodoWindow text="дело" check={check} push={push} window={window}/>
-                                      </animated.div> : null)
+                    animationModal((props, value) =>
+                        value ? <animated.div className={styles.todolist__container__window} style={props}>
+                            <TodoWindow text="дело" check={check} push={push} window={window}/>
+                        </animated.div> : null)
                 }
             </div>
         </div>

@@ -3,7 +3,10 @@ import GoalsPage from "./GoalsPage"
 import {
     changedDate,
     changedTitle,
-    changedTodo, requestAddGoal, requestDeleteGoalsIdAll, requestUpdateGoalsId,
+    changedTodo,
+    requestAddGoal,
+    requestDeleteGoalsIdAll,
+    requestUpdateGoalsId,
     toggleWindow,
 } from "../../store/actions/goalsActions";
 

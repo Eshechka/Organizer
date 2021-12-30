@@ -144,9 +144,6 @@ const tasksSlice = createSlice({
                     state.errors[key] = false
                 }
             }
-            console.log(payload)
-
-
         },
         [requestAddTask.rejected]: (state, {payload}) => {
             console.log(payload)
@@ -159,13 +156,13 @@ const tasksSlice = createSlice({
             }
         },
         [requestDeleteTasksAll.fulfilled]: (_, {payload}) => {
-            console.log(payload)
+            //console.log(payload)
         },
         [requestDeleteTasksAll.rejected]: (_, {payload}) => {
             console.log(payload)
         },
         [requestChangedTask.fulfilled]: (_, {payload}) => {
-            console.log(payload)
+            //console.log(payload)
         },
         [requestChangedTask.rejected]: (_, {payload}) => {
             console.log(payload)
