@@ -11,8 +11,9 @@ import TasksPageContainer from "./pages/TasksPage/TasksPageContainer";
 import MainPageContainer from "./pages/MainPage/MainPageContainer";
 import {useDispatch} from "react-redux";
 import {addUserToken, removeUserToken} from "./store/actions/usersActions";
+import loading from "./img/loader.gif"
 
-function App({userToken}) {
+function App({userToken, loader}) {
     useEffect(() => {
         setInterval(() => {
             if (localStorage.getItem('token')) {
@@ -60,6 +61,9 @@ function App({userToken}) {
                     <Route path="*" element={<Navigate to="/notfound"/>}/>
                 </Routes>
             </div>
+            {loader?<div className='wrapper'>
+                <img src={loading} alt="loading"/>
+            </div>:null}
             <Footer/>
         </>
     );

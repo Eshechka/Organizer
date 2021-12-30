@@ -3,7 +3,8 @@ import api from "../../api";
 
 export const requestUpdatePassword = createAsyncThunk(
     'users/requestUpdatePassword',
-    async (_, {getState, rejectWithValue}) => {
+    async (_, {getState,dispatch, rejectWithValue}) => {
+        dispatch(loaderIn())
         try {
             const body = {
                 password: getState().users.profile.inputConfirmPassword
@@ -12,12 +13,15 @@ export const requestUpdatePassword = createAsyncThunk(
             return {data,body}
         } catch (error) {
             return rejectWithValue(error.response?.data)
+        } finally {
+            dispatch(loaderIn())
         }
     }
 )
 export const requestUpdateLogin = createAsyncThunk(
     'users/requestUpdateLogin',
-    async (_, {getState, rejectWithValue}) => {
+    async (_, {getState, dispatch, rejectWithValue}) => {
+        dispatch(loaderIn())
         try {
             const body = {
                 username: getState().users.profile.inputConfirmLogin
@@ -26,17 +30,22 @@ export const requestUpdateLogin = createAsyncThunk(
             return {data,body}
         } catch (error) {
             return rejectWithValue(error.response?.data)
+        } finally {
+            dispatch(loaderIn())
         }
     }
 )
 export const requestGetData = createAsyncThunk(
     'users/requestGetData',
-    async (_, {rejectWithValue}) => {
+    async (_, {dispatch ,rejectWithValue}) => {
+        dispatch(loaderIn())
         try {
             const {data} = await api.getUser()
             return data
         } catch (error) {
             return rejectWithValue(error.response?.data)
+        } finally {
+            dispatch(loaderIn())
         }
     }
 )
@@ -54,7 +63,8 @@ export const requestDeleteProfileId = createAsyncThunk(
 )
 export const requestRegistration = createAsyncThunk(
     'users/requestRegistration',
-    async (_, {getState, fulfillWithValue, rejectWithValue}) => {
+    async (_, {getState, dispatch, fulfillWithValue, rejectWithValue}) => {
+        dispatch(loaderIn())
         try {
             const body = {
                 username: getState().users.inputLogin,
@@ -67,13 +77,16 @@ export const requestRegistration = createAsyncThunk(
             return fulfillWithValue()
         } catch (e) {
             return rejectWithValue(e.response?.data.message)
+        } finally {
+            dispatch(loaderIn())
         }
     }
 )
 
 export const requestAuthorization = createAsyncThunk(
     'users/requestAuthorization',
-    async (_, {getState, fulfillWithValue, rejectWithValue}) => {
+    async (_, {getState, dispatch , fulfillWithValue, rejectWithValue}) => {
+        dispatch(loaderIn())
         try {
             const body = {
                 username: getState().users.inputLogin,
@@ -86,6 +99,8 @@ export const requestAuthorization = createAsyncThunk(
             return fulfillWithValue()
         } catch (e) {
             return rejectWithValue(e.response?.data.message)
+        } finally {
+            dispatch(loaderIn())
         }
     }
 )
@@ -107,6 +122,7 @@ const usersSlice = createSlice({
                 borderColor: null
             },
         },
+        isLoaderIn: false,
         isSignIn: null, //показывает, какая форма открыта - логин или регистрация
         isOpenAuthLogin: false, //показывает, открыта сейчас форма логина или нет
         isOpenAuthRegister: false, //показывает, открыта сейчас форма регистрации или нет
@@ -146,6 +162,9 @@ const usersSlice = createSlice({
     },
 
     reducers: {
+        loaderIn(state) {
+            state.isLoaderIn = !state.isLoaderIn
+        },
         changedLogin(state, {payload}) {
             if (!payload.text) {
                 state.errorsData.login.borderColor = 'red'
@@ -335,7 +354,8 @@ export const {
     removeUserToken,
     changedPassword,
     changedLogin,
-    addUserToken
+    addUserToken,
+    loaderIn,
 } = usersSlice.actions;
 
 export default usersSlice.reducer;
