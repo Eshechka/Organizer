@@ -1,26 +1,29 @@
 import {connect} from "react-redux";
 import Header from "./Header";
+import {
+    removeUserToken,
+    setSignIn,
+    setSignUp,
+} from "../../store/actions/usersActions";
 
-let mapStateToProps=(state)=>{
-    return{
-        user: state.titlePage.userProfile,
-    }
-}
+const mapStateToProps = (state) => {
+    return {
+        userToken: state.users.userToken,
+    };
+};
 
-let mapDispatchToProps=(dispatch)=>{
-    return{
-        click:(e)=>{
-            if(e.target.innerText==='Вход'){
-                dispatch({type:'LOGIN'})
-
-            }else if (e.target.innerText==='Выйти'){
-                dispatch({type:'EXIT'})
-
-            }else {
-                dispatch({type:'REGISTER'})
-            }
-        }
-    }
-}
-let HeaderContainer=connect(mapStateToProps,mapDispatchToProps)(Header)
-export default HeaderContainer
+const mapDispatchToProps = (dispatch) => {
+    return {
+        clickSighIn: () => {
+            dispatch(setSignIn());
+        },
+        clickSighUp: () => {
+            dispatch(setSignUp());
+        },
+        clickExit: () => {
+            dispatch(removeUserToken());
+        },
+    };
+};
+const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(Header);
+export default HeaderContainer;
