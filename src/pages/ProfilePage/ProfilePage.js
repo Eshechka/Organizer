@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import styles from "./ProfilePage.module.scss";
 import PageName from "./../../components/PageName/PageName";
 import Button from "../../components/Button/Button";
@@ -6,13 +6,26 @@ import DateTimeContainer from "../../components/DateTime/DateTimeContainer";
 import WindowProfile from "../../modals/WindowProfile/WindowProfile";
 import WindowDeleteProfile from "../../modals/WindowDeleteProfile/WindowDeleteProfile";
 import {useTransition, animated} from "react-spring";
-import {useNavigate} from "react-router-dom";
-import api from "../../api";
-
-function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
-  const [isOpenDelete, setIsOpenDelete] = useState(false);
-  const [isOpenChangePassword, setIsOpenChangePassword] = useState(false);
-  const [isOpenChangeLogin, setIsOpenChangeLogin] = useState(false);
+import {useDispatch} from "react-redux";
+import {requestGetData} from "../../store/actions/usersActions";
+function ProfilePage({handleDeleteUserProfile,
+                       isOpenDelete,
+                       isChangePassword,
+                       isChangeLogin,
+                       inputPassword,
+                       inputLogin,
+                       isClickDelete,
+                       isClickLogin,
+                       isClickPassword,
+                       changedPassword,
+                       changedLogin,
+                       changedConfirmLogin,
+                       changedConfirmPassword,
+                       inputConfirmLogin,
+                       inputConfirmPassword,
+                        login,
+                        password
+}) {
   const animationDelete = useTransition(isOpenDelete, {
     from: {
       opacity: 0,
@@ -28,7 +41,7 @@ function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
     },
     expires: true,
   });
-  const animationChangePassword = useTransition(isOpenChangePassword, {
+  const animationChangePassword = useTransition(isChangePassword, {
     from: {
       opacity: 0,
       top: `${0}%`,
@@ -43,7 +56,7 @@ function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
     },
     expires: true,
   });
-  const animationChangeLogin = useTransition(isOpenChangeLogin, {
+  const animationChangeLogin = useTransition(isChangeLogin, {
     from: {
       opacity: 0,
       top: `${0}%`,
@@ -58,34 +71,10 @@ function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
     },
     expires: true,
   });
-
-  function openDeleteUserProfile() {
-    setIsOpenDelete(true);
-  }
-
-  function openChangeUserLogin() {
-    setIsOpenChangeLogin(true);
-  }
-  function openChangeUserPassword() {
-    setIsOpenChangePassword(true);
-  }
-  function handleChangeUserLogin() {
-    //посылаем запрос на сервер, получаем нового юзера user={name: 'Лидия'}
-    const newUser = {...currentUser, name: "Лидия"};
-    setCurrentUser(newUser);
-    setIsOpenChangeLogin(false);
-  }
-  function handleChangeUserPassword() {
-    //посылаем запрос на сервер, получаем подтверждение о смене пароля. Скорее всего, закидываем новй токен в localStorage
-    setIsOpenChangePassword(false);
-  }
-  //Пример запроса
-  useEffect(()=>{
-    api.getUser()
-        .then(({data})=>console.log(data))
-        .catch((err)=>console.log(err.response?.data.message))
-  },[])
-
+  const dispatch=useDispatch()
+useEffect(()=>{
+  dispatch(requestGetData())
+},[])
   return (
     <div className={styles.profile}>
       <div className={styles.profile__container}>
@@ -97,18 +86,18 @@ function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
         </div>
 
         <h2 className={styles.profile__title}>
-          Добро пожаловать, {currentUser?.name ? currentUser.name : ""}
+          Добро пожаловать, {login}
         </h2>
         <div className={styles.changedata}>
           <p className={styles.changedata__text}>Ваш пароль:</p>
           <input
             className={styles.changedata__input}
-            value="Maxim23"
+            value={password}
             disabled
             type="password"
           />
           <div className={styles.changedata__button}>
-            <Button text="Изменить" click={openChangeUserPassword} />
+            <Button text="Изменить"  click={isClickPassword} />
           </div>
         </div>
         <div className={styles.changedata}>
@@ -116,17 +105,17 @@ function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
           <input
             className={styles.changedata__input}
             disabled
-            value={currentUser?.name ? currentUser.name : ""}
+            value={login}
             type="text"
           />
           <div className={styles.changedata__button}>
-            <Button text="Изменить" click={openChangeUserLogin} />
+            <Button text="Изменить" click={isClickLogin} />
           </div>
         </div>
         <div className={styles.changedata__submit}>
           <Button
             text="Удалить профиль"
-            click={openDeleteUserProfile}
+            click={isClickDelete}
             color={"highlight"}
           />
         </div>
@@ -135,10 +124,11 @@ function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
             <animated.div style={props} className={styles.windowChange}>
               <WindowProfile
                 type={"login"}
-                clickYes={handleChangeUserLogin}
-                clickNo={() => {
-                  setIsOpenChangeLogin(false);
-                }}
+                clickNo={isClickLogin}
+                changeValue={changedLogin}
+                inputValue={inputLogin}
+                changeConfirmValue={changedConfirmLogin}
+                inputConfirmValue={inputConfirmLogin}
               />
             </animated.div>
           ) : null
@@ -148,8 +138,11 @@ function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
             <animated.div style={props} className={styles.windowChange}>
               <WindowProfile
                 type={"password"}
-                clickYes={handleChangeUserPassword}
-                clickNo={() => setIsOpenChangePassword(false)}
+                clickNo={isClickPassword}
+                changeValue={changedPassword}
+                inputValue={inputPassword}
+                changeConfirmValue={changedConfirmPassword}
+                inputConfirmValue={inputConfirmPassword}
               />
             </animated.div>
           ) : null
@@ -159,7 +152,7 @@ function ProfilePage({currentUser, setCurrentUser, handleDeleteUserProfile}) {
             <animated.div style={props} className={styles.windowDelete}>
               <WindowDeleteProfile
                 clickYes={handleDeleteUserProfile}
-                clickNo={() => setIsOpenDelete(false)}
+                clickNo={isClickDelete}
               />
             </animated.div>
           ) : null

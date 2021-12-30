@@ -3,8 +3,8 @@ import styles from "./WindowDeleteProfile.module.scss";
 import Button from "../../components/Button/Button";
 
 function WindowDeleteProfile({
-  clickYes = Function.prototype,
-  clickNo = Function.prototype,
+  clickYes,
+  clickNo
 }) {
   return (
     <div className={styles.modalDelete}>

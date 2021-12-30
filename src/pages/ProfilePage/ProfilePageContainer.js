@@ -1,27 +1,51 @@
 import {connect} from "react-redux";
 import ProfilePage from "./ProfilePage";
 import {
-  deleteUser,
-  setCurrentUser,
-  removeUserToken, requestDeleteProfileId,
+  requestDeleteProfileId,
+  toggleWindowDelete,
+  toggleWindowChangeLogin,
+  toggleWindowChangePassword,
+  inputLoginProfile, inputPasswordProfile, inputConfirmLoginProfile, inputConfirmPasswordProfile,
 } from "../../store/actions/usersActions";
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.users.currentUser,
+    inputLogin: state.users.profile.inputLogin,
+    inputPassword: state.users.profile.inputPassword,
+    inputConfirmLogin: state.users.profile.inputConfirmLogin,
+    inputConfirmPassword: state.users.profile.inputConfirmPassword,
+    isOpenDelete: state.users.profile.isOpenDelete,
+    isChangeLogin: state.users.profile.isChangeLogin,
+    isChangePassword: state.users.profile.isChangePassword,
+    login: state.users.profile.login,
+    password: state.users.profile.password
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteCurrentUser: (userId) => {
-      dispatch(deleteUser({id: userId}));
-      dispatch(removeUserToken());
-    },
     handleDeleteUserProfile:()=>{
       dispatch(requestDeleteProfileId())
     },
-    setCurrentUser: (userObj) => {
-      dispatch(setCurrentUser({user: userObj}));
+    isClickDelete:()=>{
+      dispatch(toggleWindowDelete())
+    },
+    isClickLogin:()=>{
+      dispatch(toggleWindowChangeLogin())
+    },
+    isClickPassword:()=>{
+      dispatch(toggleWindowChangePassword())
+    },
+    changedLogin:(text)=>{
+      dispatch(inputLoginProfile({text}))
+    },
+    changedPassword:(text)=>{
+      dispatch(inputPasswordProfile({text}))
+    },
+    changedConfirmLogin:(text)=>{
+      dispatch(inputConfirmLoginProfile({text}))
+    },
+    changedConfirmPassword:(text)=>{
+      dispatch(inputConfirmPasswordProfile({text}))
     },
   };
 };

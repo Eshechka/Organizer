@@ -4,8 +4,12 @@ import styles from "./WindowProfile.module.scss";
 
 function WindowProfile({
   type = "login",
-  clickYes = Function.prototype,
-  clickNo = Function.prototype,
+    clickNo,
+    clickYes,
+    changeValue,
+    inputValue,
+    inputConfirmValue,
+    changeConfirmValue
 }) {
   return (
     <div className={styles.modalChange}>
@@ -14,18 +18,18 @@ function WindowProfile({
       </h2>
       <div className={styles.modalChange__block}>
         <label className={styles.modalChange__label}>
-          {type === "login" ? "Ваш логин:" : "Ваш пароль"}
+          {type === "login" ? "Ваш новый логин:" : "Ваш новый пароль"}
         </label>
-        <input className={styles.modalChange__input} type="text" />
+        <input className={styles.modalChange__input} onChange={e=>changeValue(e.target.value)} value={inputValue} type="text" />
       </div>
       <div className={styles.modalChange__block}>
         <label className={styles.modalChange__label}>
-          {type === "login" ? "Ваш новый логин:" : "Ваш новый пароль"}
+          {type === "login" ? "Подтвердите логин:" : "Подтвердите пароль"}
         </label>
-        <input className={styles.modalChange__input} type="text" />
+        <input className={styles.modalChange__input} onChange={e=>changeConfirmValue(e.target.value)} value={inputConfirmValue} type="text" />
       </div>
       <div className={styles.modalChange__buttons}>
-        <Button text="Изменить" click={clickYes} />
+        <Button text="Изменить" click={clickYes}  />
         <Button text="Отмена" click={clickNo} />
       </div>
     </div>

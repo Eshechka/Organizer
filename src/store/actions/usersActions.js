@@ -1,5 +1,16 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import api from "../../api";
+export const requestGetData=createAsyncThunk(
+    'users/requestGetData',
+    async (_, {rejectWithValue })=>{
+      try{
+        const{data}=await api.getUser()
+        return data
+      } catch (error){
+        return rejectWithValue(error.response?.data)
+      }
+    }
+)
 export const requestDeleteProfileId=createAsyncThunk(
     'users/requestDeleteProfileId',
     async (_, {rejectWithValue })=>{
@@ -71,7 +82,17 @@ const usersSlice = createSlice({
     isOpenAuthLogin: false, //показывает, открыта сейчас форма логина или нет
     isOpenAuthRegister: false, //показывает, открыта сейчас форма регистрации или нет
     userToken: false,
-    currentUser: null,
+    profile:{
+      isOpenDelete:false,
+      isChangePassword:false,
+      isChangeLogin:false,
+      inputLogin:'',
+      inputPassword:'',
+      inputConfirmLogin:'',
+      inputConfirmPassword:'',
+      login:'',
+      password:''
+    },
     users: [
       {id: 1, name: "Екатерина"},
       {id: 2, name: "Максим"},
@@ -101,29 +122,6 @@ const usersSlice = createSlice({
       }
       state.inputPassword=payload.text
     },
-    deleteUser(state, {payload}) {
-      state.users = state.users.filter((user) => user.id !== payload.id);
-      state.currentUser = null;
-      localStorage.removeItem("user");
-    },
-    setCurrentUser(state, {payload}) {
-      state.currentUser = payload.user;
-      localStorage.setItem("user", JSON.stringify(payload.user));
-    },
-    signUp(state) {
-      state.currentUser = {id: 4, name: "Анна"};
-      localStorage.setItem("user", JSON.stringify({id: 4, name: "Анна"}));
-      state.userToken = true;
-    },
-    signIn(state) {
-      if (localStorage.getItem("user")) {
-        const localStUser = JSON.parse(localStorage.getItem("user"));
-        state.currentUser = localStUser?.id
-          ? localStUser
-          : {id: 1, name: "Максим"};
-        state.userToken = true;
-      }
-    },
     setSignIn(state) {
       state.isSignIn = true;
     },
@@ -145,6 +143,27 @@ const usersSlice = createSlice({
     },
     addUserToken(state) {
       state.userToken = true;
+    },
+    toggleWindowDelete(state){
+      state.profile.isOpenDelete=!state.profile.isOpenDelete
+    },
+    toggleWindowChangeLogin(state){
+      state.profile.isChangeLogin=!state.profile.isChangeLogin
+    },
+    toggleWindowChangePassword(state){
+      state.profile.isChangePassword=!state.profile.isChangePassword
+    },
+    inputLoginProfile(state,{payload}){
+      state.profile.inputLogin=payload.text
+    },
+    inputPasswordProfile(state,{payload}){
+      state.profile.inputPassword=payload.text
+    },
+    inputConfirmLoginProfile(state,{payload}){
+      state.profile.inputConfirmLogin=payload.text
+    },
+    inputConfirmPasswordProfile(state,{payload}){
+      state.profile.inputConfirmPassword=payload.text
     }
   },
   extraReducers:{
@@ -172,15 +191,32 @@ const usersSlice = createSlice({
       console.log(payload)
       localStorage.removeItem('token')
       localStorage.removeItem('id')
+      state.profile.isOpenDelete=!state.profile.isOpenDelete
     },
     [requestDeleteProfileId.rejected]:(state,{payload})=> {
       console.log(payload)
-    }
+      state.profile.isOpenDelete=!state.profile.isOpenDelete
+    },
+    [requestGetData.fulfilled]:(state,{payload})=> {
+      console.log(payload)
+      state.profile.login=payload.username
+      state.profile.password=payload.password
+    },
+    [requestGetData.rejected]:(state,{payload})=> {
+      console.log(payload)
+    },
   }
 
 });
 
 export const {
+  inputConfirmLoginProfile,
+  inputConfirmPasswordProfile,
+  toggleWindowChangeLogin,
+  toggleWindowChangePassword,
+  toggleWindowDelete,
+  inputLoginProfile,
+  inputPasswordProfile,
   deleteUser,
   setCurrentUser,
   isSignIn,
