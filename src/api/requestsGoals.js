@@ -9,6 +9,6 @@ export const addGoal = body => {
 export const updateGoalId = (goalId, taskId, body) => {
     return configAxios.put(`/goals/update?goalId=${goalId}&taskId=${taskId}`, body)
 }
-export const deleteGoalIdAll = (userId, goalId = null) => {
-    return configAxios.delete(`/goals/delete?userId=${userId}${goalId ? `&taskId=${goalId}` : ''}`)
+export const deleteGoalIdAll = (userId, goalId ) => {
+    return configAxios.delete(`/goals/delete?userId=${userId}${goalId ? `&goalId=${goalId}` : ''}`)
 }

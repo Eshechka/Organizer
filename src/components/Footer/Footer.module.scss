@@ -5,6 +5,8 @@
   font-size: 24px;
   color: $color-text;
   font-weight: 700;
+  z-index: 500;
+  position: relative;
 
   @include tablets {
     font-size: 22px;

@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 
   &__container {
     @include container;
@@ -73,23 +73,18 @@
 }
 
 .window {
-  position: fixed;
-  z-index: 1000;
+  position: absolute;
+  z-index: 9999;
   opacity: 1;
-  top: 26%;
-  left: 39%;
   width: 429px;
   min-height: 532px;
   background-color: black;
   padding: 40px;
   @include desktop {
-    left: 32%;
   }
   @include tablets {
-    left: 5%;
   }
   @include phones {
     width: 100%;
-    left: 0;
   }
 }

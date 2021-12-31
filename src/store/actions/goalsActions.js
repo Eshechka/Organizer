@@ -176,7 +176,6 @@ const goalsSlice = createSlice({
                 for (let key in state.errors) {
                     state.errors[key] = false
                 }
-                console.log(payload)
             }
 
         },

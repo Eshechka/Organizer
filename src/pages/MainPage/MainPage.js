@@ -18,7 +18,7 @@ function MainPage({
                       valuePassword,
                       valueLogin,
                       errorsData,
-                        touch
+                       touch
                   }) {
     useEffect(() => {
         const TimerId = setInterval(datetime, 1000);
@@ -30,15 +30,12 @@ function MainPage({
     const animation = useTransition(isSignIn, {
         from: {
             opacity: 0,
-            top: `${0}%`,
         },
         enter: {
             opacity: 1,
-            top: `${26}%`,
         },
         leave: {
             opacity: 0,
-            top: `${50}%`,
         },
     });
     return (
