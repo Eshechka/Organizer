@@ -38,15 +38,12 @@ function TasksPage({
     const animationModal = useTransition(valueWindow, {
         from: {
             opacity: 0,
-            top: `${0}%`,
         },
         enter: {
             opacity: 1,
-            top: `${40}%`,
         },
         leave: {
             opacity: 0,
-            top: `${0}%`,
         },
         expires: true
     })

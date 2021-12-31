@@ -53,6 +53,8 @@
   font-size: 24px;
   color: #ffffff;
   font-weight: 700;
+  z-index: 500;
+  position: relative;
 }
 @media screen and (max-width: 768px) {
   .footer {

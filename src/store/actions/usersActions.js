@@ -170,20 +170,36 @@ const usersSlice = createSlice({
                 state.errorsData.login.borderColor = 'red'
                 state.errorsData.login.text = 'Логин не должен быть пустым'
             } else {
-                state.errorsData.login.borderColor = 'green'
-                state.errorsData.login.text = ''
+                if(!/[0a-z9]+/ig.test(payload.text)){
+                    state.errorsData.login.borderColor = 'red'
+                    state.errorsData.login.text = 'Должны быть латинские символы'
+                }else {
+                    state.errorsData.login.borderColor = 'green'
+                    state.errorsData.login.text = ''
+                }
             }
             state.inputLogin = payload.text
         },
         changedPassword(state, {payload}) {
-            if (payload.text.length < 4) {
+            if (payload.text.length < 8) {
                 state.errorsData.password.borderColor = 'red'
-                state.errorsData.password.text = 'Пароль должен быть минимум 4 символа'
+                state.errorsData.password.text = 'Пароль должен быть минимум 8 символов'
                 state.errorsData.password.error = true
             } else {
-                state.errorsData.password.borderColor = 'green'
-                state.errorsData.password.text = ''
-                state.errorsData.password.error = true
+                if(!/[0a-z9]+/ig.test(payload.text)){
+                    console.log(9)
+                    state.errorsData.password.borderColor = 'red'
+                    state.errorsData.password.text = 'Должны быть латинские символы и цифры '
+                }else {
+                    if(!/[+@&]/g.test(payload.text)) {
+                        state.errorsData.password.borderColor = 'red'
+                        state.errorsData.password.text = 'пароль должен содержать один из этих знаков: + @ &'
+                    }else {
+                        state.errorsData.password.borderColor = 'green'
+                        state.errorsData.password.text = ''
+                        state.errorsData.password.error = true
+                    }
+                }
             }
             state.inputPassword = payload.text
         },
@@ -224,22 +240,41 @@ const usersSlice = createSlice({
                 state.profile.errorLogin.text = 'Логин не должен быть пустым'
                 state.profile.errorLogin.error = true
             } else {
-                state.profile.errorLogin.color = 'green'
-                state.profile.errorLogin.text = ''
-                state.profile.errorLogin.error = false
+                if(!/[0a-z9]+/g.test(payload.text)){
+                    state.profile.errorLogin.color = 'red'
+                    state.profile.errorLogin.text = 'Должны быть латинские строчные символы'
+                    state.profile.errorLogin.error = true
+                }else {
+                    state.profile.errorLogin.color = 'green'
+                    state.profile.errorLogin.text = ''
+                    state.profile.errorLogin.error = false
+                }
             }
             state.profile.inputLogin = payload.text
         },
         inputPasswordProfile(state, {payload}) {
-            if (payload.text.length < 4) {
+            if (payload.text.length < 8) {
                 state.profile.errorPassword.color = 'red'
-                state.profile.errorPassword.text = 'Пароль должен быть минимум 4 символа'
+                state.profile.errorPassword.text = 'Пароль должен быть минимум 8 символа'
                 state.profile.errorPassword.error = true
             } else {
-                state.profile.errorPassword.color = 'green'
-                state.profile.errorPassword.text = ''
-                state.profile.errorPassword.error = false
+                if(!/[0a-z9]+/g.test(payload.text)){
+                    state.profile.errorPassword.color = 'red'
+                    state.profile.errorPassword.text = 'Пароль должен быть строчные символы и цифры'
+                    state.profile.errorPassword.error = true
+                }else {
+                    if(!/[+@&]/g.test(payload.text)) {
+                        state.profile.errorPassword.color = 'red'
+                        state.profile.errorPassword.text = 'пароль должен содержать один из этих знаков: + @ &'
+                        state.profile.errorPassword.error = true
+                    }else {
+                        state.profile.errorPassword.color = 'green'
+                        state.profile.errorPassword.text = ''
+                        state.profile.errorPassword.error = false
+                    }
+                }
             }
+
             state.profile.inputPassword = payload.text
         },
         inputConfirmLoginProfile(state, {payload}) {

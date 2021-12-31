@@ -54,7 +54,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .main__container {
   max-width: 1100px;
@@ -143,30 +143,17 @@
 }
 
 .window {
-  position: fixed;
-  z-index: 1000;
+  position: absolute;
+  z-index: 9999;
   opacity: 1;
-  top: 26%;
-  left: 39%;
   width: 429px;
   min-height: 532px;
   background-color: black;
   padding: 40px;
 }
-@media screen and (max-width: 1200px) {
-  .window {
-    left: 32%;
-  }
-}
-@media screen and (max-width: 768px) {
-  .window {
-    left: 5%;
-  }
-}
 @media screen and (max-width: 480px) {
   .window {
     width: 100%;
-    left: 0;
   }
 }
 

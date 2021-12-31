@@ -64,15 +64,12 @@ function ProfilePage({
     const animationChangeLogin = useTransition(isChangeLogin, {
         from: {
             opacity: 0,
-            top: `${0}%`,
         },
         enter: {
             opacity: 1,
-            top: `${56}%`,
         },
         leave: {
             opacity: 0,
-            top: `${0}%`,
         },
         expires: true,
     });
