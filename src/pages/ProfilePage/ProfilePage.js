@@ -34,30 +34,24 @@ function ProfilePage({
     const animationDelete = useTransition(isOpenDelete, {
         from: {
             opacity: 0,
-            top: `${0}%`,
         },
         enter: {
             opacity: 1,
-            top: `${56}%`,
         },
         leave: {
             opacity: 0,
-            top: `${0}%`,
         },
         expires: true,
     });
     const animationChangePassword = useTransition(isChangePassword, {
         from: {
             opacity: 0,
-            top: `${0}%`,
         },
         enter: {
             opacity: 1,
-            top: `${56}%`,
         },
         leave: {
             opacity: 0,
-            top: `${0}%`,
         },
         expires: true,
     });
