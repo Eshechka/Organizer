@@ -2,10 +2,10 @@ import {connect} from "react-redux";
 import MainPage from "./MainPage";
 import {
     changedLogin,
-    changedPassword,
+    changedPassword, inputEmailChange,
     removeSignIn,
     requestAuthorization,
-    requestRegistration,
+    requestRegistration, toggleResetWindow,
 } from "../../store/actions/usersActions";
 import {updateDateTime} from "../../store/actions/globalTimeActions";
 import {moveAnimation} from "../../store/actions/backgroundAnimationActions";
@@ -19,6 +19,9 @@ const mapStateToProps = (state) => {
         time: state.globalDateTime.datetime.time,
         day: state.globalDateTime.datetime.day,
         positionXImg: state.background.backgroundEffect.preElementX,
+        email:state.users.reset.inputEmail,
+        errorEmail:state.users.reset.error,
+        resetWindow:state.users.reset.resetWindow
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -88,6 +91,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         valuePassword(e) {
             dispatch(changedPassword({text: e.target.value}))
+        },
+        changeEmail(text){
+            dispatch(inputEmailChange({text}))
+        },
+        toggleReset() {
+            dispatch(toggleResetWindow())
         }
     };
 };

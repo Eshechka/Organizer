@@ -8,7 +8,6 @@ import ManagementTasks from "../../components/ManagementTasks/ManagementTasks";
 import {useTransition, animated} from "react-spring";
 import {useDispatch} from "react-redux";
 import {requestGetTasksId} from "../../store/actions/tasksActions";
-
 function TasksPage({
                        valueWindow,
                        todoList,

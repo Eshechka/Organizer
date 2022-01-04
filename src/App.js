@@ -12,7 +12,7 @@ import MainPageContainer from "./pages/MainPage/MainPageContainer";
 import {useDispatch} from "react-redux";
 import {addUserToken, removeUserToken} from "./store/actions/usersActions";
 import loading from "./img/loader.gif"
-
+import ResetPage from "./pages/ResetPage/ResetPage";
 function App({userToken, loader}) {
     useEffect(() => {
         setInterval(() => {
@@ -22,7 +22,6 @@ function App({userToken, loader}) {
                 dispatch(removeUserToken())
             }
         }, 500)
-
     });
     const dispatch = useDispatch()
     return (
@@ -32,33 +31,31 @@ function App({userToken, loader}) {
             <div className="maincontent">
                 <Routes>
                     <Route
-                        exact
                         path="/"
-                        element={userToken ? <Navigate to="/do"/> : <MainPageContainer/>}
+                        element={
+                            !userToken ? <MainPageContainer/>: <Navigate to="/do"/>
+                        }
                     />
                     <Route
-                        exact
                         path="/do"
-                        element={
-                            !userToken ? <Navigate to="/"/> : <TasksPageContainer/>
-                        }
+                        element={userToken ?<TasksPageContainer/>:<Navigate to="/"/>}
                     />
                     <Route
-                        exact
-                        path="/purposes"
-                        element={
-                            !userToken ? <Navigate to="/"/> : <GoalsPageContainer/>
-                        }
+                        path="/goals"
+                        element={userToken? <GoalsPageContainer/>:<Navigate to="/"/>}
                     />
                     <Route
-                        exact
                         path="/profile"
-                        element={
-                            !userToken ? <Navigate to="/"/> : <ProfilePageContainer/>
-                        }
+                        element={userToken?<ProfilePageContainer/>:<Navigate to="/"/>}
                     />
                     <Route path="/notfound" element={<NotFound/>}/>
                     <Route path="*" element={<Navigate to="/notfound"/>}/>
+                    <Route
+                        path="/reset/:params"
+                        element={<ResetPage/>}
+
+                    />
+                    <Route path="/notfound" element={<NotFound/>}/>
                 </Routes>
             </div>
             {loader?<div className='wrapper'>

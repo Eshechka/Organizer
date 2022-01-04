@@ -107,6 +107,7 @@ export const requestAuthorization = createAsyncThunk(
 const usersSlice = createSlice({
     name: "users",
     initialState: {
+        path:JSON.parse(localStorage.getItem('path'))||'/',
         inputLogin: '',
         inputPassword: '',
         errorsData: {
@@ -158,6 +159,15 @@ const usersSlice = createSlice({
                 color: '',
             },
             globalError:''
+        },
+        reset:{
+            resetWindow:false,
+            inputEmail:'',
+            error:{
+                errorColor:'',
+                errorText:'',
+                error:false
+            }
         }
     },
 
@@ -300,6 +310,25 @@ const usersSlice = createSlice({
                 state.profile.errorConfirmPassword.error = false
             }
             state.profile.inputConfirmPassword = payload.text
+        },
+        inputEmailChange(state,{payload}) {
+            const regx = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
+            if (regx.test(payload.text)) {
+                state.reset.error.error = false
+                state.reset.error.errorColor = 'green'
+                state.reset.error.errorText = ''
+            } else {
+                state.reset.error.error = true
+                state.reset.error.errorColor = 'red'
+                state.reset.error.errorText = 'Не корректный Email '
+            }
+            state.reset.inputEmail = payload.text
+        },
+        toggleResetWindow(state){
+            state.reset.resetWindow=!state.reset.resetWindow
+        },
+        changePath(state,{payload}){
+            state.path=payload.path
         }
     },
     extraReducers: {
@@ -374,6 +403,9 @@ const usersSlice = createSlice({
 });
 
 export const {
+    changePath,
+    toggleResetWindow,
+    inputEmailChange,
     inputConfirmLoginProfile,
     inputConfirmPasswordProfile,
     toggleWindowChangeLogin,

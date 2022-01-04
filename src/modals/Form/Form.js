@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Form.module.scss";
 
-function Form({isSignIn, clickOnSign, clickOnExit, password, changedPassword, login, changedLogin, errors}) {
+function Form({isSignIn, clickOnSign, clickOnExit, password, changedPassword, login, changedLogin, errors,clickReset}) {
     return (
         <>
             <h2>{isSignIn ? "Вход" : "Регистрация"}</h2>
@@ -21,6 +21,7 @@ function Form({isSignIn, clickOnSign, clickOnExit, password, changedPassword, lo
             <button onClick={clickOnExit} className={styles.button}>
                 Отмена
             </button>
+            {isSignIn? <button className={styles.reset} onClick={clickReset}>Забыли логин или пароль?</button>:null}
         </>
     );
 }

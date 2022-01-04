@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import styles from "./ProfilePage.module.scss";
-import PageName from "./../../components/PageName/PageName";
+import PageName from "../../components/PageName/PageName";
 import Button from "../../components/Button/Button";
 import DateTimeContainer from "../../components/DateTime/DateTimeContainer";
 import WindowProfile from "../../modals/WindowProfile/WindowProfile";
@@ -8,6 +8,7 @@ import WindowDeleteProfile from "../../modals/WindowDeleteProfile/WindowDeletePr
 import {useTransition, animated} from "react-spring";
 import {useDispatch} from "react-redux";
 import {requestGetData} from "../../store/actions/usersActions";
+import {useLocation} from "react-router-dom";
 
 function ProfilePage({
                          handleDeleteUserProfile,
