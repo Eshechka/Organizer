@@ -1,7 +1,19 @@
 import React from "react";
 import styles from "./Form.module.scss";
 
-function Form({isSignIn, clickOnSign, clickOnExit, password, changedPassword, login, changedLogin, errors,clickReset}) {
+function Form({
+                  isSignIn,
+                  clickOnSign,
+                  clickOnExit,
+                  password,
+                  changedPassword,
+                  login,
+                  changedLogin,
+                  errors,
+                  clickReset,
+                  changedEmail,
+                  email
+              }) {
     return (
         <>
             <h2>{isSignIn ? "Вход" : "Регистрация"}</h2>
@@ -12,8 +24,16 @@ function Form({isSignIn, clickOnSign, clickOnExit, password, changedPassword, lo
                        onChange={changedLogin} value={login} type="text" placeholder="Логин" name="login"/>
                 <p style={{color: 'red'}}>{errors.password.text}</p>
                 <input className={styles.input} style={{borderColor: errors.password.borderColor}}
-                        onChange={changedPassword} value={password} type="password"
+                       onChange={changedPassword} value={password} type="password"
                        placeholder="Пароль" name="password"/>
+                {!isSignIn ? <div>
+                    <p style={{color: 'red'}}>{errors.email.text}</p>
+                    <input className={styles.input} style={{borderColor: errors.email.borderColor}}
+                           onChange={changedEmail}
+                           value={email}
+                           type="email"
+                           placeholder="E-mail" name="email"/>
+                </div> : null}
                 <button type="submit" className={styles.button}>
                     {isSignIn ? "Войти" : "Зарегистрироваться"}
                 </button>
@@ -21,7 +41,8 @@ function Form({isSignIn, clickOnSign, clickOnExit, password, changedPassword, lo
             <button onClick={clickOnExit} className={styles.button}>
                 Отмена
             </button>
-            {isSignIn? <button className={styles.reset} onClick={clickReset}>Забыли логин или пароль?</button>:null}
+            <button className={styles.reset} onClick={()=>clickReset('login')}>Забыли логин?</button>
+            <button className={styles.reset} onClick={()=>clickReset('password')}>Забыли пароль?</button>
         </>
     );
 }

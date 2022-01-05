@@ -4,7 +4,6 @@ import styles from "./MainPage.module.scss";
 import Form from "../../modals/Form/Form";
 import {useTransition, animated} from "react-spring";
 import ResetWindow from "../../modals/Reset/ResetWindow";
-import {useLocation} from "react-router-dom";
 
 function MainPage({
                       isSignIn,
@@ -25,7 +24,11 @@ function MainPage({
                       changeEmail,
                       errorEmail,
                       resetWindow,
-                      toggleReset
+                      toggleReset,
+                      emailForm,
+                      valueEmail,
+                      statusSend,
+                      send
                   }) {
     useEffect(() => {
         const TimerId = setInterval(datetime, 1000);
@@ -80,7 +83,9 @@ function MainPage({
                         <ResetWindow email={email}
                                      changeEmail={changeEmail}
                                      clickNo={toggleReset}
-                                     error={errorEmail}/>
+                                     error={errorEmail}
+                                    status={statusSend}
+                                    clickYes={send}/>
                     </animated.div>
                 ) : null
             )}
@@ -93,6 +98,8 @@ function MainPage({
                             changedLogin={valueLogin}
                             password={password}
                             login={login}
+                            email={emailForm}
+                            changedEmail={valueEmail}
                             isSignIn={isSignIn}
                             clickOnSign={registrOrlogin}
                             clickOnExit={onCancel}

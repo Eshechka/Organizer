@@ -68,12 +68,14 @@ export const requestRegistration = createAsyncThunk(
         try {
             const body = {
                 username: getState().users.inputLogin,
-                password: getState().users.inputPassword
+                password: getState().users.inputPassword,
+                email: getState().users.inputEmail,
             }
             const {data} = await api.registration(body)
 
             localStorage.setItem('token', JSON.stringify(data.token))
             localStorage.setItem('id', JSON.stringify(data.id))
+            localStorage.setItem('confirmEmail', JSON.stringify(data.confirmEmail))
             return fulfillWithValue()
         } catch (e) {
             return rejectWithValue(e.response?.data.message)
@@ -96,6 +98,7 @@ export const requestAuthorization = createAsyncThunk(
 
             localStorage.setItem('token', JSON.stringify(data.token))
             localStorage.setItem('id', JSON.stringify(data.id))
+            localStorage.setItem('confirmEmail', JSON.stringify(data.confirmEmail))
             return fulfillWithValue()
         } catch (e) {
             return rejectWithValue(e.response?.data.message)
@@ -110,6 +113,7 @@ const usersSlice = createSlice({
         path:JSON.parse(localStorage.getItem('path'))||'/',
         inputLogin: '',
         inputPassword: '',
+        inputEmail:'',
         errorsData: {
             globalText: '',
             login: {
@@ -118,6 +122,11 @@ const usersSlice = createSlice({
                 borderColor: null
             },
             password: {
+                error: false,
+                text: '',
+                borderColor: null
+            },
+            email: {
                 error: false,
                 text: '',
                 borderColor: null
@@ -161,13 +170,7 @@ const usersSlice = createSlice({
             globalError:''
         },
         reset:{
-            resetWindow:false,
-            inputEmail:'',
-            error:{
-                errorColor:'',
-                errorText:'',
-                error:false
-            }
+
         }
     },
 
@@ -212,6 +215,20 @@ const usersSlice = createSlice({
                 }
             }
             state.inputPassword = payload.text
+        },
+        inputChangeEmail(state,{payload}) {
+            const regx = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
+            console.log(3)
+            if (regx.test(payload.text)) {
+                state.errorsData.email.error = false
+                state.errorsData.email.borderColor = 'green'
+                state.errorsData.email.text = ''
+            } else {
+                state.errorsData.email.error = true
+                state.errorsData.email.borderColor = 'red'
+                state.errorsData.email.text = 'Не корректный Email '
+            }
+            state.inputEmail = payload.text
         },
         setSignIn(state) {
             state.isSignIn = true;
@@ -311,25 +328,6 @@ const usersSlice = createSlice({
             }
             state.profile.inputConfirmPassword = payload.text
         },
-        inputEmailChange(state,{payload}) {
-            const regx = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
-            if (regx.test(payload.text)) {
-                state.reset.error.error = false
-                state.reset.error.errorColor = 'green'
-                state.reset.error.errorText = ''
-            } else {
-                state.reset.error.error = true
-                state.reset.error.errorColor = 'red'
-                state.reset.error.errorText = 'Не корректный Email '
-            }
-            state.reset.inputEmail = payload.text
-        },
-        toggleResetWindow(state){
-            state.reset.resetWindow=!state.reset.resetWindow
-        },
-        changePath(state,{payload}){
-            state.path=payload.path
-        }
     },
     extraReducers: {
         [requestAuthorization.fulfilled]: state => {
@@ -337,6 +335,7 @@ const usersSlice = createSlice({
             state.isOpenAuthLogin = false
             state.inputLogin = ''
             state.inputPassword = ''
+            state.inputEmail = ''
             state.errorsData.globalText = ''
         },
         [requestAuthorization.rejected]: (state, action) => {
@@ -403,9 +402,7 @@ const usersSlice = createSlice({
 });
 
 export const {
-    changePath,
-    toggleResetWindow,
-    inputEmailChange,
+    inputChangeEmail,
     inputConfirmLoginProfile,
     inputConfirmPasswordProfile,
     toggleWindowChangeLogin,

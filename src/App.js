@@ -13,6 +13,7 @@ import {useDispatch} from "react-redux";
 import {addUserToken, removeUserToken} from "./store/actions/usersActions";
 import loading from "./img/loader.gif"
 import ResetPage from "./pages/ResetPage/ResetPage";
+import ResetContainer from "./pages/ResetPage/ResetPageContainer";
 function App({userToken, loader}) {
     useEffect(() => {
         setInterval(() => {
@@ -52,7 +53,7 @@ function App({userToken, loader}) {
                     <Route path="*" element={<Navigate to="/notfound"/>}/>
                     <Route
                         path="/reset/:params"
-                        element={<ResetPage/>}
+                        element={<ResetContainer/>}
 
                     />
                     <Route path="/notfound" element={<NotFound/>}/>
