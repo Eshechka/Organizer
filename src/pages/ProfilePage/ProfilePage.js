@@ -8,7 +8,6 @@ import WindowDeleteProfile from "../../modals/WindowDeleteProfile/WindowDeletePr
 import {useTransition, animated} from "react-spring";
 import {useDispatch} from "react-redux";
 import {requestGetData} from "../../store/actions/usersActions";
-import {useLocation} from "react-router-dom";
 
 function ProfilePage({
                          handleDeleteUserProfile,
@@ -30,7 +29,16 @@ function ProfilePage({
                          password,
                          errors,
                          updatedLogin,
-                         updatedPassword
+                         updatedPassword,
+                        updateEmail,
+                        email,
+                        inputEmail,
+                        inputConfirmEmail,
+                         isChangeEmail,
+                        isClickEmail,
+                         changedEmail,
+                        changedConfirmEmail
+
                      }) {
     const animationDelete = useTransition(isOpenDelete, {
         from: {
@@ -45,6 +53,18 @@ function ProfilePage({
         expires: true,
     });
     const animationChangePassword = useTransition(isChangePassword, {
+        from: {
+            opacity: 0,
+        },
+        enter: {
+            opacity: 1,
+        },
+        leave: {
+            opacity: 0,
+        },
+        expires: true,
+    });
+    const animationChangeEmail = useTransition(isChangeEmail, {
         from: {
             opacity: 0,
         },
@@ -110,6 +130,18 @@ function ProfilePage({
                         <Button text="Изменить" click={isClickLogin}/>
                     </div>
                 </div>
+                <div className={styles.changedata}>
+                    <p className={styles.changedata__text}>Ваш email:</p>
+                    <input
+                        className={styles.changedata__input}
+                        disabled
+                        value={email}
+                        type="email"
+                    />
+                    <div className={styles.changedata__button}>
+                        <Button text="Изменить" click={isClickEmail}/>
+                    </div>
+                </div>
                 <div className={styles.changedata__submit}>
                     <Button
                         text="Удалить профиль"
@@ -148,6 +180,24 @@ function ProfilePage({
                                 error={errors.errorPassword}
                                 errorConfirm={errors.errorConfirmPassword}
                                 clickYes={updatedPassword}
+                                globalErr={errors.globalText}
+                            />
+                        </animated.div>
+                    ) : null
+                )}
+                {animationChangeEmail((props, isOpenChangeEmail) =>
+                    isOpenChangeEmail ? (
+                        <animated.div style={props} className={styles.windowChange}>
+                            <WindowProfile
+                                type={"email"}
+                                clickNo={isClickEmail}
+                                changeValue={changedEmail}
+                                inputValue={inputEmail}
+                                changeConfirmValue={changedConfirmEmail}
+                                inputConfirmValue={inputConfirmEmail}
+                                error={errors.errorEmail}
+                                errorConfirm={errors.errorConfirmEmail}
+                                clickYes={updateEmail}
                                 globalErr={errors.globalText}
                             />
                         </animated.div>

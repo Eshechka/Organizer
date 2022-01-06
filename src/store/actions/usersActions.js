@@ -1,5 +1,22 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import api from "../../api";
+export const requestUpdateEmail = createAsyncThunk(
+    'users/requestUpdateEmail',
+    async (_, {getState,dispatch, rejectWithValue}) => {
+        dispatch(loaderIn())
+        try {
+            const body = {
+                email: getState().users.profile.inputConfirmEmail
+            }
+            const {data} = await api.updateEmail(body)
+            return {data,body}
+        } catch (error) {
+            return rejectWithValue(error.response?.data)
+        } finally {
+            dispatch(loaderIn())
+        }
+    }
+)
 
 export const requestUpdatePassword = createAsyncThunk(
     'users/requestUpdatePassword',
@@ -141,18 +158,32 @@ const usersSlice = createSlice({
             isOpenDelete: false,
             isChangePassword: false,
             isChangeLogin: false,
+            isChangeEmail: false,
             inputLogin: '',
             inputPassword: '',
             inputConfirmLogin: '',
             inputConfirmPassword: '',
+            inputEmail: '',
+            inputConfirmEmail: '',
             login: '',
             password: '',
+            email: '',
             errorLogin: {
                 error: false,
                 text: '',
                 color: '',
             },
             errorPassword: {
+                error: false,
+                text: '',
+                color: '',
+            },
+            errorEmail: {
+                error: false,
+                text: '',
+                color: '',
+            },
+            errorConfirmEmail: {
                 error: false,
                 text: '',
                 color: '',
@@ -169,9 +200,6 @@ const usersSlice = createSlice({
             },
             globalError:''
         },
-        reset:{
-
-        }
     },
 
     reducers: {
@@ -261,6 +289,9 @@ const usersSlice = createSlice({
         toggleWindowChangePassword(state) {
             state.profile.isChangePassword = !state.profile.isChangePassword
         },
+        toggleWindowChangeEmail(state) {
+            state.profile.isChangeEmail = !state.profile.isChangeEmail
+        },
         inputLoginProfile(state, {payload}) {
             if (!payload.text) {
                 state.profile.errorLogin.color = 'red'
@@ -304,6 +335,19 @@ const usersSlice = createSlice({
 
             state.profile.inputPassword = payload.text
         },
+        inputEmailProfile(state,{payload}) {
+            const regx = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
+            if (regx.test(payload.text)) {
+                state.profile.errorEmail.error = false
+                state.profile.errorEmail.color = 'green'
+                state.profile.errorEmail.text = ''
+            } else {
+                state.profile.errorEmail.error = true
+                state.profile.errorEmail.color = 'red'
+                state.profile.errorEmail.text = 'Не корректный Email '
+            }
+            state.profile.inputEmail = payload.text
+        },
         inputConfirmLoginProfile(state, {payload}) {
             if (payload.text !== state.profile.inputLogin) {
                 state.profile.errorConfirmLogin.color = 'red'
@@ -327,6 +371,18 @@ const usersSlice = createSlice({
                 state.profile.errorConfirmPassword.error = false
             }
             state.profile.inputConfirmPassword = payload.text
+        },
+        inputConfirmEmailProfile(state, {payload}) {
+            if (payload.text !== state.profile.inputEmail) {
+                state.profile.errorConfirmEmail.color = 'red'
+                state.profile.errorConfirmEmail.text = 'Логины не совпадают'
+                state.profile.errorConfirmEmail.error = true
+            } else {
+                state.profile.errorConfirmEmail.color = 'green'
+                state.profile.errorConfirmEmail.text = ''
+                state.profile.errorConfirmEmail.error = false
+            }
+            state.profile.inputConfirmEmail = payload.text
         },
     },
     extraReducers: {
@@ -363,6 +419,9 @@ const usersSlice = createSlice({
         [requestGetData.fulfilled]: (state, {payload}) => {
             state.profile.login = payload.username
             state.profile.password = payload.password
+            state.profile.email = payload.email
+            localStorage.setItem('confirmEmail', JSON.stringify(payload.confirmEmail))
+
         },
         [requestGetData.rejected]: (state, {payload}) => {
             console.log(payload)
@@ -396,12 +455,29 @@ const usersSlice = createSlice({
             state.profile.inputConfirmPassword = ''
             state.profile.globalError=payload.message
         },
+        [requestUpdateEmail.fulfilled]: (state, {payload}) => {
+            state.profile.inputEmail = ''
+            state.profile.inputConfirmEmail = ''
+            state.profile.globalError=''
+            state.profile.isChangeEmail = !state.profile.isChangeEmail
+            localStorage.setItem('confirmEmail', JSON.stringify(payload.data.confirmEmail))
+            state.profile.email = payload.body.email
+        },
+        [requestUpdateEmail.rejected]: (state, {payload}) => {
+            console.log(payload)
+            state.profile.inputEmail = ''
+            state.profile.inputConfirmEmail = ''
+            state.profile.globalError=payload.message
+        },
 
     }
 
 });
 
 export const {
+    toggleWindowChangeEmail,
+    inputConfirmEmailProfile,
+    inputEmailProfile,
     inputChangeEmail,
     inputConfirmLoginProfile,
     inputConfirmPasswordProfile,

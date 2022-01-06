@@ -1,8 +1,10 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import api from "../../api";
+import {loaderIn} from "./usersActions";
 export const requestNewLogin=createAsyncThunk(
     'reset/requestNewLogin',
-    async (_,{getState,rejectWithValue})=>{
+    async (_,{getState, dispatch,rejectWithValue})=>{
+        dispatch(loaderIn())
         try {
             const body={
                 username:getState().reset.login
@@ -11,12 +13,15 @@ export const requestNewLogin=createAsyncThunk(
             return data
         }catch (e){
             return rejectWithValue(e.response?.data.message)
+        }finally {
+            dispatch(loaderIn())
         }
     }
 )
 export const requestNewPassword=createAsyncThunk(
     'reset/requestNewPassword',
-    async (_,{getState,rejectWithValue})=>{
+    async (_,{getState,dispatch,rejectWithValue})=>{
+        dispatch(loaderIn())
         try {
             const body={
                 password:getState().reset.password
@@ -25,12 +30,15 @@ export const requestNewPassword=createAsyncThunk(
             return data
         }catch (e){
             return rejectWithValue(e.response?.data.message)
+        }finally {
+            dispatch(loaderIn())
         }
     }
 )
 export const requestSendMail=createAsyncThunk(
     'reset/requestSendMail',
-    async (_,{getState,rejectWithValue})=>{
+    async (_,{getState,dispatch,rejectWithValue})=>{
+        dispatch(loaderIn())
         try {
             const body={
                 email:getState().reset.modal.inputEmail,
@@ -40,18 +48,23 @@ export const requestSendMail=createAsyncThunk(
             return data
         }catch (e){
             return rejectWithValue(e.response?.data.message)
+        }finally {
+            dispatch(loaderIn())
         }
     }
 )
 export const requestConfirmUser=createAsyncThunk(
     'reset/requestConfirmUser',
-    async (url,{rejectWithValue})=>{
+    async (url,{dispatch,rejectWithValue})=>{
+        dispatch(loaderIn())
         try {
 
             const {data}=await api.checkUser(url)
             return data
         }catch (e){
             return rejectWithValue(e.response?.data)
+        }finally {
+            dispatch(loaderIn())
         }
     }
 )
@@ -168,11 +181,12 @@ const resetSlice = createSlice({
             state.modal.statusSend=payload.message
         },
         [requestSendMail.rejected]:(state,{payload})=>{
+            console.log(payload)
             state.modal.inputEmail=''
             state.modal.error.errorText=''
             state.modal.error.errorColor=''
             state.modal.error.error=false
-            state.modal.statusSend=payload.message
+            state.modal.statusSend=payload
         },
         [requestConfirmUser.fulfilled]:(state,{payload})=>{
             console.log(payload)

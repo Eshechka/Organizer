@@ -2,7 +2,7 @@ import axios from "axios"
 import {authorization, registration} from "./requestsAuthorization";
 import {addTask, deleteTaskIdAll, getTasksId, updateTaskId} from "./requestsTasks";
 import {addGoal, deleteGoalIdAll, getGoalsId, updateGoalId} from "./requestsGoals";
-import {deleteProfile, getUser, updateLogin, updatePassword} from "./requestsUsers";
+import {deleteProfile, getUser, updateEmail, updateLogin, updatePassword} from "./requestsUsers";
 import {checkUser, sendMail, setNewPassword,setNewLogin} from "./requestReset";
 
 export const configAxios = axios.create({
@@ -39,6 +39,7 @@ const api = {
     sendMail,
     checkUser,
     setNewPassword,
-    setNewLogin
+    setNewLogin,
+    updateEmail
 }
 export default api
