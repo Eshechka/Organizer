@@ -5,6 +5,7 @@ import usersSlice from './actions/usersActions'
 import globalTimeSlice from "./actions/globalTimeActions";
 import backgroundAnimationSlice from "./actions/backgroundAnimationActions";
 import resetSlice from './actions/resetActions'
+import confirmEmail from './actions/confirmEmailActions'
 export const store = configureStore({
     reducer: {
         goals: goalsSlice,
@@ -12,7 +13,8 @@ export const store = configureStore({
         users: usersSlice,
         globalDateTime: globalTimeSlice,
         background: backgroundAnimationSlice,
-        reset:resetSlice
+        reset:resetSlice,
+        confirm:confirmEmail
     },
     devTools: true
 })
