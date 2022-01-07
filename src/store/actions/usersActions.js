@@ -127,7 +127,6 @@ export const requestAuthorization = createAsyncThunk(
 const usersSlice = createSlice({
     name: "users",
     initialState: {
-        path:JSON.parse(localStorage.getItem('path'))||'/',
         inputLogin: '',
         inputPassword: '',
         inputEmail:'',
@@ -274,8 +273,7 @@ const usersSlice = createSlice({
         },
         removeUserToken(state) {
             state.userToken = false;
-            localStorage.removeItem('token')
-            localStorage.removeItem('id')
+            localStorage.clear()
         },
         addUserToken(state) {
             state.userToken = true;
@@ -408,8 +406,7 @@ const usersSlice = createSlice({
             state.errorsData.globalText = action.payload
         },
         [requestDeleteProfileId.fulfilled]: (state) => {
-            localStorage.removeItem('token')
-            localStorage.removeItem('id')
+            localStorage.clear()
             state.profile.isOpenDelete = !state.profile.isOpenDelete
         },
         [requestDeleteProfileId.rejected]: (state, {payload}) => {

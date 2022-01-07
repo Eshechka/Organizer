@@ -6,14 +6,17 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import ProfilePageContainer from "./pages/ProfilePage/ProfilePageContainer";
 import GoalsPageContainer from "./pages/GoalsPage/GoalsPageContainer";
 import NotFound from "./pages/NotFound/NotFound";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import TasksPageContainer from "./pages/TasksPage/TasksPageContainer";
 import MainPageContainer from "./pages/MainPage/MainPageContainer";
 import {useDispatch} from "react-redux";
 import {addUserToken, removeUserToken} from "./store/actions/usersActions";
 import loading from "./img/loader.gif"
 import ResetContainer from "./pages/ResetPage/ResetPageContainer";
+import ConfirmEmail from "./components/ConfirmEmail/ConfirmEmail";
+import ConfirmEmailPage from "./pages/ConfirmEmailPage/ConfirmEmailPage";
 function App({userToken, loader}) {
+    const [confirm,setConfirm]=useState(false)
     useEffect(() => {
         setInterval(() => {
             if (localStorage.getItem('token')) {
@@ -23,9 +26,19 @@ function App({userToken, loader}) {
             }
         }, 500)
     });
+    useEffect(()=>{
+        setInterval(()=>{
+            if(localStorage.getItem('confirmEmail')==='false'){
+                setConfirm(false)
+            }else {
+                setConfirm(true)
+            }
+        },1000)
+    },[])
     const dispatch = useDispatch()
     return (
         <>
+            {!confirm?<ConfirmEmail/>:null}
             <HeaderContainer/>
             {userToken ? <Nav user={userToken}/> : null}
             <div className="maincontent">
@@ -51,8 +64,13 @@ function App({userToken, loader}) {
                     <Route path="/notfound" element={<NotFound/>}/>
                     <Route path="*" element={<Navigate to="/notfound"/>}/>
                     <Route
-                        path="/reset/:params"
+                        path="/reset/:token"
                         element={<ResetContainer/>}
+
+                    />
+                    <Route
+                        path="/confirm/:token"
+                        element={<ConfirmEmailPage/>}
 
                     />
                     <Route path="/notfound" element={<NotFound/>}/>
