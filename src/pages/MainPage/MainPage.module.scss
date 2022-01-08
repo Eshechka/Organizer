@@ -56,7 +56,7 @@
   }
 
   &__background {
-    position: absolute;
+    position: fixed;
     width: 110%;
     height: 100%;
     top: 0;
@@ -74,17 +74,36 @@
 
 .window {
   position: absolute;
-  z-index: 9999;
+  z-index: 500;
   opacity: 1;
   width: 429px;
-  min-height: 532px;
+  min-height: 500px;
   background-color: black;
   padding: 40px;
+  top: 10px;
   @include desktop {
   }
   @include tablets {
   }
   @include phones {
     width: 100%;
+  }
+}
+.reset {
+  position: absolute;
+  z-index: 5001;
+  opacity: 1;
+  top: 34%;
+  left: 33%;
+  width: 590px;
+  min-height: 207px;
+  background: #000000;
+  padding: 40px;
+  @include desktop {
+    left: 15%;
+  }
+  @include tablets {
+    width: 100%;
+    left: 0;
   }
 }

@@ -41,6 +41,9 @@
 .maincontent {
   position: relative;
   flex-grow: 1;
+  ::-webkit-scrollbar{
+    width: 0;
+  }
 
   /*background: linear-gradient(rgb(79, 78, 78), black, rgb(77, 76, 76)) center*/
   /*center/cover no-repeat;*/
@@ -127,7 +130,7 @@
   align-items: center;
   position: fixed;
   top:0;
-  z-index: 3000;
+  z-index: 9999;
   width: 100%;
   height:100vh;
   background: rgba(134, 132, 132, 0.3);

@@ -1,5 +1,22 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import api from "../../api";
+export const requestUpdateEmail = createAsyncThunk(
+    'users/requestUpdateEmail',
+    async (_, {getState,dispatch, rejectWithValue}) => {
+        dispatch(loaderIn())
+        try {
+            const body = {
+                email: getState().users.profile.inputConfirmEmail
+            }
+            const {data} = await api.updateEmail(body)
+            return {data,body}
+        } catch (error) {
+            return rejectWithValue(error.response?.data)
+        } finally {
+            dispatch(loaderIn())
+        }
+    }
+)
 
 export const requestUpdatePassword = createAsyncThunk(
     'users/requestUpdatePassword',
@@ -68,12 +85,14 @@ export const requestRegistration = createAsyncThunk(
         try {
             const body = {
                 username: getState().users.inputLogin,
-                password: getState().users.inputPassword
+                password: getState().users.inputPassword,
+                email: getState().users.inputEmail,
             }
             const {data} = await api.registration(body)
 
             localStorage.setItem('token', JSON.stringify(data.token))
             localStorage.setItem('id', JSON.stringify(data.id))
+            localStorage.setItem('confirmEmail', JSON.stringify(data.confirmEmail))
             return fulfillWithValue()
         } catch (e) {
             return rejectWithValue(e.response?.data.message)
@@ -96,6 +115,7 @@ export const requestAuthorization = createAsyncThunk(
 
             localStorage.setItem('token', JSON.stringify(data.token))
             localStorage.setItem('id', JSON.stringify(data.id))
+            localStorage.setItem('confirmEmail', JSON.stringify(data.confirmEmail))
             return fulfillWithValue()
         } catch (e) {
             return rejectWithValue(e.response?.data.message)
@@ -109,6 +129,7 @@ const usersSlice = createSlice({
     initialState: {
         inputLogin: '',
         inputPassword: '',
+        inputEmail:'',
         errorsData: {
             globalText: '',
             login: {
@@ -117,6 +138,11 @@ const usersSlice = createSlice({
                 borderColor: null
             },
             password: {
+                error: false,
+                text: '',
+                borderColor: null
+            },
+            email: {
                 error: false,
                 text: '',
                 borderColor: null
@@ -131,18 +157,32 @@ const usersSlice = createSlice({
             isOpenDelete: false,
             isChangePassword: false,
             isChangeLogin: false,
+            isChangeEmail: false,
             inputLogin: '',
             inputPassword: '',
             inputConfirmLogin: '',
             inputConfirmPassword: '',
+            inputEmail: '',
+            inputConfirmEmail: '',
             login: '',
             password: '',
+            email: '',
             errorLogin: {
                 error: false,
                 text: '',
                 color: '',
             },
             errorPassword: {
+                error: false,
+                text: '',
+                color: '',
+            },
+            errorEmail: {
+                error: false,
+                text: '',
+                color: '',
+            },
+            errorConfirmEmail: {
                 error: false,
                 text: '',
                 color: '',
@@ -158,7 +198,7 @@ const usersSlice = createSlice({
                 color: '',
             },
             globalError:''
-        }
+        },
     },
 
     reducers: {
@@ -203,6 +243,20 @@ const usersSlice = createSlice({
             }
             state.inputPassword = payload.text
         },
+        inputChangeEmail(state,{payload}) {
+            const regx = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
+            console.log(3)
+            if (regx.test(payload.text)) {
+                state.errorsData.email.error = false
+                state.errorsData.email.borderColor = 'green'
+                state.errorsData.email.text = ''
+            } else {
+                state.errorsData.email.error = true
+                state.errorsData.email.borderColor = 'red'
+                state.errorsData.email.text = 'Не корректный Email '
+            }
+            state.inputEmail = payload.text
+        },
         setSignIn(state) {
             state.isSignIn = true;
         },
@@ -219,8 +273,7 @@ const usersSlice = createSlice({
         },
         removeUserToken(state) {
             state.userToken = false;
-            localStorage.removeItem('token')
-            localStorage.removeItem('id')
+            localStorage.clear()
         },
         addUserToken(state) {
             state.userToken = true;
@@ -233,6 +286,9 @@ const usersSlice = createSlice({
         },
         toggleWindowChangePassword(state) {
             state.profile.isChangePassword = !state.profile.isChangePassword
+        },
+        toggleWindowChangeEmail(state) {
+            state.profile.isChangeEmail = !state.profile.isChangeEmail
         },
         inputLoginProfile(state, {payload}) {
             if (!payload.text) {
@@ -277,6 +333,19 @@ const usersSlice = createSlice({
 
             state.profile.inputPassword = payload.text
         },
+        inputEmailProfile(state,{payload}) {
+            const regx = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
+            if (regx.test(payload.text)) {
+                state.profile.errorEmail.error = false
+                state.profile.errorEmail.color = 'green'
+                state.profile.errorEmail.text = ''
+            } else {
+                state.profile.errorEmail.error = true
+                state.profile.errorEmail.color = 'red'
+                state.profile.errorEmail.text = 'Не корректный Email '
+            }
+            state.profile.inputEmail = payload.text
+        },
         inputConfirmLoginProfile(state, {payload}) {
             if (payload.text !== state.profile.inputLogin) {
                 state.profile.errorConfirmLogin.color = 'red'
@@ -300,7 +369,19 @@ const usersSlice = createSlice({
                 state.profile.errorConfirmPassword.error = false
             }
             state.profile.inputConfirmPassword = payload.text
-        }
+        },
+        inputConfirmEmailProfile(state, {payload}) {
+            if (payload.text !== state.profile.inputEmail) {
+                state.profile.errorConfirmEmail.color = 'red'
+                state.profile.errorConfirmEmail.text = 'Логины не совпадают'
+                state.profile.errorConfirmEmail.error = true
+            } else {
+                state.profile.errorConfirmEmail.color = 'green'
+                state.profile.errorConfirmEmail.text = ''
+                state.profile.errorConfirmEmail.error = false
+            }
+            state.profile.inputConfirmEmail = payload.text
+        },
     },
     extraReducers: {
         [requestAuthorization.fulfilled]: state => {
@@ -308,6 +389,7 @@ const usersSlice = createSlice({
             state.isOpenAuthLogin = false
             state.inputLogin = ''
             state.inputPassword = ''
+            state.inputEmail = ''
             state.errorsData.globalText = ''
         },
         [requestAuthorization.rejected]: (state, action) => {
@@ -324,8 +406,7 @@ const usersSlice = createSlice({
             state.errorsData.globalText = action.payload
         },
         [requestDeleteProfileId.fulfilled]: (state) => {
-            localStorage.removeItem('token')
-            localStorage.removeItem('id')
+            localStorage.clear()
             state.profile.isOpenDelete = !state.profile.isOpenDelete
         },
         [requestDeleteProfileId.rejected]: (state, {payload}) => {
@@ -335,6 +416,9 @@ const usersSlice = createSlice({
         [requestGetData.fulfilled]: (state, {payload}) => {
             state.profile.login = payload.username
             state.profile.password = payload.password
+            state.profile.email = payload.email
+            localStorage.setItem('confirmEmail', JSON.stringify(payload.confirmEmail))
+
         },
         [requestGetData.rejected]: (state, {payload}) => {
             console.log(payload)
@@ -368,12 +452,30 @@ const usersSlice = createSlice({
             state.profile.inputConfirmPassword = ''
             state.profile.globalError=payload.message
         },
+        [requestUpdateEmail.fulfilled]: (state, {payload}) => {
+            state.profile.inputEmail = ''
+            state.profile.inputConfirmEmail = ''
+            state.profile.globalError=''
+            state.profile.isChangeEmail = !state.profile.isChangeEmail
+            localStorage.setItem('confirmEmail', JSON.stringify(payload.data.confirmEmail))
+            state.profile.email = payload.body.email
+        },
+        [requestUpdateEmail.rejected]: (state, {payload}) => {
+            console.log(payload)
+            state.profile.inputEmail = ''
+            state.profile.inputConfirmEmail = ''
+            state.profile.globalError=payload.message
+        },
 
     }
 
 });
 
 export const {
+    toggleWindowChangeEmail,
+    inputConfirmEmailProfile,
+    inputEmailProfile,
+    inputChangeEmail,
     inputConfirmLoginProfile,
     inputConfirmPasswordProfile,
     toggleWindowChangeLogin,

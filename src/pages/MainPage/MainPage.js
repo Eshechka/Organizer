@@ -3,6 +3,7 @@ import el from "../../img/backround_element.png";
 import styles from "./MainPage.module.scss";
 import Form from "../../modals/Form/Form";
 import {useTransition, animated} from "react-spring";
+import ResetWindow from "../../modals/Reset/ResetWindow";
 
 function MainPage({
                       isSignIn,
@@ -18,7 +19,16 @@ function MainPage({
                       valuePassword,
                       valueLogin,
                       errorsData,
-                       touch
+                      touch,
+                      email,
+                      changeEmail,
+                      errorEmail,
+                      resetWindow,
+                      toggleReset,
+                      emailForm,
+                      valueEmail,
+                      statusSend,
+                      send
                   }) {
     useEffect(() => {
         const TimerId = setInterval(datetime, 1000);
@@ -26,8 +36,18 @@ function MainPage({
             clearInterval(TimerId);
         };
     });
-
-    const animation = useTransition(isSignIn, {
+    const animationForm = useTransition(isSignIn, {
+        from: {
+            opacity: 0,
+        },
+        enter: {
+            opacity: 1,
+        },
+        leave: {
+            opacity: 0,
+        },
+    });
+    const animationReset = useTransition(resetWindow, {
         from: {
             opacity: 0,
         },
@@ -57,8 +77,20 @@ function MainPage({
                 src={el}
                 alt="png"
             />
-            {animation((props,toggle) =>
-               toggle!==null? (
+            {animationReset((props, toggle) =>
+                toggle ? (
+                    <animated.div className={styles.reset} style={props}>
+                        <ResetWindow email={email}
+                                     changeEmail={changeEmail}
+                                     clickNo={toggleReset}
+                                     error={errorEmail}
+                                    status={statusSend}
+                                    clickYes={send}/>
+                    </animated.div>
+                ) : null
+            )}
+            {animationForm((props, toggle) =>
+                toggle !== null ? (
                     <animated.div className={styles.window} style={props}>
                         <Form
                             errors={errorsData}
@@ -66,9 +98,12 @@ function MainPage({
                             changedLogin={valueLogin}
                             password={password}
                             login={login}
+                            email={emailForm}
+                            changedEmail={valueEmail}
                             isSignIn={isSignIn}
                             clickOnSign={registrOrlogin}
                             clickOnExit={onCancel}
+                            clickReset={toggleReset}
                         />
                     </animated.div>
                 ) : null

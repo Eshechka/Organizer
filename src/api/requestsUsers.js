@@ -12,3 +12,6 @@ export const updateLogin = body => {
 export const deleteProfile = userId => {
     return configAxios.delete(`/profile?userId=${userId}`)
 }
+export const updateEmail = body => {
+    return configAxios.put('/profile/email', body)
+}

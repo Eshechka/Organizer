@@ -8,6 +8,7 @@ import Goals from "../../components/Goals/Goals";
 import {useTransition, animated} from "react-spring";
 import {useDispatch} from "react-redux";
 import {getGoalsId} from "../../store/actions/goalsActions";
+import {useLocation} from "react-router-dom";
 
 function GoalsPage({
                        errors,
