@@ -15,8 +15,11 @@ import loading from "./img/loader.gif"
 import ResetContainer from "./pages/ResetPage/ResetPageContainer";
 import ConfirmEmail from "./components/ConfirmEmail/ConfirmEmail";
 import ConfirmEmailPage from "./pages/ConfirmEmailPage/ConfirmEmailPage";
+import NewContent from "./components/newContent/NewContent";
 function App({userToken, loader}) {
     const [confirm,setConfirm]=useState(false)
+    const[openWindow,setOpenWindow]=useState(false)
+    const toggleWindow=()=>{setOpenWindow(prev=>!prev)}
     useEffect(() => {
         setInterval(() => {
             if (localStorage.getItem('token')) {
@@ -41,6 +44,8 @@ function App({userToken, loader}) {
             {!confirm?<ConfirmEmail/>:null}
             <HeaderContainer/>
             {userToken ? <Nav user={userToken}/> : null}
+            <button onClick={toggleWindow} className='newVersion'>New</button>
+            {openWindow?<NewContent/>:null}
             <div className="maincontent">
                 <Routes>
                     <Route

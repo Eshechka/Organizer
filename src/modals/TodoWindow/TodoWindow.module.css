@@ -51,6 +51,26 @@
   height: 200px;
 }
 
+.newVersion {
+  position: fixed;
+  display: block;
+  width: 60px;
+  height: 60px;
+  outline: none;
+  background: #0a80de;
+  border-radius: 100%;
+  color: white;
+  z-index: 500;
+  border: none;
+  font-size: 25px;
+  font-weight: 900;
+  transform: translate(0, 87px);
+  transition: all 0.2s;
+}
+.newVersion:hover {
+  background: #095c9d;
+}
+
 .p {
   color: white;
   text-align: center;

@@ -71,85 +71,47 @@
   background: #095c9d;
 }
 
-h2 {
-  font-weight: 700;
-  text-align: center;
-  color: white;
-  font-size: 48px;
+.container {
+  background: white;
+  position: relative;
+  z-index: 100;
 }
-
-.information {
-  width: 218px;
-  min-height: 60px;
-  padding: 5px;
-  font-size: 24px;
-  text-align: center;
-  font-weight: 400;
-  line-height: 30px;
-  color: white;
-  margin: 0 auto;
+.container__flex {
+  width: 800px;
+  display: flex;
+  margin: 10px auto;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }
-.information form {
-  margin: 7px auto;
-}
-@media screen and (max-width: 480px) {
-  .information form {
-    width: 100%;
+@media screen and (max-width: 1200px) {
+  .container__flex {
+    width: 90%;
   }
 }
-
-.input {
-  display: block;
-  margin: 20px auto;
-  width: 293px;
-  height: 63px;
-  border: none;
-  border-bottom: solid 2px white;
-  padding: 5px;
-  color: white;
-  font-size: 24px;
-  font-weight: 700;
-  background: none;
-  outline: none;
-}
-@media screen and (max-width: 480px) {
-  .input {
-    width: 100%;
-  }
-}
-
-.button {
-  display: block;
-  margin: 30px auto;
-  width: 204px;
-  height: 57px;
-  border: none;
-  background: #000000;
-  box-shadow: inset 0 0 15px -3px #FFF8F8;
-  border-radius: 38px;
-  color: white;
-  font-size: 24px;
-  font-weight: 700;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-}
-
-.reset {
-  display: block;
-  margin: 20px auto;
-  border: none;
-  outline: none;
-  background: none;
+.container__flex__text {
+  margin: 0;
+  font-weight: 600;
   font-size: 20px;
-  font-weight: 900;
-  color: #2e83ef;
-  cursor: pointer;
+  color: black;
   text-align: center;
+}
+.container__flex__yes {
+  outline: none;
+  border: none;
+  display: block;
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  background: #2e83ef;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
   transition: all 0.2s;
 }
-.reset:hover {
-  color: white;
+.container__flex__yes:hover {
+  background: #174685;
 }
 
-/*# sourceMappingURL=Form.module.css.map */
+/*# sourceMappingURL=ConfirmEmail.module.css.map */
