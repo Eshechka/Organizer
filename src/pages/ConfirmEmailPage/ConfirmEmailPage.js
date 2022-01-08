@@ -13,7 +13,7 @@ const ConfirmEmailPage = () => {
     },[])
     return (
         <div className={styles.container}>
-                <p className={styles.container__text}>{check?'Почта подтверждена':'Ссылка не действительная'}</p>
+                <p className={styles.container__text}>{check?'Почта подтверждена':'Ссылка недействительная'}</p>
         </div>
     );
 };

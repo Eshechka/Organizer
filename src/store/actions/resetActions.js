@@ -210,7 +210,7 @@ const resetSlice = createSlice({
         },
         [requestNewLogin.fulfilled]:(state,{payload})=>{
             console.log(payload)
-            state.status='Пароль изменён, теперь вы можете войти с новым паролем, а эту вкладку вы можете закрыть'
+            state.status='Пароль или логин изменён, теперь вы можете войти с новым паролем или логином, а эту вкладку вы можете закрыть'
             state.login=''
             state.errorsData.login.error=false
             state.errorsData.login.text=''
