@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import styles from "./ProfilePage.module.scss";
-import PageName from "./../../components/PageName/PageName";
+import PageName from "../../components/PageName/PageName";
 import Button from "../../components/Button/Button";
 import DateTimeContainer from "../../components/DateTime/DateTimeContainer";
 import WindowProfile from "../../modals/WindowProfile/WindowProfile";
@@ -29,35 +29,50 @@ function ProfilePage({
                          password,
                          errors,
                          updatedLogin,
-                         updatedPassword
+                         updatedPassword,
+                        updateEmail,
+                        email,
+                        inputEmail,
+                        inputConfirmEmail,
+                         isChangeEmail,
+                        isClickEmail,
+                         changedEmail,
+                        changedConfirmEmail
+
                      }) {
     const animationDelete = useTransition(isOpenDelete, {
         from: {
             opacity: 0,
-            top: `${0}%`,
         },
         enter: {
             opacity: 1,
-            top: `${56}%`,
         },
         leave: {
             opacity: 0,
-            top: `${0}%`,
         },
         expires: true,
     });
     const animationChangePassword = useTransition(isChangePassword, {
         from: {
             opacity: 0,
-            top: `${0}%`,
         },
         enter: {
             opacity: 1,
-            top: `${56}%`,
         },
         leave: {
             opacity: 0,
-            top: `${0}%`,
+        },
+        expires: true,
+    });
+    const animationChangeEmail = useTransition(isChangeEmail, {
+        from: {
+            opacity: 0,
+        },
+        enter: {
+            opacity: 1,
+        },
+        leave: {
+            opacity: 0,
         },
         expires: true,
     });
@@ -115,6 +130,18 @@ function ProfilePage({
                         <Button text="Изменить" click={isClickLogin}/>
                     </div>
                 </div>
+                <div className={styles.changedata}>
+                    <p className={styles.changedata__text}>Ваш email:</p>
+                    <input
+                        className={styles.changedata__input}
+                        disabled
+                        value={email}
+                        type="email"
+                    />
+                    <div className={styles.changedata__button}>
+                        <Button text="Изменить" click={isClickEmail}/>
+                    </div>
+                </div>
                 <div className={styles.changedata__submit}>
                     <Button
                         text="Удалить профиль"
@@ -153,6 +180,24 @@ function ProfilePage({
                                 error={errors.errorPassword}
                                 errorConfirm={errors.errorConfirmPassword}
                                 clickYes={updatedPassword}
+                                globalErr={errors.globalText}
+                            />
+                        </animated.div>
+                    ) : null
+                )}
+                {animationChangeEmail((props, isOpenChangeEmail) =>
+                    isOpenChangeEmail ? (
+                        <animated.div style={props} className={styles.windowChange}>
+                            <WindowProfile
+                                type={"email"}
+                                clickNo={isClickEmail}
+                                changeValue={changedEmail}
+                                inputValue={inputEmail}
+                                changeConfirmValue={changedConfirmEmail}
+                                inputConfirmValue={inputConfirmEmail}
+                                error={errors.errorEmail}
+                                errorConfirm={errors.errorConfirmEmail}
+                                clickYes={updateEmail}
                                 globalErr={errors.globalText}
                             />
                         </animated.div>

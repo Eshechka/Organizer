@@ -61,7 +61,7 @@ function Nav({user}) {
                                     opacity: user === false ? 0.4 : 1,
                                 }}
                             >
-                                <NavLink to="/purposes">
+                                <NavLink to="/goals">
                                     <img src={icon2} alt="icon2" className={styles.navlist__img}/>
                                     <p className={styles.navlist__text}>Список целей</p>
                                 </NavLink>
@@ -99,7 +99,7 @@ function Nav({user}) {
                                             opacity: user === false ? 0.4 : 1,
                                         }}
                                     >
-                                        <NavLink to="/purposes">
+                                        <NavLink to="/goals">
                                             <p className={styles.navlist__text}>Список целей</p>
                                         </NavLink>
                                     </li>

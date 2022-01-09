@@ -6,14 +6,20 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import ProfilePageContainer from "./pages/ProfilePage/ProfilePageContainer";
 import GoalsPageContainer from "./pages/GoalsPage/GoalsPageContainer";
 import NotFound from "./pages/NotFound/NotFound";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import TasksPageContainer from "./pages/TasksPage/TasksPageContainer";
 import MainPageContainer from "./pages/MainPage/MainPageContainer";
 import {useDispatch} from "react-redux";
 import {addUserToken, removeUserToken} from "./store/actions/usersActions";
 import loading from "./img/loader.gif"
-
+import ResetContainer from "./pages/ResetPage/ResetPageContainer";
+import ConfirmEmail from "./components/ConfirmEmail/ConfirmEmail";
+import ConfirmEmailPage from "./pages/ConfirmEmailPage/ConfirmEmailPage";
+import NewContent from "./components/newContent/NewContent";
 function App({userToken, loader}) {
+    const [confirm,setConfirm]=useState(false)
+    const[openWindow,setOpenWindow]=useState(false)
+    const toggleWindow=()=>{setOpenWindow(prev=>!prev)}
     useEffect(() => {
         setInterval(() => {
             if (localStorage.getItem('token')) {
@@ -22,43 +28,57 @@ function App({userToken, loader}) {
                 dispatch(removeUserToken())
             }
         }, 500)
-
     });
+    useEffect(()=>{
+        setInterval(()=>{
+            if(localStorage.getItem('confirmEmail')==='false'){
+                setConfirm(false)
+            }else {
+                setConfirm(true)
+            }
+        },1000)
+    },[])
     const dispatch = useDispatch()
     return (
         <>
+            {!confirm?<ConfirmEmail/>:null}
             <HeaderContainer/>
             {userToken ? <Nav user={userToken}/> : null}
+            <button onClick={toggleWindow} className='newVersion'>New</button>
+            {openWindow?<NewContent/>:null}
             <div className="maincontent">
                 <Routes>
                     <Route
-                        exact
                         path="/"
-                        element={userToken ? <Navigate to="/do"/> : <MainPageContainer/>}
+                        element={
+                            !userToken ? <MainPageContainer/>: <Navigate to="/do"/>
+                        }
                     />
                     <Route
-                        exact
                         path="/do"
-                        element={
-                            !userToken ? <Navigate to="/"/> : <TasksPageContainer/>
-                        }
+                        element={userToken ?<TasksPageContainer/>:<Navigate to="/"/>}
                     />
                     <Route
-                        exact
-                        path="/purposes"
-                        element={
-                            !userToken ? <Navigate to="/"/> : <GoalsPageContainer/>
-                        }
+                        path="/goals"
+                        element={userToken? <GoalsPageContainer/>:<Navigate to="/"/>}
                     />
                     <Route
-                        exact
                         path="/profile"
-                        element={
-                            !userToken ? <Navigate to="/"/> : <ProfilePageContainer/>
-                        }
+                        element={userToken?<ProfilePageContainer/>:<Navigate to="/"/>}
                     />
                     <Route path="/notfound" element={<NotFound/>}/>
                     <Route path="*" element={<Navigate to="/notfound"/>}/>
+                    <Route
+                        path="/reset/:token"
+                        element={<ResetContainer/>}
+
+                    />
+                    <Route
+                        path="/confirm/:token"
+                        element={<ConfirmEmailPage/>}
+
+                    />
+                    <Route path="/notfound" element={<NotFound/>}/>
                 </Routes>
             </div>
             {loader?<div className='wrapper'>

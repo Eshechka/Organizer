@@ -62,3 +62,19 @@ h2 {
   cursor: pointer;
   outline: none;
 }
+.reset{
+  display: block;
+  margin: 20px auto;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 20px;
+  font-weight: 900;
+  color: #2e83ef;
+  cursor: pointer;
+  text-align: center;
+  transition: all .2s;
+  &:hover{
+    color: white;
+  }
+}

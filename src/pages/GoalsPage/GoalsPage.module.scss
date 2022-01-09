@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@import "../../App";
 
 .goals {
   position: relative;
@@ -80,5 +80,5 @@
 }
 
 .background {
-  background: url("./../../img/gradient.png") center center/cover no-repeat;
+  background: url("../../img/gradient.png") center center/cover no-repeat;
 }
